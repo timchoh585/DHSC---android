@@ -1,0 +1,483 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cal.sched.AddClass"
+    tools:ignore="MergeRootFrame" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="461dp"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
+
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".24">
+
+            <TextView
+                android:id="@+id/period"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:text="@string/period" />
+
+            <View
+                android:layout_weight="0.0667"
+                android:layout_height="5dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@android:color/darker_gray" />
+
+            <View
+                android:layout_weight="0.0667"
+                android:layout_height="5dp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:text="EB" />
+
+                    <View android:layout_height="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:text="P 1" />
+
+                    <View android:layout_height="2dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30sp"
+                        android:layout_weight="0.125"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:text="P 2" />
+
+                    <View android:layout_height="6dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30sp"
+                        android:layout_weight="0.125"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:text="P 3" />
+
+                    <View android:layout_height="6dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30sp"
+                        android:layout_weight="0.125"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:text="P 4" />
+
+                    <View android:layout_height="7dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30sp"
+                        android:layout_weight="0.125"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:text="P 5" />
+
+                    <View android:layout_height="8dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30sp"
+                        android:layout_weight="0.125"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:text="P 6" />
+
+                    <View android:layout_height="8dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30sp"
+                        android:layout_weight="0.125"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:text="P 7" />
+
+                    <View android:layout_height="6dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30sp"
+                        android:layout_weight="0.125"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:text="P 8" />
+
+                </TableLayout>
+
+            </ScrollView>
+
+        </TableLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".01"
+            android:background="@android:color/darker_gray" />
+
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".24">
+
+            <TextView
+                android:id="@+id/classes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:text="@string/classes" />
+
+            <View
+                android:layout_weight="0.0667"
+                android:layout_height="5dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@android:color/darker_gray" />
+
+            <View
+                android:layout_weight="0.0667"
+                android:layout_height="5dp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/peb"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/p1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/p2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/p3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/p4"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/p5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/p6"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/p7"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/p8"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                </TableLayout>
+
+            </ScrollView>
+
+        </TableLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".01"
+            android:background="@android:color/darker_gray" />
+
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".24">
+
+            <TextView
+                android:id="@+id/teacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:text="@string/teacher" />
+
+            <View
+                android:layout_weight="0.0667"
+                android:layout_height="5dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@android:color/darker_gray" />
+
+            <View
+                android:layout_weight="0.0667"
+                android:layout_height="5dp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/teb"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/t1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/t2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/t3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/t4"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/t5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/t6"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/t7"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/t8"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                </TableLayout>
+
+            </ScrollView>
+
+        </TableLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".01"
+            android:background="@android:color/darker_gray" />
+
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".24">
+
+            <TextView
+                android:id="@+id/room"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".24"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:text="@string/room" />
+
+            <View
+                android:layout_weight="0.0667"
+                android:layout_height="5dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@android:color/darker_gray" />
+
+            <View
+                android:layout_weight="0.0667"
+                android:layout_height="5dp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/reb"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/r1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/r2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/r3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/r4"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/r5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/r6"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/r7"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/r8"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                </TableLayout>
+
+            </ScrollView>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:text="Add Classes"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClick" />
+
+</FrameLayout>
