@@ -40,7 +40,6 @@ public class Disp extends ActionBarActivity {
     private ArrayList<String> sclass = new ArrayList<>();
     private ArrayList<String> steacher = new ArrayList<>();
     private ArrayList<String> sroom = new ArrayList<>();
-    public static boolean supAdd = false;
 
     /**
      * checks bool supAdd if true, then rusn savedSched to save sched and then it runs create List
@@ -58,12 +57,14 @@ public class Disp extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disp);
 
+        AddClass classes = new AddClass();
+
         sched = getIntent().getStringExtra("schedu");
 
         getDay();
         readSched();
 
-        if(supAdd)
+        if(classes.supAdd)
         {
             saveSched(sched);
             createList(sched);
@@ -73,7 +74,7 @@ public class Disp extends ActionBarActivity {
         }
         else
         {
-            supAdd = true;
+            classes.supAdd = true;
             if(sched == null || sched.length() == 0)
             {
                 Button add = (Button) findViewById(R.id.finish);
@@ -248,12 +249,10 @@ public class Disp extends ActionBarActivity {
             int c;
             while((c = fis.read()) != -1)
                 sch.append((char)c);
-            supAdd = true;
         }catch(Exception e)
         {
             Log.e("FILEREAD", e.getMessage() + " Error!");
         }
         sched = sch.toString();
-        supAdd = false;
     }
 }

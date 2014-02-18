@@ -24,7 +24,8 @@
         <ImageView
             android:id="@+id/aimage"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
+            android:contentDescription="@string/banner_alt"
             android:layout_weight="2"/>
 
         <LinearLayout
