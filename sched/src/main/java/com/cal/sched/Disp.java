@@ -112,7 +112,6 @@ public class Disp extends ActionBarActivity {
         Intent myIntent = new Intent(Disp.this, AddClass.class);
         //myIntent.putExtra("key", value); //Optional parameters
         Disp.this.startActivity(myIntent);
-//        startActivity(new Intent("com.cal.sched.AddClass"));
     }
 
     @Override
@@ -192,12 +191,6 @@ public class Disp extends ActionBarActivity {
      */
     private void createList(String schedule)
     {
-        //ListView lv = (ListView) findViewById(R.id.listView);
-
-        //ArrayList<String> sclass = new ArrayList<>();
-        //ArrayList<String> steacher = new ArrayList<>();
-        //ArrayList<String> sroom = new ArrayList<>();
-
         for(String f : schedule.split(","))
             full.add(f);
 
@@ -210,9 +203,6 @@ public class Disp extends ActionBarActivity {
             else
                 sroom.add(full.remove(0));
         }
-        //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.activity_disp, sclass);
-
-        //lv.setAdapter(adapter);
     }
 
     /**
