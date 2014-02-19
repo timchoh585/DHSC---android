@@ -91,10 +91,7 @@ public class Disp extends ActionBarActivity {
                 }
             }
             else
-            {
-                saveSched(sched);
-                createList(sched);
-            }
+                saveSched(sched); createList(sched);
         }
 
         if (savedInstanceState == null)
