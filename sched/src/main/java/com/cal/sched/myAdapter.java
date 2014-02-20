@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class myAdapter extends BaseAdapter
 {
     Context context;
-    ArrayList<String> classes;
-    ArrayList<String> teachers;
+    ArrayList<String> classes = null;
+    ArrayList<String> teachers = null;
     private static LayoutInflater inflater = null;
 
     public myAdapter(Context context, ArrayList<String> classes, ArrayList<String> teachers)
@@ -52,7 +52,6 @@ public class myAdapter extends BaseAdapter
         TextView teacher = (TextView) myView.findViewById(R.id.ateacher);
         classer.setText(classes.get(i));
         teacher.setText(teachers.get(i));
-
         return myView;
     }
 }
