@@ -67,7 +67,7 @@ public class Disp extends ActionBarActivity {
         if(classes.supAdd)
         {
             saveSched(sched);
-            createList(sched);
+            createList();
 
             ListView lists = (ListView) findViewById(R.id.listView);
             lists.setAdapter(new myAdapter(this, sclass, steacher));
@@ -91,7 +91,8 @@ public class Disp extends ActionBarActivity {
                 }
             }
             else
-                saveSched(sched); createList(sched);
+                saveSched(sched); createList();
+            saveSched(sched); createList();
         }
 
         if (savedInstanceState == null)
@@ -181,27 +182,26 @@ public class Disp extends ActionBarActivity {
         else if(dayForm.format(today).equals("Friday"))
             cycle.setText(Html.fromHtml("<fontsize=\"6\"> 12 Day </font>"));
         else
-            cycle.setText(Html.fromHtml("<h1> 100 Day </h1>"));
+            cycle.setText(Html.fromHtml("\"<fontsize=\"16\">" + "100 Day" + "</font>"));
     }
 
     /**
      * creates the seperate arraylists that the programmer can use for ease
      * split up by size of 9 as there are 9 "strings" in each case i.e. class, teacher, room
-     * @param schedule user's schedule that the user puts in
+     *
+     * goes from 0 to the length of arraylist full
+     * goes by 9 at a time starting from 0 - 8 (class), 9 - 17 (teacher), 18 - 27 (room)
      */
-    private void createList(String schedule)
+    private void createList()
     {
-        for(String f : schedule.split(","))
-            full.add(f);
-
-        for(int i = 0; i <= full.size(); i++)
+        for(int i = 0; i > full.size(); i--)
         {
             if(i < 9)
-                sclass.add(full.remove(0));
-            else if(i > 9 && i < 18)
-                steacher.add(full.remove(0));
+                sclass.add(full.get(i));
+            else if(i >= 9 && i <= 17)
+                steacher.add(full.get(i));
             else
-                sroom.add(full.remove(0));
+                sroom.add(full.get(i));
         }
     }
 

@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class AddClass extends ActionBarActivity {
 
     public static boolean supAdd;
@@ -103,14 +106,23 @@ public class AddClass extends ActionBarActivity {
                 r8.getText().toString();
 
 
-        Disp d = new Disp();
-        for(int i = 0; i < d.full.size(); i++)
-            if(d.full.get(i) == null)
+        /*Disp d = new Disp();
+        for (int i = 0; i < d.full.size(); i++)
+            if (d.full.get(i) == null)
                 d.full.set(i, " ");
+        supAdd = true;*/
+
+        Disp d = new Disp();
+        List<String> listSched = Arrays.asList(sched.split(","));
+        for(int i = 0; i < listSched.size(); i++)
+            if(listSched.get(i).equals("") || listSched.get(i) == null)
+                listSched.set(i, "none");
         supAdd = true;
 
+        d.full = listSched;
+
         Intent myIntent = new Intent(AddClass.this, Disp.class);
-        myIntent.putExtra("schedu", sched);
+        //myIntent.putExtra("schedu", sched);
         AddClass.this.startActivity(myIntent);
     }
 
