@@ -168,21 +168,34 @@ public class Disp extends ActionBarActivity {
             date.setText(Html.fromHtml("<fontsize=\"10\">" + dateForm.format(today) + "</font>"));
         }catch(Exception e)
         {
-            Log.e("DATE", e.getMessage() + " Error!");
+            Log.e("DATE", e.getMessage() + " Error getting date!");
         }
 
         if(dayForm.format(today).equals("Monday"))
+        {
             cycle.setText(Html.fromHtml("<fontsize=\"6\"> 100 Day </font>"));
+        }
         else if(dayForm.format(today).equals("Tuesday"))
+        {
             cycle.setText(Html.fromHtml("<fontsize=\"6\"> 78 Day </font>"));
+        }
         else if(dayForm.format(today).equals("Wednesday"))
+        {
             cycle.setText(Html.fromHtml("<fontsize=\"6\"> 56 Day </font>"));
+        }
         else if(dayForm.format(today).equals("Thursday"))
+        {
             cycle.setText(Html.fromHtml("<fontsize=\"6\"> 34 Day </font>"));
+        }
         else if(dayForm.format(today).equals("Friday"))
+        {
             cycle.setText(Html.fromHtml("<fontsize=\"6\"> 12 Day </font>"));
+        }
         else
+        {
             cycle.setText(Html.fromHtml("\"<fontsize=\"16\">" + "100 Day" + "</font>"));
+            set100();
+        }
     }
 
     /**
@@ -204,6 +217,125 @@ public class Disp extends ActionBarActivity {
                 sroom.add(full.get(i));
         }
     }
+
+    /**
+     * for 100 days
+     * show all the periods
+     */
+    private void set100()
+    {
+    }
+
+    /**
+     * for 78 days
+     * show all but period 7 and 8
+     */
+    private void set78()
+    {
+        sclass.remove(8);
+        steacher.remove(8);
+        sroom.remove(8);
+        sclass.remove(7);
+        steacher.remove(7);
+        sroom.remove(7);
+    }
+
+    /**
+     * for 56 days
+     */
+    private void set56()
+    {
+        sclass.remove(6);
+        steacher.remove(6);
+        sroom.remove(6);
+        sclass.remove(5);
+        steacher.remove(5);
+        sroom.remove(5);
+    }
+
+    /**
+     * for 34 days
+     */
+    private void set34()
+    {
+        sclass.remove(4);
+        steacher.remove(4);
+        sroom.remove(4);
+        sclass.remove(3);
+        steacher.remove(3);
+        sroom.remove(3);
+    }
+
+    /**
+     * for 12 days
+     */
+    private void set12()
+    {
+        sclass.remove(2);
+        steacher.remove(2);
+        sroom.remove(2);
+        sclass.remove(1);
+        steacher.remove(1);
+        sroom.remove(1);
+    }
+
+    /**
+     * remove earlybird classses
+     */
+    public void removeEB()
+    {
+        sclass.remove(0);
+        steacher.remove(0);
+        sroom.remove(0);
+    }
+
+    /**
+     * 56 late start day
+     *
+     * 4,7,8
+     */
+    public void first56()
+    {
+        set56();
+        sclass.remove(3);
+        steacher.remove(3);
+        sroom.remove(3);
+        sclass.remove(2);
+        steacher.remove(2);
+        sroom.remove(2);
+        sclass.remove(1);
+        steacher.remove(1);
+        sroom.remove(1);
+    }
+    /**
+     * 56 late start day
+     *
+     * 1,2,3
+     */
+    public void second56()
+    {
+        sclass.remove(8);
+        steacher.remove(8);
+        sroom.remove(8);
+        sclass.remove(7);
+        steacher.remove(7);
+        sroom.remove(7);
+        set56();
+        sclass.remove(4);
+        steacher.remove(4);
+        sroom.remove(4);
+    }
+
+    /**
+     * 34 late start
+     *
+     * 6,7,8
+     */
+    /**
+     * 34 late start
+     *
+     * 1,2,5
+     */
 
     /**
      * saving the sched as the user would put it in
