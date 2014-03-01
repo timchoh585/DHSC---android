@@ -300,12 +300,7 @@ public class Disp extends ActionBarActivity {
         sclass.remove(3);
         steacher.remove(3);
         sroom.remove(3);
-        sclass.remove(2);
-        steacher.remove(2);
-        sroom.remove(2);
-        sclass.remove(1);
-        steacher.remove(1);
-        sroom.remove(1);
+        set12();
     }
     /**
      * 56 late start day
@@ -314,12 +309,7 @@ public class Disp extends ActionBarActivity {
      */
     public void second56()
     {
-        sclass.remove(8);
-        steacher.remove(8);
-        sroom.remove(8);
-        sclass.remove(7);
-        steacher.remove(7);
-        sroom.remove(7);
+        set78();
         set56();
         sclass.remove(4);
         steacher.remove(4);
@@ -331,11 +321,28 @@ public class Disp extends ActionBarActivity {
      *
      * 6,7,8
      */
+    public void first34()
+    {
+        sclass.remove(5);
+        steacher.remove(5);
+        sroom.remove(5);
+        set34();
+        set12();
+    }
+
     /**
      * 34 late start
      *
      * 1,2,5
      */
+    public void second34()
+    {
+        set78();
+        sclass.remove(6);
+        steacher.remove(6);
+        sroom.remove(6);
+        set34();
+    }
 
     /**
      * saving the sched as the user would put it in
