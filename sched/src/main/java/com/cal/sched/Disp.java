@@ -69,6 +69,8 @@ public class Disp extends ActionBarActivity {
             saveSched(sched);
             createList();
 
+            setCycle();
+
             ListView lists = (ListView) findViewById(R.id.listView);
             lists.setAdapter(new myAdapter(this, sclass, steacher));
         }
@@ -152,12 +154,13 @@ public class Disp extends ActionBarActivity {
 
     /**
      * used to return the day of the week that is used to determine what cycle day it is
+     * it will also set the arraylists that are needed for the adapter right here to that we can
+     * find out which day we should output to the user when the user is running the app.
      */
-    public void getDay()
+    public String getDay()
     {
         TextView day = (TextView) findViewById(R.id.day);
         TextView date = (TextView) findViewById(R.id.date);
-        TextView cycle = (TextView) findViewById(R.id.cycle);
         SimpleDateFormat dayForm = new SimpleDateFormat("EEEE");
         SimpleDateFormat dateForm = new SimpleDateFormat("MMM dd, yyyy");
         Date today = new Date();
@@ -171,25 +174,41 @@ public class Disp extends ActionBarActivity {
             Log.e("DATE", e.getMessage() + " Error getting date!");
         }
 
-        if(dayForm.format(today).equals("Monday"))
+        return dayForm.format(today);
+    }
+
+    public void setCycle()
+    {
+        TextView cycle = (TextView) findViewById(R.id.cycle);
+        if(getDay().equals("Monday"))
         {
+            //tentative
             cycle.setText(Html.fromHtml("<fontsize=\"6\"> 100 Day </font>"));
+            set100();
         }
-        else if(dayForm.format(today).equals("Tuesday"))
+        else if(getDay().equals("Tuesday"))
         {
+            //tentative
             cycle.setText(Html.fromHtml("<fontsize=\"6\"> 78 Day </font>"));
+            set78();
         }
-        else if(dayForm.format(today).equals("Wednesday"))
+        else if(getDay().equals("Wednesday"))
         {
+            //tentative
             cycle.setText(Html.fromHtml("<fontsize=\"6\"> 56 Day </font>"));
+            set56();
         }
-        else if(dayForm.format(today).equals("Thursday"))
+        else if(getDay().equals("Thursday"))
         {
+            //tentative
             cycle.setText(Html.fromHtml("<fontsize=\"6\"> 34 Day </font>"));
+            set34();
         }
-        else if(dayForm.format(today).equals("Friday"))
+        else if(getDay().equals("Friday"))
         {
+            //tentative
             cycle.setText(Html.fromHtml("<fontsize=\"6\"> 12 Day </font>"));
+            set12();
         }
         else
         {
