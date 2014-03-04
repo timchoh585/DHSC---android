@@ -107,12 +107,18 @@ public class Disp extends ActionBarActivity {
                 try
                 {
                     saveSched(sched); createList();
-                } catch(Exception e)
+                }catch(Exception e)
                 {
                     Log.e("GET_DAY", e.getMessage() + " cannot get days bc list never saved.");
                 }
             }
-            saveSched(sched); createList();
+            try
+            {
+                saveSched(sched); createList();
+            }catch(Exception e)
+            {
+                Log.e("GET_DAY", e.getMessage() + " cannot get days bc list never saved.");
+            }
         }
 
         if (savedInstanceState == null)
