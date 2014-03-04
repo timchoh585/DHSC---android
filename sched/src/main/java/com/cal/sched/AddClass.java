@@ -119,10 +119,14 @@ public class AddClass extends ActionBarActivity {
                 listSched.set(i, "none");
         supAdd = true;
 
+        sched = "";
+        for(int i = 0; i<listSched.size(); i++)
+            sched += listSched.get(i) + ",";
+
         d.full = listSched;
 
         Intent myIntent = new Intent(AddClass.this, Disp.class);
-        //myIntent.putExtra("schedu", sched);
+        myIntent.putExtra("schedu", sched);
         AddClass.this.startActivity(myIntent);
     }
 
