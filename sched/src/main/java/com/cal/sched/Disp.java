@@ -35,11 +35,12 @@ import java.util.Date;
 
 public class Disp extends ActionBarActivity {
 
-    private String sched;
+    private String sched = "";
     public List<String> full = new  ArrayList<>();
     private ArrayList<String> sclass = new ArrayList<>();
     private ArrayList<String> steacher = new ArrayList<>();
     private ArrayList<String> sroom = new ArrayList<>();
+    public static boolean supAdd;
 
     /**
      * checks bool supAdd if true, then rusn savedSched to save sched and then it runs create List
@@ -59,12 +60,21 @@ public class Disp extends ActionBarActivity {
 
         AddClass classes = new AddClass();
 
-        sched = getIntent().getStringExtra("schedu");
+        Intent intent = new Intent();
+
+        try
+        {
+            sched = intent.getStringExtra("schedu");
+            sched = "";
+        } catch(Exception e)
+        {
+            Log.e("SCHEDULE", e.getMessage() + " no saved/intended string.");
+        }
 
         getDay();
         readSched();
 
-        if(classes.supAdd)
+        if(supAdd == true)
         {
             saveSched(sched);
             createList();
@@ -76,7 +86,7 @@ public class Disp extends ActionBarActivity {
         }
         else
         {
-            classes.supAdd = true;
+            supAdd = true;
             if(sched == null || sched.length() == 0)
             {
                 Button add = (Button) findViewById(R.id.finish);
@@ -93,7 +103,15 @@ public class Disp extends ActionBarActivity {
                 }
             }
             else
-                saveSched(sched); createList();
+            {
+                try
+                {
+                    saveSched(sched); createList();
+                } catch(Exception e)
+                {
+                    Log.e("GET_DAY", e.getMessage() + " cannot get days bc list never saved.");
+                }
+            }
             saveSched(sched); createList();
         }
 

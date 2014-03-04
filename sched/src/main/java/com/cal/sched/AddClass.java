@@ -16,8 +16,6 @@ import java.util.List;
 
 public class AddClass extends ActionBarActivity {
 
-    public static boolean supAdd;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,19 +103,12 @@ public class AddClass extends ActionBarActivity {
                 r6.getText().toString() + "," + r7.getText().toString() + "," +
                 r8.getText().toString();
 
-
-        /*Disp d = new Disp();
-        for (int i = 0; i < d.full.size(); i++)
-            if (d.full.get(i) == null)
-                d.full.set(i, " ");
-        supAdd = true;*/
-
         Disp d = new Disp();
         List<String> listSched = Arrays.asList(sched.split(","));
         for(int i = 0; i < listSched.size(); i++)
             if(listSched.get(i).equals("") || listSched.get(i) == null)
                 listSched.set(i, "none");
-        supAdd = true;
+        d.supAdd = true;
 
         sched = "";
         for(int i = 0; i<listSched.size(); i++)
