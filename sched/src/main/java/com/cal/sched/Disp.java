@@ -1,11 +1,8 @@
 package com.cal.sched;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.util.Log;
@@ -14,33 +11,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
-import java.util.SimpleTimeZone;
 import java.util.Date;
 
 public class Disp extends ActionBarActivity {
 
     private String sched = "";
     public List<String> full = new  ArrayList<>();
-    private ArrayList<String> sclass = new ArrayList<>();
-    private ArrayList<String> steacher = new ArrayList<>();
-    private ArrayList<String> sroom = new ArrayList<>();
+    private ArrayList<String> aclass = new ArrayList<>();
+    private ArrayList<String> ateacher = new ArrayList<>();
+    private ArrayList<String> aroom = new ArrayList<>();
+    private String sclass = "";
+    private String steacher = "";
+    private String sroom = "";
     public static boolean supAdd;
+    private boolean canSetDay = true;
 
     /**
      * checks bool supAdd if true, then rusn savedSched to save sched and then it runs create List
@@ -65,13 +59,15 @@ public class Disp extends ActionBarActivity {
         try
         {
             sched = intent.getStringExtra("schedu");
-            sched = "";
         } catch(Exception e)
         {
             Log.e("SCHEDULE", e.getMessage() + " no saved/intended string.");
+            canSetDay = false;
+            sched = "";
         }
 
         getDay();
+        setCycle();
         readSched();
 
         if(supAdd == true)
@@ -79,10 +75,12 @@ public class Disp extends ActionBarActivity {
             saveSched(sched);
             createList();
 
+            //HashMap<String, String> hash= new HashMap<>();
+
             setCycle();
 
             ListView lists = (ListView) findViewById(R.id.listView);
-            lists.setAdapter(new myAdapter(this, sclass, steacher));
+            lists.setAdapter(new myAdapter(this,));
         }
         else
         {
@@ -198,46 +196,48 @@ public class Disp extends ActionBarActivity {
             Log.e("DATE", e.getMessage() + " Error getting date!");
         }
 
-        return dayForm.format(today);
+        return day.getText().toString();
     }
 
     public void setCycle()
     {
         TextView cycle = (TextView) findViewById(R.id.cycle);
-        if(getDay().equals("Monday"))
+        if(canSetDay)
         {
-            //tentative
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 100 Day </font>"));
-            set100();
-        }
-        else if(getDay().equals("Tuesday"))
-        {
-            //tentative
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 78 Day </font>"));
-            set78();
-        }
-        else if(getDay().equals("Wednesday"))
-        {
-            //tentative
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 56 Day </font>"));
-            set56();
-        }
-        else if(getDay().equals("Thursday"))
-        {
-            //tentative
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 34 Day </font>"));
-            set34();
-        }
-        else if(getDay().equals("Friday"))
-        {
-            //tentative
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 12 Day </font>"));
-            set12();
-        }
-        else
-        {
-            cycle.setText(Html.fromHtml("\"<fontsize=\"16\">" + "100 Day" + "</font>"));
-            set100();
+            if(getDay().equals("Monday"))
+            {
+                //tentative
+                cycle.setText(Html.fromHtml("<fontsize='6'> 100 Day </font>"));
+                set100();
+            }
+            else if(getDay().equals("Tuesday"))
+            {
+                //tentative
+                cycle.setText(Html.fromHtml("<fontsize='6'> 78 Day </font>"));
+                set78();
+            }
+            else if(getDay().equals("Wednesday"))
+            {
+                //tentative
+                cycle.setText(Html.fromHtml("<fontsize='6'> 56 Day </font>"));
+                set56();
+            }
+            else if(getDay().equals("Thursday"))
+            {
+                //tentative
+                cycle.setText(Html.fromHtml("<fontsize='6'> 34 Day </font>"));
+                set34();
+            }
+            else if(getDay().equals("Friday"))
+            {
+                //tentative
+                cycle.setText(Html.fromHtml("<fontsize='6'> 12 Day </font>"));
+                set12();
+            }
+            else {
+                cycle.setText(Html.fromHtml("<fontsize='16'>" + "100 Day" + "</font>"));
+                set100();
+            }
         }
     }
 
@@ -253,11 +253,11 @@ public class Disp extends ActionBarActivity {
         for(int i = 0; i > full.size(); i--)
         {
             if(i < 9)
-                sclass.add(full.get(i));
+                aclass.add(full.get(i));
             else if(i >= 9 && i <= 17)
-                steacher.add(full.get(i));
+                ateacher.add(full.get(i));
             else
-                sroom.add(full.get(i));
+                aroom.add(full.get(i));
         }
     }
 
@@ -275,12 +275,12 @@ public class Disp extends ActionBarActivity {
      */
     private void set78()
     {
-        sclass.remove(8);
-        steacher.remove(8);
-        sroom.remove(8);
-        sclass.remove(7);
-        steacher.remove(7);
-        sroom.remove(7);
+        aclass.remove(8);
+        ateacher.remove(8);
+        aroom.remove(8);
+        aclass.remove(7);
+        ateacher.remove(7);
+        aroom.remove(7);
     }
 
     /**
@@ -288,12 +288,12 @@ public class Disp extends ActionBarActivity {
      */
     private void set56()
     {
-        sclass.remove(6);
-        steacher.remove(6);
-        sroom.remove(6);
-        sclass.remove(5);
-        steacher.remove(5);
-        sroom.remove(5);
+        aclass.remove(6);
+        ateacher.remove(6);
+        aroom.remove(6);
+        aclass.remove(5);
+        ateacher.remove(5);
+        aroom.remove(5);
     }
 
     /**
@@ -301,12 +301,12 @@ public class Disp extends ActionBarActivity {
      */
     private void set34()
     {
-        sclass.remove(4);
-        steacher.remove(4);
-        sroom.remove(4);
-        sclass.remove(3);
-        steacher.remove(3);
-        sroom.remove(3);
+        aclass.remove(4);
+        ateacher.remove(4);
+        aroom.remove(4);
+        aclass.remove(3);
+        ateacher.remove(3);
+        aroom.remove(3);
     }
 
     /**
@@ -314,12 +314,12 @@ public class Disp extends ActionBarActivity {
      */
     private void set12()
     {
-        sclass.remove(2);
-        steacher.remove(2);
-        sroom.remove(2);
-        sclass.remove(1);
-        steacher.remove(1);
-        sroom.remove(1);
+        aclass.remove(2);
+        ateacher.remove(2);
+        aroom.remove(2);
+        aclass.remove(1);
+        ateacher.remove(1);
+        aroom.remove(1);
     }
 
     /**
@@ -327,9 +327,9 @@ public class Disp extends ActionBarActivity {
      */
     public void removeEB()
     {
-        sclass.remove(0);
-        steacher.remove(0);
-        sroom.remove(0);
+        aclass.remove(0);
+        ateacher.remove(0);
+        aroom.remove(0);
     }
 
     /**
@@ -340,9 +340,9 @@ public class Disp extends ActionBarActivity {
     public void first56()
     {
         set56();
-        sclass.remove(3);
-        steacher.remove(3);
-        sroom.remove(3);
+        aclass.remove(3);
+        ateacher.remove(3);
+        aroom.remove(3);
         set12();
     }
     /**
@@ -354,9 +354,9 @@ public class Disp extends ActionBarActivity {
     {
         set78();
         set56();
-        sclass.remove(4);
-        steacher.remove(4);
-        sroom.remove(4);
+        aclass.remove(4);
+        ateacher.remove(4);
+        aroom.remove(4);
     }
 
     /**
@@ -366,9 +366,9 @@ public class Disp extends ActionBarActivity {
      */
     public void first34()
     {
-        sclass.remove(5);
-        steacher.remove(5);
-        sroom.remove(5);
+        aclass.remove(5);
+        ateacher.remove(5);
+        aroom.remove(5);
         set34();
         set12();
     }
@@ -381,9 +381,9 @@ public class Disp extends ActionBarActivity {
     public void second34()
     {
         set78();
-        sclass.remove(6);
-        steacher.remove(6);
-        sroom.remove(6);
+        aclass.remove(6);
+        ateacher.remove(6);
+        aroom.remove(6);
         set34();
     }
 
