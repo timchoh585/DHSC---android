@@ -1,11 +1,8 @@
 package com.cal.sched;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.util.Log;
@@ -14,33 +11,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
-import java.util.SimpleTimeZone;
 import java.util.Date;
 
 public class Disp extends ActionBarActivity {
 
-    private String sched;
+    private String sched = "";
     public List<String> full = new  ArrayList<>();
-    private ArrayList<String> sclass = new ArrayList<>();
-    private ArrayList<String> steacher = new ArrayList<>();
-    private ArrayList<String> sroom = new ArrayList<>();
-    public static boolean supAdd = false;
+    private ArrayList<String> aclass = new ArrayList<>();
+    private ArrayList<String> ateacher = new ArrayList<>();
+    private ArrayList<String> aroom = new ArrayList<>();
+    private String sclass = "";
+    private String steacher = "";
+    private String sroom = "";
+    public static boolean supAdd;
+    private boolean canSetDay = true;
 
     /**
      * checks bool supAdd if true, then rusn savedSched to save sched and then it runs create List
@@ -58,18 +52,35 @@ public class Disp extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disp);
 
-        sched = getIntent().getStringExtra("schedu");
+        AddClass classes = new AddClass();
+
+        Intent intent = new Intent();
+
+        try
+        {
+            sched = intent.getStringExtra("schedu");
+        } catch(Exception e)
+        {
+            Log.e("SCHEDULE", e.getMessage() + " no saved/intended string.");
+            canSetDay = false;
+            sched = "";
+        }
 
         getDay();
+        setCycle();
         readSched();
 
-        if(supAdd)
+        if(supAdd == true)
         {
             saveSched(sched);
-            createList(sched);
+            createList();
+
+            //HashMap<String, String> hash= new HashMap<>();
+
+            setCycle();
 
             ListView lists = (ListView) findViewById(R.id.listView);
-            lists.setAdapter(new myAdapter(this, sclass, steacher));
+            lists.setAdapter(new myAdapter(this,));
         }
         else
         {
@@ -91,8 +102,20 @@ public class Disp extends ActionBarActivity {
             }
             else
             {
-                saveSched(sched);
-                createList(sched);
+                try
+                {
+                    saveSched(sched); createList();
+                }catch(Exception e)
+                {
+                    Log.e("GET_DAY", e.getMessage() + " cannot get days bc list never saved.");
+                }
+            }
+            try
+            {
+                saveSched(sched); createList();
+            }catch(Exception e)
+            {
+                Log.e("GET_DAY", e.getMessage() + " cannot get days bc list never saved.");
             }
         }
 
@@ -114,7 +137,6 @@ public class Disp extends ActionBarActivity {
         Intent myIntent = new Intent(Disp.this, AddClass.class);
         //myIntent.putExtra("key", value); //Optional parameters
         Disp.this.startActivity(myIntent);
-//        startActivity(new Intent("com.cal.sched.AddClass"));
     }
 
     @Override
@@ -154,12 +176,13 @@ public class Disp extends ActionBarActivity {
 
     /**
      * used to return the day of the week that is used to determine what cycle day it is
+     * it will also set the arraylists that are needed for the adapter right here to that we can
+     * find out which day we should output to the user when the user is running the app.
      */
-    public void getDay()
+    public String getDay()
     {
         TextView day = (TextView) findViewById(R.id.day);
         TextView date = (TextView) findViewById(R.id.date);
-        TextView cycle = (TextView) findViewById(R.id.cycle);
         SimpleDateFormat dayForm = new SimpleDateFormat("EEEE");
         SimpleDateFormat dateForm = new SimpleDateFormat("MMM dd, yyyy");
         Date today = new Date();
@@ -170,51 +193,198 @@ public class Disp extends ActionBarActivity {
             date.setText(Html.fromHtml("<fontsize=\"10\">" + dateForm.format(today) + "</font>"));
         }catch(Exception e)
         {
-            Log.e("DATE", e.getMessage() + " Error!");
+            Log.e("DATE", e.getMessage() + " Error getting date!");
         }
 
-        if(dayForm.format(today).equals("Monday"))
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 100 Day </font>"));
-        else if(dayForm.format(today).equals("Tuesday"))
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 78 Day </font>"));
-        else if(dayForm.format(today).equals("Wednesday"))
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 56 Day </font>"));
-        else if(dayForm.format(today).equals("Thursday"))
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 34 Day </font>"));
-        else if(dayForm.format(today).equals("Friday"))
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 12 Day </font>"));
-        else
-            cycle.setText(Html.fromHtml("<h1> 100 Day </h1>"));
+        return day.getText().toString();
+    }
+
+    public void setCycle()
+    {
+        TextView cycle = (TextView) findViewById(R.id.cycle);
+        if(canSetDay)
+        {
+            if(getDay().equals("Monday"))
+            {
+                //tentative
+                cycle.setText(Html.fromHtml("<fontsize='6'> 100 Day </font>"));
+                set100();
+            }
+            else if(getDay().equals("Tuesday"))
+            {
+                //tentative
+                cycle.setText(Html.fromHtml("<fontsize='6'> 78 Day </font>"));
+                set78();
+            }
+            else if(getDay().equals("Wednesday"))
+            {
+                //tentative
+                cycle.setText(Html.fromHtml("<fontsize='6'> 56 Day </font>"));
+                set56();
+            }
+            else if(getDay().equals("Thursday"))
+            {
+                //tentative
+                cycle.setText(Html.fromHtml("<fontsize='6'> 34 Day </font>"));
+                set34();
+            }
+            else if(getDay().equals("Friday"))
+            {
+                //tentative
+                cycle.setText(Html.fromHtml("<fontsize='6'> 12 Day </font>"));
+                set12();
+            }
+            else {
+                cycle.setText(Html.fromHtml("<fontsize='16'>" + "100 Day" + "</font>"));
+                set100();
+            }
+        }
     }
 
     /**
      * creates the seperate arraylists that the programmer can use for ease
      * split up by size of 9 as there are 9 "strings" in each case i.e. class, teacher, room
-     * @param schedule user's schedule that the user puts in
+     *
+     * goes from 0 to the length of arraylist full
+     * goes by 9 at a time starting from 0 - 8 (class), 9 - 17 (teacher), 18 - 27 (room)
      */
-    private void createList(String schedule)
+    private void createList()
     {
-        //ListView lv = (ListView) findViewById(R.id.listView);
-
-        //ArrayList<String> sclass = new ArrayList<>();
-        //ArrayList<String> steacher = new ArrayList<>();
-        //ArrayList<String> sroom = new ArrayList<>();
-
-        for(String f : schedule.split(","))
-            full.add(f);
-
-        for(int i = 0; i <= full.size(); i++)
+        for(int i = 0; i > full.size(); i--)
         {
             if(i < 9)
-                sclass.add(full.remove(0));
-            else if(i > 9 && i < 18)
-                steacher.add(full.remove(0));
+                aclass.add(full.get(i));
+            else if(i >= 9 && i <= 17)
+                ateacher.add(full.get(i));
             else
-                sroom.add(full.remove(0));
+                aroom.add(full.get(i));
         }
-        //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.activity_disp, sclass);
+    }
 
-        //lv.setAdapter(adapter);
+    /**
+     * for 100 days
+     * show all the periods
+     */
+    private void set100()
+    {
+    }
+
+    /**
+     * for 78 days
+     * show all but period 7 and 8
+     */
+    private void set78()
+    {
+        aclass.remove(8);
+        ateacher.remove(8);
+        aroom.remove(8);
+        aclass.remove(7);
+        ateacher.remove(7);
+        aroom.remove(7);
+    }
+
+    /**
+     * for 56 days
+     */
+    private void set56()
+    {
+        aclass.remove(6);
+        ateacher.remove(6);
+        aroom.remove(6);
+        aclass.remove(5);
+        ateacher.remove(5);
+        aroom.remove(5);
+    }
+
+    /**
+     * for 34 days
+     */
+    private void set34()
+    {
+        aclass.remove(4);
+        ateacher.remove(4);
+        aroom.remove(4);
+        aclass.remove(3);
+        ateacher.remove(3);
+        aroom.remove(3);
+    }
+
+    /**
+     * for 12 days
+     */
+    private void set12()
+    {
+        aclass.remove(2);
+        ateacher.remove(2);
+        aroom.remove(2);
+        aclass.remove(1);
+        ateacher.remove(1);
+        aroom.remove(1);
+    }
+
+    /**
+     * remove earlybird classses
+     */
+    public void removeEB()
+    {
+        aclass.remove(0);
+        ateacher.remove(0);
+        aroom.remove(0);
+    }
+
+    /**
+     * 56 late start day
+     *
+     * 4,7,8
+     */
+    public void first56()
+    {
+        set56();
+        aclass.remove(3);
+        ateacher.remove(3);
+        aroom.remove(3);
+        set12();
+    }
+    /**
+     * 56 late start day
+     *
+     * 1,2,3
+     */
+    public void second56()
+    {
+        set78();
+        set56();
+        aclass.remove(4);
+        ateacher.remove(4);
+        aroom.remove(4);
+    }
+
+    /**
+     * 34 late start
+     *
+     * 6,7,8
+     */
+    public void first34()
+    {
+        aclass.remove(5);
+        ateacher.remove(5);
+        aroom.remove(5);
+        set34();
+        set12();
+    }
+
+    /**
+     * 34 late start
+     *
+     * 1,2,5
+     */
+    public void second34()
+    {
+        set78();
+        aclass.remove(6);
+        ateacher.remove(6);
+        aroom.remove(6);
+        set34();
     }
 
     /**
@@ -248,12 +418,10 @@ public class Disp extends ActionBarActivity {
             int c;
             while((c = fis.read()) != -1)
                 sch.append((char)c);
-            supAdd = true;
         }catch(Exception e)
         {
             Log.e("FILEREAD", e.getMessage() + " Error!");
         }
         sched = sch.toString();
-        supAdd = false;
     }
 }

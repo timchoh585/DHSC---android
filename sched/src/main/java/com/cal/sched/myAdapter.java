@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Tim on 2/12/14.
@@ -15,26 +16,24 @@ import java.util.ArrayList;
 public class myAdapter extends BaseAdapter
 {
     Context context;
-    ArrayList<String> classes;
-    ArrayList<String> teachers;
+    HashMap<String, String> listers = new HashMap<>();
     private static LayoutInflater inflater = null;
 
-    public myAdapter(Context context, ArrayList<String> classes, ArrayList<String> teachers)
+    public myAdapter(Context context, HashMap<String, String> listers)
     {
         this.context = context;
-        this.classes = classes;
-        this.teachers = teachers;
+        this.listers = listers;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return classes.size() + teachers.size();
+        return listers.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return classes.get(i) + " " + teachers.get(i);
+        return listers.get(i);
     }
 
     @Override
@@ -46,13 +45,10 @@ public class myAdapter extends BaseAdapter
     public View getView(int i, View convertView, ViewGroup viewGroup)
     {
         View myView = convertView;
-        if(myView == null)
-            myView = inflater.inflate(R.layout.lin_class, null);
-        TextView classer = (TextView) myView.findViewById(R.id.aclass);
-        TextView teacher = (TextView) myView.findViewById(R.id.ateacher);
-        classer.setText(classes.get(i));
-        teacher.setText(teachers.get(i));
-
+        TextView classes = (TextView) findViewById(R.id.aclass);
+        TextView teachers = (TextView) findViewById(R.id.ateacher);
+        classes = listers.get(i);
+        teachers = listers.get(i);
         return myView;
     }
 }
