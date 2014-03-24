@@ -102,18 +102,26 @@ public class Main extends ActionBarActivity
      * splits the string into ArrayLists of classes, teachers, and rooms
      * @param s string to be split
      */
-    private void splitSched(String s)
+    public void splitSched(String s)
     {
         String[] full = s.split(",");
+        int indivT = 0;
+        int indivR = 0;
 
         for(int i = 0; i < s.length(); i++)
         {
-            if(i < 9)
+            if (i < 9)
                 classes[i] = full[i];
-            else if(i < 18)
-                teachers[i] = full[i];
+            else if (i < 18)
+            {
+                teachers[indivT] = full[i];
+                indivT++;
+            }
             else
-                rooms[i] = full[i];
+            {
+                rooms[indivR] = full[i];
+                indivR++;
+            }
         }
     }
 
@@ -121,7 +129,7 @@ public class Main extends ActionBarActivity
      * returns today's date
      * @return string of day
      */
-    private String getDate()
+    public String getDate()
     {
         TextView day = (TextView) findViewById(R.id.day);
         TextView date = (TextView) findViewById(R.id.date);
@@ -143,7 +151,7 @@ public class Main extends ActionBarActivity
     /**
      * gets the cycle based on the day
      */
-    private void getCycle()
+    public void getCycle()
     {
         TextView cycle = (TextView) findViewById(R.id.cycle);
         /********** sets cycle **********/
