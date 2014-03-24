@@ -58,7 +58,6 @@ public class Main extends ActionBarActivity
         if(schedAdd)
         {
             /********** makes the schedule **********/
-
             splitSched(sched);
 
             ListView lists = (ListView) findViewById(R.id.listView);
@@ -105,18 +104,16 @@ public class Main extends ActionBarActivity
      */
     private void splitSched(String s)
     {
-        List<String> full = new ArrayList<>();
-        for(String f : s.split(","))
-            full.add(f);
+        String[] full = s.split(",");
 
         for(int i = 0; i < s.length(); i++)
         {
             if(i < 9)
-                classes[i] = full.get(i);
+                classes[i] = full[i];
             else if(i < 18)
-                teachers[i] = full.get(i);
+                teachers[i] = full[i];
             else
-                rooms[i] = full.get(i);
+                rooms[i] = full[i];
         }
     }
 
