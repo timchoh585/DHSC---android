@@ -29,7 +29,7 @@ public class myAdapter extends BaseAdapter
 
     @Override
     public int getCount() {
-        return classes.length;
+        return classes.length + teachers.length;
     }
 
     @Override
