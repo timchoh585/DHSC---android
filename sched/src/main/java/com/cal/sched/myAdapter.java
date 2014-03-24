@@ -15,11 +15,11 @@ import java.util.ArrayList;
 public class myAdapter extends BaseAdapter
 {
     Context context;
-    ArrayList<String> classes;
-    ArrayList<String> teachers;
+    String[] classes;
+    String[] teachers;
     private static LayoutInflater inflater = null;
 
-    public myAdapter(Context context, ArrayList<String> classes, ArrayList<String> teachers)
+    public myAdapter(Context context, String[] classes, String[] teachers)
     {
         this.context = context;
         this.classes = classes;
@@ -29,13 +29,11 @@ public class myAdapter extends BaseAdapter
 
     @Override
     public int getCount() {
-        return classes.size() + teachers.size();
+        return classes.length;
     }
 
     @Override
-    public Object getItem(int i) {
-        return classes.get(i) + " " + teachers.get(i);
-    }
+    public Object getItem(int i) { return classes[i] + " " + teachers[i]; }
 
     @Override
     public long getItemId(int i) {
@@ -50,8 +48,8 @@ public class myAdapter extends BaseAdapter
             myView = inflater.inflate(R.layout.lin_class, null);
         TextView classer = (TextView) myView.findViewById(R.id.aclass);
         TextView teacher = (TextView) myView.findViewById(R.id.ateacher);
-        classer.setText(classes.get(i));
-        teacher.setText(teachers.get(i));
+        classer.setText(classes[i]);
+        teacher.setText(teachers[i]);
 
         return myView;
     }
