@@ -29,7 +29,7 @@ public class myAdapter extends BaseAdapter
 
     @Override
     public int getCount() {
-        return classes.length + teachers.length;
+        return classes.length;
     }
 
     @Override
@@ -46,10 +46,10 @@ public class myAdapter extends BaseAdapter
         View myView = convertView;
         if(myView == null)
             myView = inflater.inflate(R.layout.lin_class, null);
-        TextView classer = (TextView) myView.findViewById(R.id.aclass);
-        TextView teacher = (TextView) myView.findViewById(R.id.ateacher);
-        classer.setText(classes[i]);
-        teacher.setText(teachers[i]);
+        TextView tclass = (TextView) myView.findViewById(R.id.aclass);
+        TextView tteacher = (TextView) myView.findViewById(R.id.ateacher);
+        tclass.setText(classes[i]);
+        tteacher.setText(teachers[i]);
 
         return myView;
     }

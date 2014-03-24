@@ -48,7 +48,7 @@ public class Main extends ActionBarActivity
         try
         {
             sched = getIntent().getStringExtra("userSched");
-            if(sched.equals(null))
+            if(!sched.equals(null))
                 schedAdd = true;
         } catch(NullPointerException e)
         {
@@ -108,7 +108,7 @@ public class Main extends ActionBarActivity
         int indivT = 0;
         int indivR = 0;
 
-        for(int i = 0; i < s.length(); i++)
+        for(int i = 0; i < full.length; i++)
         {
             if (i < 9)
                 classes[i] = full[i];
