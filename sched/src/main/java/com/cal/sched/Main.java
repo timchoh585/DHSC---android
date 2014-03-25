@@ -21,9 +21,16 @@ public class Main extends ActionBarActivity
 
     private String sched = "";
     private boolean schedAdd = false;
+
+    //regular
     private String[] classes = new String[9];
     private String[] teachers = new String[9];
     private String[] rooms = new String[9];
+
+    //cycle
+    private String[] cycleClass = new String[7];
+    private String[] cycleTeacher = new String[7];
+    private String[] cycleRoom = new String[7];
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,7 +66,7 @@ public class Main extends ActionBarActivity
             splitSched(sched);
 
             ListView lists = (ListView) findViewById(R.id.listView);
-            myAdapter adapt = new myAdapter(this, classes, teachers);
+            myAdapter adapt = new myAdapter(this, classes, teachers, rooms);
             lists.setAdapter(adapt);
         }
         else
@@ -152,18 +159,34 @@ public class Main extends ActionBarActivity
     public void getCycle()
     {
         TextView cycle = (TextView) findViewById(R.id.cycle);
+        String dc = getDate();
         /********** sets cycle **********/
-        if(getDate().equals("Monday"))
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 100 Day </font>"));
-        else if(getDate().equals("Tuesday"))
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 78 Day </font>"));
-        else if(getDate().equals("Wednesday"))
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 56 Day </font>"));
-        else if(getDate().equals("Thursday"))
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 34 Day </font>"));
-        else if(getDate().equals("Friday"))
-            cycle.setText(Html.fromHtml("<fontsize=\"6\"> 12 Day </font>"));
+        if(dc.equals("Monday\n\n"))
+            cycle.setText(Html.fromHtml("h3> 100 Day </h3>"));
+        else if(dc.equals("Tuesday\n\n"))
+            cycle.setText(Html.fromHtml("<h3> 78 Day </h3>"));
+        else if(dc.equals("Wednesday\n\n"))
+            cycle.setText(Html.fromHtml("<h3> 56 Day </h3>"));
+        else if(dc.equals("Thursday\n\n"))
+            cycle.setText(Html.fromHtml("<h3> 34 Day </h3>"));
+        else if(dc.equals("Friday\n\n"))
+            cycle.setText(Html.fromHtml("<h3> 12 Day </h3>"));
         else
-            cycle.setText(Html.fromHtml("<h1> 100 Day </h1>"));
+            cycle.setText(Html.fromHtml("<h3> 100 Day </h3>"));
+    }
+    public String[] Get(String s)
+    {
+        if(s.equals("classes"))
+        {
+            return cycleClass;
+        }
+        else if(s.equals("teachers"))
+        {
+            return cycleTeacher;
+        }
+        else
+        {
+            return cycleRoom;
+        }
     }
 }

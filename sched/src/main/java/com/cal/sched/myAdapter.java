@@ -15,13 +15,15 @@ public class myAdapter extends BaseAdapter
     Context context;
     String[] classes;
     String[] teachers;
+    String[] rooms;
     private static LayoutInflater inflater = null;
 
-    public myAdapter(Context context, String[] classes, String[] teachers)
+    public myAdapter(Context context, String[] classes, String[] teachers, String[] rooms)
     {
         this.context = context;
         this.classes = classes;
         this.teachers = teachers;
+        this.rooms = rooms;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -46,9 +48,10 @@ public class myAdapter extends BaseAdapter
             myView = inflater.inflate(R.layout.custom_adapter, null);
         TextView tclass = (TextView) myView.findViewById(R.id.aclass);
         TextView tteacher = (TextView) myView.findViewById(R.id.ateacher);
+        TextView troom = (TextView) myView.findViewById(R.id.aroom);
         tclass.setText(classes[i]);
         tteacher.setText(teachers[i]);
-
+        troom.setText(rooms[i]);
         return myView;
     }
 }

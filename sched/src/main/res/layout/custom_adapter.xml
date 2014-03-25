@@ -50,7 +50,7 @@
                     android:layout_weight="1.5"/>
             </LinearLayout>
             <TextView
-                android:id="@+id/time"
+                android:id="@+id/aroom"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:textSize="30px"
