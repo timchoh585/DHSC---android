@@ -3,7 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cal.sched.AddClass"
+    tools:context="com.cal.sched.AddSched"
     tools:ignore="MergeRootFrame" >
 
     <LinearLayout
@@ -11,6 +11,7 @@
         android:layout_height="461dp"
         android:orientation="horizontal"
         android:id="@+id/linearLayout">
+
 
         <TableLayout
             android:layout_width="0dp"
@@ -248,6 +249,7 @@
             </ScrollView>
 
         </TableLayout>
+
 
         <View
             android:layout_width="0dp"
