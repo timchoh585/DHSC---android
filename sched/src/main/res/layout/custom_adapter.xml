@@ -1,0 +1,64 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cal.sched.myAdapter"
+    tools:ignore="MergeRootFrame">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <ImageView
+            android:id="@+id/aimage"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:contentDescription="@string/banner_alt"
+            android:layout_weight="2"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="8"
+            android:weightSum="9">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="7"
+                android:weightSum="5">
+
+                <TextView
+                    android:id="@+id/aclass"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="48px"
+                    android:layout_weight="3"/>
+
+                <TextView
+                    android:id="@+id/ateacher"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    android:textSize="36px"
+                    android:layout_weight="1.5"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textSize="30px"
+                android:layout_weight="2"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

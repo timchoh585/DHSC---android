@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 /**
  * Created by Tim on 2/12/14.
  */
@@ -45,7 +43,7 @@ public class myAdapter extends BaseAdapter
     {
         View myView = convertView;
         if(myView == null)
-            myView = inflater.inflate(R.layout.lin_class, null);
+            myView = inflater.inflate(R.layout.custom_adapter, null);
         TextView tclass = (TextView) myView.findViewById(R.id.aclass);
         TextView tteacher = (TextView) myView.findViewById(R.id.ateacher);
         tclass.setText(classes[i]);
