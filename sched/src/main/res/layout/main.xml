@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.cal.sched.Main"
-    tools:ignore="MergeRootFrame">
+    tools:ignore="MergeRootFrame" >
 
     <LinearLayout
         android:id="@+id/tV"
@@ -38,8 +38,8 @@
 
 
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:id="@+id/listView"
         android:choiceMode="singleChoice"
         android:layout_alignParentLeft="true"

@@ -11,9 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Tim on 3/23/2014.
@@ -31,7 +29,7 @@ public class Main extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_disp);
+        setContentView(R.layout.main);
 
         mainAct();
     }
@@ -145,7 +143,7 @@ public class Main extends ActionBarActivity
             Log.e("DATE", e.getMessage() + " Error!");
         }
 
-        return day.toString();
+        return day.getText().toString();
     }
 
     /**
