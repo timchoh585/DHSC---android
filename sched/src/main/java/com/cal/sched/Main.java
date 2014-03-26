@@ -21,6 +21,7 @@ public class Main extends ActionBarActivity
 
     private String sched = "";
     private boolean schedAdd = false;
+    private myAdapter adapt;
 
     //regular
     private String[] classes = new String[9];
@@ -66,7 +67,10 @@ public class Main extends ActionBarActivity
             splitSched(sched);
 
             ListView lists = (ListView) findViewById(R.id.listView);
-            myAdapter adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"));
+            if(getDate().equals("Monday\n\n"))
+                adapt = new myAdapter(this, classes, teachers, rooms);
+            else
+                adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"));
             lists.setAdapter(adapt);
         }
         else
@@ -164,33 +168,111 @@ public class Main extends ActionBarActivity
         if(dc.equals("Monday\n\n"))
             cycle.setText(Html.fromHtml("h3> 100 Day </h3>"));
         else if(dc.equals("Tuesday\n\n"))
+        {
             cycle.setText(Html.fromHtml("<h3> 78 Day </h3>"));
+            setCycleArray(78);
+        }
         else if(dc.equals("Wednesday\n\n"))
+        {
             cycle.setText(Html.fromHtml("<h3> 56 Day </h3>"));
+            setCycleArray(56);
+        }
         else if(dc.equals("Thursday\n\n"))
+        {
             cycle.setText(Html.fromHtml("<h3> 34 Day </h3>"));
+            setCycleArray(34);
+        }
         else if(dc.equals("Friday\n\n"))
+        {
             cycle.setText(Html.fromHtml("<h3> 12 Day </h3>"));
+            setCycleArray(12);
+        }
         else
             cycle.setText(Html.fromHtml("<h3> 100 Day </h3>"));
     }
+
+    /**
+     *
+     * @param s takes in String of what wants to be gotten
+     * @return array of what ever the programmer wants
+     */
     public String[] Get(String s)
     {
         if(s.equals("classes"))
-        {
             return cycleClass;
-        }
         else if(s.equals("teachers"))
-        {
             return cycleTeacher;
-        }
-        else if(s.equals("rooms"))
-        {
-            return cycleRoom;
-        }
         else
+            return cycleRoom;
+    }
+
+    public void setCycleArray(int a)
+    {
+        if(a == 78)
         {
-            return cycleClass;
+            for(int i = 0; i < 7; i++)
+            {
+                cycleClass[i] = classes[i];
+                cycleTeacher[i] = teachers[i];
+                cycleRoom[i] = rooms[i];
+            }
+        }
+        else if(a == 56)
+        {
+            cycleClass[0] = classes[0];
+            cycleTeacher[0] = teachers[0];
+            cycleRoom[0] = rooms[0];
+            cycleClass[1] = classes[1];
+            cycleTeacher[1] = teachers[1];
+            cycleRoom[1] = rooms[1];
+            cycleClass[2] = classes[2];
+            cycleTeacher[2] = teachers[2];
+            cycleRoom[2] = rooms[2];
+            cycleClass[3] = classes[3];
+            cycleTeacher[3] = teachers[3];
+            cycleRoom[3] = rooms[3];
+            cycleClass[4] = classes[4];
+            cycleTeacher[4] = teachers[4];
+            cycleRoom[4] = rooms[4];
+            cycleClass[5] = classes[7];
+            cycleTeacher[5] = teachers[7];
+            cycleRoom[5] = rooms[7];
+            cycleClass[6] = classes[8];
+            cycleTeacher[6] = teachers[8];
+            cycleRoom[6] = rooms[8];
+        }
+        else if(a == 34)
+        {
+            cycleClass[0] = classes[0];
+            cycleTeacher[0] = teachers[0];
+            cycleRoom[0] = rooms[0];
+            cycleClass[1] = classes[1];
+            cycleTeacher[1] = teachers[1];
+            cycleRoom[1] = rooms[1];
+            cycleClass[2] = classes[2];
+            cycleTeacher[2] = teachers[2];
+            cycleRoom[2] = rooms[2];
+            cycleClass[3] = classes[5];
+            cycleTeacher[3] = teachers[5];
+            cycleRoom[3] = rooms[5];
+            cycleClass[4] = classes[6];
+            cycleTeacher[4] = teachers[6];
+            cycleRoom[4] = rooms[6];
+            cycleClass[5] = classes[7];
+            cycleTeacher[5] = teachers[7];
+            cycleRoom[5] = rooms[7];
+            cycleClass[6] = classes[8];
+            cycleTeacher[6] = teachers[8];
+            cycleRoom[6] = rooms[8];
+        }
+        else if(a == 12)
+        {
+            for(int i = 2; i < 9; i++)
+            {
+                cycleClass[i] = classes[i];
+                cycleTeacher[i] = teachers[i];
+                cycleRoom[i] = rooms[i];
+            }
         }
     }
 }
