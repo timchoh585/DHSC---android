@@ -66,7 +66,7 @@ public class Main extends ActionBarActivity
             splitSched(sched);
 
             ListView lists = (ListView) findViewById(R.id.listView);
-            myAdapter adapt = new myAdapter(this, classes, teachers, rooms);
+            myAdapter adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"));
             lists.setAdapter(adapt);
         }
         else
@@ -184,9 +184,13 @@ public class Main extends ActionBarActivity
         {
             return cycleTeacher;
         }
-        else
+        else if(s.equals("rooms"))
         {
             return cycleRoom;
+        }
+        else
+        {
+            return cycleClass;
         }
     }
 }
