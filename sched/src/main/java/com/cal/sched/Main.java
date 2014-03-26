@@ -23,6 +23,8 @@ public class Main extends ActionBarActivity
     private boolean schedAdd = false;
     private myAdapter adapt;
 
+    //set arrays too big fix later
+
     //regular
     private String[] classes = new String[9];
     private String[] teachers = new String[9];
