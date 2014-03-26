@@ -1,0 +1,3 @@
+fix array sizes. they might be off but check
+
+fix setCycleArray() 
