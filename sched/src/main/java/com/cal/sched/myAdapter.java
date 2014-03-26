@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by Tim on 2/12/14.
  */
@@ -16,14 +18,17 @@ public class myAdapter extends BaseAdapter
     String[] classes;
     String[] teachers;
     String[] rooms;
+    String[] times;
     private static LayoutInflater inflater = null;
 
-    public myAdapter(Context context, String[] classes, String[] teachers, String[] rooms)
+    public myAdapter(Context context, String[] classes, String[] teachers, String[] rooms,
+                     String[] times)
     {
         this.context = context;
         this.classes = classes;
         this.teachers = teachers;
         this.rooms = rooms;
+        this.times = times;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -49,9 +54,11 @@ public class myAdapter extends BaseAdapter
         TextView tclass = (TextView) myView.findViewById(R.id.aclass);
         TextView tteacher = (TextView) myView.findViewById(R.id.ateacher);
         TextView troom = (TextView) myView.findViewById(R.id.aroom);
+        TextView ttime = (TextView) myView.findViewById(R.id.time);
         tclass.setText(classes[i]);
         tteacher.setText(teachers[i]);
         troom.setText(rooms[i]);
+        ttime.setText(times[i]);
         return myView;
     }
 }

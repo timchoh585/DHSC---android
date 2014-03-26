@@ -1,6 +1,5 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,22 +14,22 @@
 
         <ImageView
             android:id="@+id/aimage"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:contentDescription="@string/banner_alt"
-            android:layout_weight="2"/>
+            android:layout_weight="8"/>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="8"
+            android:layout_weight="2"
             android:weightSum="9">
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="7"
+                android:layout_weight="3.5"
                 android:weightSum="5">
 
                 <TextView
@@ -38,6 +37,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:layout_gravity="center"
                     android:textSize="48px"
                     android:layout_weight="3"/>
 
@@ -46,18 +46,37 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
+                    android:layout_gravity="center"
                     android:textSize="36px"
-                    android:layout_weight="1.5"/>
+                    android:layout_weight="2"/>
             </LinearLayout>
-            <TextView
-                android:id="@+id/aroom"
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:textSize="30px"
-                android:layout_weight="2"/>
+                android:layout_weight="5.5"
+                android:weightSum="5">
+
+                <TextView
+                    android:id="@+id/aroom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:textSize="30px"
+                    android:layout_weight="2"/>
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:textSize="25px"
+                    android:layout_weight="3"/>
+
+            </LinearLayout>
+
         </LinearLayout>
-
-
 
     </LinearLayout>
 

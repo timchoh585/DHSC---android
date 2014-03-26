@@ -29,6 +29,10 @@ public class Main extends ActionBarActivity
     private String[] classes = new String[9];
     private String[] teachers = new String[9];
     private String[] rooms = new String[9];
+    private String[] day100 = new String[]{"7:22-8:05", "8:10-8:52", "8:57-9:39", "9:44-10:26",
+            "10:31-11:17", "11:22-12:08", " 12:58-1:40", "12:07-12:53", "1:45-2:27", "2:32-3:14"};
+    private String[] cycleDay = new String[]{"7:22-8:05", "8:10-9:07", "9:29-10:26",
+            "10:31-11:28", "11:37-12:34", " 1:15-2:12", "2:17-3:14"};
 
     //cycle
     private String[] cycleClass = new String[7];
@@ -70,9 +74,19 @@ public class Main extends ActionBarActivity
 
             ListView lists = (ListView) findViewById(R.id.listView);
             if(getDate().equals("Monday\n\n"))
-                adapt = new myAdapter(this, classes, teachers, rooms);
+                adapt = new myAdapter(this, classes, teachers, rooms, day100);
             else
-                adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"));
+            {
+                if(getDate().equals("Tuesday\n\n"))
+                    setCycleArray(78);
+                else if(getDate().equals("Wednesday\n\n"))
+                    setCycleArray(56);
+                else if(getDate().equals("Thursday\n\n"))
+                    setCycleArray(34);
+                else if(getDate().equals("Friday\n\n"))
+                    setCycleArray(12);
+                adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"), cycleDay);
+            }
             lists.setAdapter(adapt);
         }
         else
@@ -170,25 +184,13 @@ public class Main extends ActionBarActivity
         if(dc.equals("Monday\n\n"))
             cycle.setText(Html.fromHtml("h3> 100 Day </h3>"));
         else if(dc.equals("Tuesday\n\n"))
-        {
             cycle.setText(Html.fromHtml("<h3> 78 Day </h3>"));
-            setCycleArray(78);
-        }
         else if(dc.equals("Wednesday\n\n"))
-        {
             cycle.setText(Html.fromHtml("<h3> 56 Day </h3>"));
-            setCycleArray(56);
-        }
         else if(dc.equals("Thursday\n\n"))
-        {
             cycle.setText(Html.fromHtml("<h3> 34 Day </h3>"));
-            setCycleArray(34);
-        }
         else if(dc.equals("Friday\n\n"))
-        {
             cycle.setText(Html.fromHtml("<h3> 12 Day </h3>"));
-            setCycleArray(12);
-        }
         else
             cycle.setText(Html.fromHtml("<h3> 100 Day </h3>"));
     }
