@@ -1,0 +1,187 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.cal.sched.Lunch">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="10" >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="4.1"
+            android:weightSum="5" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textAlignment="center"
+                android:textSize="32px"
+                android:textStyle="bold"
+                android:text="Cycle 100"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textAlignment="center"
+                android:textSize="32px"
+                android:textStyle="bold"
+                android:text="Cycle 78"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textAlignment="center"
+                android:textSize="32px"
+                android:textStyle="bold"
+                android:text="Cycle 56"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textAlignment="center"
+                android:textSize="32px"
+                android:textStyle="bold"
+                android:text="Cycle 34"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textAlignment="center"
+                android:textSize="32px"
+                android:textStyle="bold"
+                android:text="Cycle 12"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="32px"
+            android:textStyle="bold"
+            android:text="B Lunch"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="4.1"
+            android:weightSum="5" >
+
+            <ToggleButton
+                android:id="@+id/b_lunch100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onTogglec100"/>
+
+            <ToggleButton
+                android:id="@+id/b_lunch78"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onTogglec78"/>
+
+            <ToggleButton
+                android:id="@+id/b_lunch56"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onTogglec56"/>
+
+            <ToggleButton
+                android:id="@+id/b_lunch34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onTogglec34"/>
+
+            <ToggleButton
+                android:id="@+id/b_lunch12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onTogglec12"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="32px"
+            android:textStyle="bold"
+            android:text="D Lunch"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="4.1"
+            android:weightSum="5" >
+
+            <ToggleButton
+                android:id="@+id/d_lunch100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onToggled100"/>
+
+            <ToggleButton
+                android:id="@+id/d_lunch78"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onToggled78"/>
+
+            <ToggleButton
+                android:id="@+id/d_lunch56"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onToggled56"/>
+
+            <ToggleButton
+                android:id="@+id/d_lunch34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onToggled34"/>
+
+            <ToggleButton
+                android:id="@+id/d_lunch12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onToggled12"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_lunch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:text="Add Lunch"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClick" />
+
+</RelativeLayout>

@@ -38,7 +38,8 @@ public class myAdapter extends BaseAdapter
     }
 
     @Override
-    public Object getItem(int i) { return classes[i] + " " + teachers[i]; }
+    public Object getItem(int i) { return classes[i] + " " + teachers[i] + "" + rooms[i] + " " +
+            times[i]; }
 
     @Override
     public long getItemId(int i) {

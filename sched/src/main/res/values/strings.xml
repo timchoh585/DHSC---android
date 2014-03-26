@@ -11,5 +11,6 @@
     <string name="add">Add Classes</string>
     <string name="add_schedule">Add schedule</string>
     <string name="banner_alt">banner alt</string>
+    <string name="title_activity_lunch_and_lab">LunchAndLab</string>
 
 </resources>

@@ -37,7 +37,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:textSize="48px"
                     android:layout_weight="3"/>
 
@@ -46,7 +46,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:textSize="36px"
                     android:layout_weight="2"/>
             </LinearLayout>
@@ -62,7 +62,7 @@
                     android:id="@+id/aroom"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:textSize="30px"
                     android:layout_weight="2"/>
 
@@ -70,7 +70,7 @@
                     android:id="@+id/time"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:textSize="25px"
                     android:layout_weight="3"/>
 
