@@ -1,3 +1,11 @@
-fix array sizes. they might be off but check
-
-fix setCycleArray() 
+put in the option to choose what lunch they have on specific days (A,B,C,D)
+put in the option to show the images
+  white for current class, black for not in that class
+    maybe have gray for classes that have already passed
+vibrate when 5 minutes to class
+  if they are not in class, then vibrate
+  if they have a free period, dont vibrate (especially if they dont have EB classes!)
+have something that can optimise the science classes
+  ask what lab days they have
+    ask what times are the lab periods
+  
