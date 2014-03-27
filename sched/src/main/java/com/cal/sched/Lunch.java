@@ -28,9 +28,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                    day100[5] = "12:07-12:53";
-                else
-                    day100[5] = "11:22-12:08";
+                    day100[5] = "11:22-12:02"; day100[6] = "12:07-12:53";
             }
         });
 
@@ -40,7 +38,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                    cycleDay[4] = "12:13-1:10";
+                    cycleDay[4] = "11:33-12:08"; cycleDay[5] = "12:13-1:10";
             }
         });
 
@@ -50,7 +48,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                    cycleDay[4] = "12:13-1:10";
+                    cycleDay[4] = "11:33-12:08"; cycleDay[5] = "12:13-1:10";
             }
         });
 
@@ -60,7 +58,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                    cycleDay[4] = "12:13-1:10";
+                    cycleDay[4] = "11:33-12:08"; cycleDay[5] = "12:13-1:10";
             }
         });
 
@@ -70,7 +68,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                    cycleDay[4] = "12:13-1:10";
+                    cycleDay[4] = "11:33-12:08"; cycleDay[5] = "12:13-1:10";
             }
         });
 
@@ -132,8 +130,10 @@ public class Lunch extends ActionBarActivity
     {
         String sched = getIntent().getStringExtra("userSched");
         Intent moveOnIntent = new Intent(Lunch.this, Main.class);
-        moveOnIntent.putExtra("day100", day100[5].toString());
-        moveOnIntent.putExtra("cycleDay", cycleDay[4].toString());
+        moveOnIntent.putExtra("day1005", day100[5].toString());
+        moveOnIntent.putExtra("day1006", day100[6].toString());
+        moveOnIntent.putExtra("cycleDay4", cycleDay[4].toString());
+        moveOnIntent.putExtra("cycleDay5", cycleDay[5].toString());
         moveOnIntent.putExtra("userSched", sched);
         Lunch.this.startActivity(moveOnIntent);
     }
