@@ -59,6 +59,8 @@ public class AddSched extends ActionBarActivity
         if(t7.getText().toString().equals("")) { t7.setText("none"); }
         EditText t8 = (EditText) findViewById(R.id.t8);
         if(t8.getText().toString().equals("")) { t8.setText("none"); }
+        EditText hrt = (EditText) findViewById(R.id.hrt);
+        if(hrt.getText().toString().equals("")) { hrt.setText("none"); }
 
         EditText reb = (EditText) findViewById(R.id.reb);
         if(reb.getText().toString().equals("")) { reb.setText("none"); }
@@ -78,6 +80,8 @@ public class AddSched extends ActionBarActivity
         if(r7.getText().toString().equals("")) { r7.setText("none"); }
         EditText r8 = (EditText) findViewById(R.id.r8);
         if(r8.getText().toString().equals("")) { r8.setText("none"); }
+        EditText hrr = (EditText) findViewById(R.id.hrr);
+        if(hrr.getText().toString().equals("")) { hrr.setText("none"); }
 
         /************************* makes all lists into one string *************************/
 
@@ -85,17 +89,17 @@ public class AddSched extends ActionBarActivity
                 p2.getText().toString() + "," + p3.getText().toString() + "," +
                 p4.getText().toString() + "," + p5.getText().toString() + "," +
                 p6.getText().toString() + "," + p7.getText().toString() + "," +
-                p8.getText().toString() + "," +
+                p8.getText().toString() + "," + "Homeroom" + "," +
                 teb.getText().toString() + "," + t1.getText().toString() + "," +
                 t2.getText().toString() + "," + t3.getText().toString() + "," +
                 t4.getText().toString() + "," + t5.getText().toString() + "," +
                 t6.getText().toString() + "," + t7.getText().toString() + "," +
-                t8.getText().toString() + "," +
+                t8.getText().toString() + "," +hrt.getText().toString() + "," +
                 reb.getText().toString() + "," + r1.getText().toString() + "," +
                 r2.getText().toString() + "," + r3.getText().toString() + "," +
                 r4.getText().toString() + "," + r5.getText().toString() + "," +
                 r6.getText().toString() + "," + r7.getText().toString() + "," +
-                r8.getText().toString();
+                r8.getText().toString() + "," +hrr.getText().toString();
 
         /************************* intent the string *************************/
 

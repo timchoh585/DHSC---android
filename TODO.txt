@@ -1,6 +1,4 @@
-put in the option to choose what lunch they have on specific days (A,B,C,D) (done)
-    need to change the time schedule in the cycle array and day100 array
-put in the option to show the images
+put in the images
   white for current class, black for not in that class
     maybe have gray for classes that have already passed
 vibrate when 5 minutes to class
@@ -9,4 +7,3 @@ vibrate when 5 minutes to class
 have something that can optimise the science classes
   ask what lab days they have
     ask what times are the lab periods
-incorporate a homeroom into the cycle schedule

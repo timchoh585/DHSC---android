@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="380dp"
+        android:layout_height="420dp"
         android:orientation="horizontal"
         android:id="@+id/linearLayout">
 
@@ -130,6 +130,16 @@
                         android:gravity="center"
                         android:textSize="30sp"
                         android:text="P 8" />
+
+                    <View android:layout_height="6dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30sp"
+                        android:layout_weight="0.125"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:text="HR" />
 
                 </TableLayout>
 
@@ -338,6 +348,13 @@
                         android:layout_weight="0.125"
                         android:inputType="text" />
 
+                    <EditText
+                        android:id="@+id/hrt"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
                 </TableLayout>
 
         </TableLayout>
@@ -437,6 +454,13 @@
 
                     <EditText
                         android:id="@+id/r8"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.125"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/hrr"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="0.125"

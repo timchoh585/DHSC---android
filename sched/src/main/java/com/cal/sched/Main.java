@@ -34,13 +34,13 @@ public class Main extends ActionBarActivity
     private String[] day100 = new String[]{"7:22-8:05", "8:10-8:52", "8:57-9:39", "9:44-10:26",
         "10:31-11:17", "11:22-12:08", "12:13-12:53", " 12:58-1:40", "12:07-12:53", "1:45-2:27",
             "2:32-3:14"};
-    private String[] cycleDay = new String[]{"7:22-8:05", "8:10-9:07", "9:29-10:26", "10:31-11:28",
-        "11:37-12:34", "12:39-1:10", " 1:15-2:12", "2:17-3:14"};
+    private String[] cycleDay = new String[]{"7:22-8:05", "8:10-9:07", "9:12-9:24", "9:29-10:26",
+            "10:31-11:28", "11:37-12:34", "12:39-1:10", " 1:15-2:12", "2:17-3:14"};
 
     //cycle
-    private String[] cycleClass = new String[8];
-    private String[] cycleTeacher = new String[8];
-    private String[] cycleRoom = new String[8];
+    private String[] cycleClass = new String[9];
+    private String[] cycleTeacher = new String[9];
+    private String[] cycleRoom = new String[9];
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -143,9 +143,9 @@ public class Main extends ActionBarActivity
 
         for(int i = 0; i < full.length; i++)
         {
-            if (i < 9)
+            if (i < 10)
                 classes[i] = full[i];
-            else if (i < 18)
+            else if (i < 20)
             {
                 teachers[indivT] = full[i];
                 indivT++;
@@ -225,156 +225,168 @@ public class Main extends ActionBarActivity
             cycleClass[0] = classes[0];
             cycleTeacher[0] = teachers[0];
             cycleRoom[0] = rooms[0];
-            cycleClass[1] = classes[1];
-            cycleTeacher[1] = teachers[1];
-            cycleRoom[1] = rooms[1];
-            cycleClass[2] = classes[2];
-            cycleTeacher[2] = teachers[2];
-            cycleRoom[2] = rooms[2];
-            cycleClass[3] = classes[3];
-            cycleTeacher[3] = teachers[3];
-            cycleRoom[3] = rooms[3];
+            cycleClass[1] = classes[9];
+            cycleTeacher[1] = teachers[9];
+            cycleRoom[1] = rooms[9];
+            cycleClass[2] = classes[1];
+            cycleTeacher[2] = teachers[1];
+            cycleRoom[2] = rooms[1];
+            cycleClass[3] = classes[2];
+            cycleTeacher[3] = teachers[2];
+            cycleRoom[3] = rooms[2];
+            cycleClass[4] = classes[3];
+            cycleTeacher[4] = teachers[3];
+            cycleRoom[4] = rooms[3];
             if(cycleDay[4].toString().equals("11:37-12:34"))
             {
-                cycleClass[4] = classes[4];
-                cycleTeacher[4] = teachers[4];
-                cycleRoom[4] = rooms[4];
-                cycleClass[5] = "Lunch";
-                cycleTeacher[5] = "----";
-                cycleRoom[5] = "----";
-            }
-            else
-            {
-                cycleClass[4] = "Lunch";
-                cycleTeacher[4] = "----";
-                cycleRoom[4] = "----";
                 cycleClass[5] = classes[4];
                 cycleTeacher[5] = teachers[4];
                 cycleRoom[5] = rooms[4];
+                cycleClass[6] = "Lunch";
+                cycleTeacher[6] = "-----";
+                cycleRoom[6] = "-----";
             }
-            cycleClass[6] = classes[5];
-            cycleTeacher[6] = teachers[5];
-            cycleRoom[6] = rooms[5];
-            cycleClass[7] = classes[6];
-            cycleTeacher[7] = teachers[6];
-            cycleRoom[7] = rooms[6];
+            else
+            {
+                cycleClass[5] = "Lunch";
+                cycleTeacher[5] = "-----";
+                cycleRoom[5] = "-----";
+                cycleClass[6] = classes[4];
+                cycleTeacher[6] = teachers[4];
+                cycleRoom[6] = rooms[4];
+            }
+            cycleClass[7] = classes[5];
+            cycleTeacher[7] = teachers[5];
+            cycleRoom[7] = rooms[5];
+            cycleClass[8] = classes[6];
+            cycleTeacher[8] = teachers[6];
+            cycleRoom[8] = rooms[6];
         }
         else if(a == 56)
         {
             cycleClass[0] = classes[0];
             cycleTeacher[0] = teachers[0];
             cycleRoom[0] = rooms[0];
-            cycleClass[1] = classes[1];
-            cycleTeacher[1] = teachers[1];
-            cycleRoom[1] = rooms[1];
-            cycleClass[2] = classes[2];
-            cycleTeacher[2] = teachers[2];
-            cycleRoom[2] = rooms[2];
-            cycleClass[3] = classes[3];
-            cycleTeacher[3] = teachers[3];
-            cycleRoom[3] = rooms[3];
+            cycleClass[1] = classes[9];
+            cycleTeacher[1] = teachers[9];
+            cycleRoom[1] = rooms[9];
+            cycleClass[2] = classes[1];
+            cycleTeacher[2] = teachers[1];
+            cycleRoom[2] = rooms[1];
+            cycleClass[3] = classes[2];
+            cycleTeacher[3] = teachers[2];
+            cycleRoom[3] = rooms[2];
+            cycleClass[4] = classes[3];
+            cycleTeacher[4] = teachers[3];
+            cycleRoom[4] = rooms[3];
             if(cycleDay[4].toString().equals("11:37-12:34"))
             {
-                cycleClass[4] = classes[4];
-                cycleTeacher[4] = teachers[4];
-                cycleRoom[4] = rooms[4];
-                cycleClass[5] = "Lunch";
-                cycleTeacher[5] = "----";
-                cycleRoom[5] = "----";
-            }
-            else
-            {
-                cycleClass[4] = "Lunch";
-                cycleTeacher[4] = "----";
-                cycleRoom[4] = "----";
                 cycleClass[5] = classes[4];
                 cycleTeacher[5] = teachers[4];
                 cycleRoom[5] = rooms[4];
+                cycleClass[6] = "Lunch";
+                cycleTeacher[6] = "-----";
+                cycleRoom[6] = "-----";
             }
-            cycleClass[5] = classes[7];
-            cycleTeacher[5] = teachers[7];
-            cycleRoom[5] = rooms[7];
-            cycleClass[6] = classes[8];
-            cycleTeacher[6] = teachers[8];
-            cycleRoom[6] = rooms[8];
+            else
+            {
+                cycleClass[5] = "Lunch";
+                cycleTeacher[5] = "-----";
+                cycleRoom[5] = "-----";
+                cycleClass[6] = classes[4];
+                cycleTeacher[6] = teachers[4];
+                cycleRoom[6] = rooms[4];
+            }
+            cycleClass[7] = classes[7];
+            cycleTeacher[7] = teachers[7];
+            cycleRoom[7] = rooms[7];
+            cycleClass[8] = classes[8];
+            cycleTeacher[8] = teachers[8];
+            cycleRoom[8] = rooms[8];
         }
         else if(a == 34)
         {
             cycleClass[0] = classes[0];
             cycleTeacher[0] = teachers[0];
             cycleRoom[0] = rooms[0];
-            cycleClass[1] = classes[1];
-            cycleTeacher[1] = teachers[1];
-            cycleRoom[1] = rooms[1];
-            cycleClass[2] = classes[2];
-            cycleTeacher[2] = teachers[2];
-            cycleRoom[2] = rooms[2];
-            cycleClass[3] = classes[5];
-            cycleTeacher[3] = teachers[5];
-            cycleRoom[3] = rooms[5];
+            cycleClass[1] = classes[9];
+            cycleTeacher[1] = teachers[9];
+            cycleRoom[1] = rooms[9];
+            cycleClass[2] = classes[1];
+            cycleTeacher[2] = teachers[1];
+            cycleRoom[2] = rooms[1];
+            cycleClass[3] = classes[2];
+            cycleTeacher[3] = teachers[2];
+            cycleRoom[3] = rooms[2];
+            cycleClass[4] = classes[5];
+            cycleTeacher[4] = teachers[5];
+            cycleRoom[4] = rooms[5];
             if(cycleDay[4].toString().equals("11:37-12:34"))
             {
-                cycleClass[4] = classes[6];
-                cycleTeacher[4] = teachers[6];
-                cycleRoom[4] = rooms[6];
-                cycleClass[5] = "Lunch";
-                cycleTeacher[5] = "----";
-                cycleRoom[5] = "----";
-            }
-            else
-            {
-                cycleClass[4] = "Lunch";
-                cycleTeacher[4] = "----";
-                cycleRoom[4] = "----";
                 cycleClass[5] = classes[6];
                 cycleTeacher[5] = teachers[6];
                 cycleRoom[5] = rooms[6];
+                cycleClass[6] = "Lunch";
+                cycleTeacher[6] = "-----";
+                cycleRoom[6] = "-----";
             }
-            cycleClass[6] = classes[7];
-            cycleTeacher[6] = teachers[7];
-            cycleRoom[6] = rooms[7];
-            cycleClass[7] = classes[8];
-            cycleTeacher[7] = teachers[8];
-            cycleRoom[7] = rooms[8];
+            else
+            {
+                cycleClass[5] = "Lunch";
+                cycleTeacher[5] = "-----";
+                cycleRoom[5] = "-----";
+                cycleClass[6] = classes[6];
+                cycleTeacher[6] = teachers[6];
+                cycleRoom[6] = rooms[6];
+            }
+            cycleClass[7] = classes[7];
+            cycleTeacher[7] = teachers[7];
+            cycleRoom[7] = rooms[7];
+            cycleClass[8] = classes[8];
+            cycleTeacher[8] = teachers[8];
+            cycleRoom[8] = rooms[8];
         }
         else if(a == 12)
         {
             cycleClass[0] = classes[0];
             cycleTeacher[0] = teachers[0];
             cycleRoom[0] = rooms[0];
-            cycleClass[1] = classes[3];
-            cycleTeacher[1] = teachers[3];
-            cycleRoom[1] = rooms[3];
-            cycleClass[2] = classes[4];
-            cycleTeacher[2] = teachers[4];
-            cycleRoom[2] = rooms[4];
-            cycleClass[3] = classes[5];
-            cycleTeacher[3] = teachers[5];
-            cycleRoom[3] = rooms[5];
+            cycleClass[1] = classes[9];
+            cycleTeacher[1] = teachers[9];
+            cycleRoom[1] = rooms[9];
+            cycleClass[2] = classes[3];
+            cycleTeacher[2] = teachers[3];
+            cycleRoom[2] = rooms[3];
+            cycleClass[3] = classes[4];
+            cycleTeacher[3] = teachers[4];
+            cycleRoom[3] = rooms[4];
+            cycleClass[4] = rooms[5];
+            cycleTeacher[4] = teachers[5];
+            cycleRoom[4] = rooms[5];
             if(cycleDay[4].toString().equals("11:37-12:34"))
             {
-                cycleClass[4] = classes[6];
-                cycleTeacher[4] = teachers[6];
-                cycleRoom[4] = rooms[6];
-                cycleClass[5] = "Lunch";
-                cycleTeacher[5] = "----";
-                cycleRoom[5] = "----";
-            }
-            else
-            {
-                cycleClass[4] = "Lunch";
-                cycleTeacher[4] = "----";
-                cycleRoom[4] = "----";
                 cycleClass[5] = classes[6];
                 cycleTeacher[5] = teachers[6];
                 cycleRoom[5] = rooms[6];
+                cycleClass[6] = "Lunch";
+                cycleTeacher[6] = "-----";
+                cycleRoom[6] = "-----";
             }
-            cycleClass[6] = classes[7];
-            cycleTeacher[6] = teachers[7];
-            cycleRoom[6] = rooms[7];
-            cycleClass[7] = classes[8];
-            cycleTeacher[7] = teachers[8];
-            cycleRoom[7] = rooms[8];
+            else
+            {
+                cycleClass[5] = "Lunch";
+                cycleTeacher[5] = "-----";
+                cycleRoom[5] = "-----";
+                cycleClass[6] = classes[6];
+                cycleTeacher[6] = teachers[6];
+                cycleRoom[6] = rooms[6];
+            }
+            cycleClass[7] = classes[7];
+            cycleTeacher[7] = teachers[7];
+            cycleRoom[7] = rooms[7];
+            cycleClass[8] = classes[8];
+            cycleTeacher[8] = teachers[8];
+            cycleRoom[8] = rooms[8];
         }
     }
 }
