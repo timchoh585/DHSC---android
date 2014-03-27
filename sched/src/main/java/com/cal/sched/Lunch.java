@@ -3,9 +3,6 @@ package com.cal.sched;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
@@ -135,11 +132,9 @@ public class Lunch extends ActionBarActivity
     {
         String sched = getIntent().getStringExtra("userSched");
         Intent moveOnIntent = new Intent(Lunch.this, Main.class);
-        Bundle b = new Bundle();
+        moveOnIntent.putExtra("day100", day100[5].toString());
+        moveOnIntent.putExtra("cycleDay", cycleDay[4].toString());
         moveOnIntent.putExtra("userSched", sched);
-        b.putStringArray("day100", day100);
-        b.putStringArray("cycleDay", cycleDay);
-        moveOnIntent.putExtra("lunches", b);
         Lunch.this.startActivity(moveOnIntent);
     }
 }
