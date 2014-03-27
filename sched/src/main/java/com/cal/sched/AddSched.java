@@ -29,7 +29,7 @@ public class AddSched extends ActionBarActivity
         EditText p2 = (EditText) findViewById(R.id.p2);
         if(p2.getText().toString().equals("")) { p2.setText("none"); }
         EditText p3 = (EditText) findViewById(R.id.p3);
-        if(p3.getText().toString().equals("")) { p3.setText("none "); }
+        if(p3.getText().toString().equals("")) { p3.setText("none"); }
         EditText p4 = (EditText) findViewById(R.id.p4);
         if(p4.getText().toString().equals("")) { p4.setText("none"); }
         EditText p5 = (EditText) findViewById(R.id.p5);
@@ -99,8 +99,8 @@ public class AddSched extends ActionBarActivity
 
         /************************* intent the string *************************/
 
-        Intent myIntent = new Intent(AddSched.this, Main.class);
-        myIntent.putExtra("userSched", sched);
-        AddSched.this.startActivity(myIntent);
+        Intent moveOnIntent = new Intent(AddSched.this, Lunch.class);
+        moveOnIntent.putExtra("userSched", sched);
+        AddSched.this.startActivity(moveOnIntent);
     }
 }

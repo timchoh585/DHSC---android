@@ -1,5 +1,6 @@
 package com.cal.sched;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,10 @@ import android.widget.ToggleButton;
 
 public class Lunch extends ActionBarActivity
 {
+    private String[] day100 = new String[]{"7:22-8:05", "8:10-8:52", "8:57-9:39", "9:44-10:26",
+            "10:31-11:17", "11:22-12:08", " 12:58-1:40", "12:07-12:53", "1:45-2:27", "2:32-3:14"};
+    private String[] cycleDay = new String[]{"7:22-8:05", "8:10-9:07", "9:29-10:26",
+            "10:31-11:28", "11:37-12:34", " 1:15-2:12", "2:17-3:14"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,13 +31,9 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                {
-                    Log.i("info", "Button2 is on!");
-                }
+                    day100[5] = "12:07-12:53";
                 else
-                {
-                    Log.i("info", "Button2 is off!");
-                }
+                    day100[5] = "11:22-12:08";
             }
         });
 
@@ -42,13 +43,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                {
-                    Log.i("info", "Button2 is on!");
-                }
-                else
-                {
-                    Log.i("info", "Button2 is off!");
-                }
+                    cycleDay[4] = "12:13-1:10";
             }
         });
 
@@ -58,13 +53,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                {
-                    Log.i("info", "Button2 is on!");
-                }
-                else
-                {
-                    Log.i("info", "Button2 is off!");
-                }
+                    cycleDay[4] = "12:13-1:10";
             }
         });
 
@@ -74,13 +63,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                {
-                    Log.i("info", "Button2 is on!");
-                }
-                else
-                {
-                    Log.i("info", "Button2 is off!");
-                }
+                    cycleDay[4] = "12:13-1:10";
             }
         });
 
@@ -90,13 +73,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                {
-                    Log.i("info", "Button2 is on!");
-                }
-                else
-                {
-                    Log.i("info", "Button2 is off!");
-                }
+                    cycleDay[4] = "12:13-1:10";
             }
         });
 
@@ -107,13 +84,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                {
-                    Log.i("info", "Button2 is on!");
-                }
-                else
-                {
-                    Log.i("info", "Button2 is off!");
-                }
+                    day100[5] = "11:22-12:08";
             }
         });
 
@@ -123,13 +94,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                {
-                    Log.i("info", "Button2 is on!");
-                }
-                else
-                {
-                    Log.i("info", "Button2 is off!");
-                }
+                    cycleDay[4] = "11:37-12:34";
             }
         });
 
@@ -139,13 +104,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                {
-                    Log.i("info", "Button2 is on!");
-                }
-                else
-                {
-                    Log.i("info", "Button2 is off!");
-                }
+                    cycleDay[4] = "11:37-12:34";
             }
         });
 
@@ -155,13 +114,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                {
-                    Log.i("info", "Button2 is on!");
-                }
-                else
-                {
-                    Log.i("info", "Button2 is off!");
-                }
+                    cycleDay[4] = "11:37-12:34";
             }
         });
 
@@ -171,13 +124,7 @@ public class Lunch extends ActionBarActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
             {
                 if (isToggled)
-                {
-                    Log.i("info", "Button2 is on!");
-                }
-                else
-                {
-                    Log.i("info", "Button2 is off!");
-                }
+                    cycleDay[4] = "11:37-12:34";
             }
         });
     }
@@ -186,5 +133,13 @@ public class Lunch extends ActionBarActivity
 
     public void onClick(View v)
     {
+        String sched = getIntent().getStringExtra("userSched");
+        Intent moveOnIntent = new Intent(Lunch.this, Main.class);
+        Bundle b = new Bundle();
+        moveOnIntent.putExtra("userSched", sched);
+        b.putStringArray("day100", day100);
+        b.putStringArray("cycleDay", cycleDay);
+        moveOnIntent.putExtra("lunches", b);
+        Lunch.this.startActivity(moveOnIntent);
     }
 }

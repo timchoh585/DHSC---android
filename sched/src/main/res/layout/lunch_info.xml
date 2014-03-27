@@ -87,36 +87,31 @@
                 android:id="@+id/b_lunch100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onTogglec100"/>
+                android:layout_weight="1" />
 
             <ToggleButton
                 android:id="@+id/b_lunch78"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onTogglec78"/>
+                android:layout_weight="1" />
 
             <ToggleButton
                 android:id="@+id/b_lunch56"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onTogglec56"/>
+                android:layout_weight="1" />
 
             <ToggleButton
                 android:id="@+id/b_lunch34"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onTogglec34"/>
+                android:layout_weight="1" />
 
             <ToggleButton
                 android:id="@+id/b_lunch12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onTogglec12"/>
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -139,36 +134,31 @@
                 android:id="@+id/d_lunch100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onToggled100"/>
+                android:layout_weight="1" />
 
             <ToggleButton
                 android:id="@+id/d_lunch78"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onToggled78"/>
+                android:layout_weight="1" />
 
             <ToggleButton
                 android:id="@+id/d_lunch56"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onToggled56"/>
+                android:layout_weight="1" />
 
             <ToggleButton
                 android:id="@+id/d_lunch34"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onToggled34"/>
+                android:layout_weight="1" />
 
             <ToggleButton
                 android:id="@+id/d_lunch12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onToggled12"/>
+                android:layout_weight="1" />
 
         </LinearLayout>
 
