@@ -473,6 +473,11 @@ public class Main extends ActionBarActivity
         }
     }
 
+    /**
+     * saves strings into StudentSched
+     * saves two strings right now: schedule and lunches
+     * @param s takes in a string to save
+     */
     public void saveSched(String s)
     {
         SharedPreferences sharedPref = getSharedPreferences("StudentSched", Context.MODE_PRIVATE);
@@ -481,6 +486,13 @@ public class Main extends ActionBarActivity
         editor.putString("bLunch", bLunches);
         editor.commit();
     }
+
+    /**
+     * reads from StudentSched
+     * reads the string from the saved strings file
+     * @param s for passing by reference
+     * @return String
+     */
     public String readSched(String s)
     {
         SharedPreferences sharedPref = getSharedPreferences("StudentSched", Context.MODE_PRIVATE);
