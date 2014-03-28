@@ -1,6 +1,8 @@
 package com.cal.sched;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
@@ -30,17 +32,22 @@ public class Main extends ActionBarActivity
     private String[] teachers = new String[10];
     private String[] rooms = new String[10];
 
-    //lunch
+    //times
     private String[] day100 = new String[]{"7:22-8:05", "8:10-8:52", "8:57-9:39", "9:44-10:26",
         "10:31-11:17", "11:22-12:08", "12:13-12:53", " 12:58-1:40", "12:07-12:53", "1:45-2:27",
             "2:32-3:14"};
     private String[] cycleDay = new String[]{"7:22-8:05", "8:10-9:07", "9:12-9:24", "9:29-10:26",
             "10:31-11:28", "11:37-12:34", "12:39-1:10", " 1:15-2:12", "2:17-3:14"};
 
+    //lunch
+    private Boolean[] bLunchBool = new Boolean[5];
+    private String bLunches = "";
+
     //cycle
     private String[] cycleClass = new String[9];
     private String[] cycleTeacher = new String[9];
     private String[] cycleRoom = new String[9];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -66,9 +73,57 @@ public class Main extends ActionBarActivity
             day100[6] = getIntent().getStringExtra("day1006");
             cycleDay[4] = getIntent().getStringExtra("cycleDay4");
             cycleDay[5] = getIntent().getStringExtra("cycleDay5");
+            bLunches = getIntent().getStringExtra("bLunch");
             sched = getIntent().getStringExtra("userSched");
-            if(!sched.equals(null))
+            if(sched != null)
                 schedAdd = true;
+            else
+            {
+                try
+                {
+                    sched = readSched("schedule");
+                    bLunches = readSched("bLunch");
+
+                    String[] full = bLunches.split(",");
+                    for(int i = 0; i < 5; i++)
+                    {
+                        if (full[i].equals("true"))
+                            bLunchBool[i] = true;
+                        else
+                            bLunchBool[i] = false;
+                    }
+                    if(sched != null)
+                    {
+                        schedAdd = true;
+                        for(int i = 0; i < 5; i++)
+                        {
+                            if(i == 0 && bLunchBool[0])
+                            {
+                                day100[5] = "11:22-12:02";
+                                day100[6] = "12:07-12:53";
+                            }
+                            else if(bLunchBool[i])
+                            {
+                                cycleDay[4] = "11:33-12:08";
+                                cycleDay[5] = "12:13-1:10";
+                            }
+
+                            /********** preset values of D lunch **********/
+                            else
+                            {
+                                day100[5] = "12:07-12:53";
+                                day100[6] = "11:22-12:02";
+                                cycleDay[4] = "12:13-1:10";
+                                cycleDay[5] = "11:33-12:08";
+                            }
+                        }
+                    }
+
+                } catch(Exception e)
+                {
+                    sched = "";
+                }
+            }
         } catch(NullPointerException e)
         {
             sched = "";
@@ -137,6 +192,8 @@ public class Main extends ActionBarActivity
      */
     public void splitSched(String s)
     {
+        saveSched(s);
+
         String[] full = s.split(",");
         int indivT = 0;
         int indivR = 0;
@@ -237,7 +294,7 @@ public class Main extends ActionBarActivity
             cycleClass[4] = classes[3];
             cycleTeacher[4] = teachers[3];
             cycleRoom[4] = rooms[3];
-            if(cycleDay[4].toString().equals("11:37-12:34"))
+            if(cycleDay[5].toString().equals("11:37-12:34"))
             {
                 cycleClass[5] = classes[4];
                 cycleTeacher[5] = teachers[4];
@@ -279,7 +336,7 @@ public class Main extends ActionBarActivity
             cycleClass[4] = classes[3];
             cycleTeacher[4] = teachers[3];
             cycleRoom[4] = rooms[3];
-            if(cycleDay[4].toString().equals("11:37-12:34"))
+            if(cycleDay[5].toString().equals("11:37-12:34"))
             {
                 cycleClass[5] = classes[4];
                 cycleTeacher[5] = teachers[4];
@@ -321,7 +378,7 @@ public class Main extends ActionBarActivity
             cycleClass[4] = classes[5];
             cycleTeacher[4] = teachers[5];
             cycleRoom[4] = rooms[5];
-            if(cycleDay[4].toString().equals("11:37-12:34"))
+            if(cycleDay[5].toString().equals("11:37-12:34"))
             {
                 cycleClass[5] = classes[6];
                 cycleTeacher[5] = teachers[6];
@@ -363,7 +420,7 @@ public class Main extends ActionBarActivity
             cycleClass[4] = rooms[5];
             cycleTeacher[4] = teachers[5];
             cycleRoom[4] = rooms[5];
-            if(cycleDay[4].toString().equals("11:37-12:34"))
+            if(cycleDay[5].toString().equals("11:37-12:34"))
             {
                 cycleClass[5] = classes[6];
                 cycleTeacher[5] = teachers[6];
@@ -388,5 +445,22 @@ public class Main extends ActionBarActivity
             cycleTeacher[8] = teachers[8];
             cycleRoom[8] = rooms[8];
         }
+    }
+
+    public void saveSched(String s)
+    {
+        SharedPreferences sharedPref = getSharedPreferences("StudentSched", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("schedule", s);
+        editor.putString("bLunch", bLunches);
+        editor.commit();
+    }
+    public String readSched(String s)
+    {
+        SharedPreferences sharedPref = getSharedPreferences("StudentSched", Context.MODE_PRIVATE);
+        if(s.equals("schedule"))
+            return sharedPref.getString("schedule", "");
+        else
+            return sharedPref.getString("bLunch", "");
     }
 }

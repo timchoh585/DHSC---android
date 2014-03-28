@@ -7,3 +7,6 @@ vibrate when 5 minutes to class
 have something that can optimise the science classes
   ask what lab days they have
     ask what times are the lab periods
+    (dont think im going to do because that is incredibly difficult to do
+        for every single option of labs)
+have an edit feature that can allow the users to edit their schedule
