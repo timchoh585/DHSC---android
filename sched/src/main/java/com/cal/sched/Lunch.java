@@ -24,6 +24,7 @@ public class Lunch extends ActionBarActivity
         setContentView(R.layout.lunch_info);
 
         //B LUNCH
+        /********** 100 **********/
         ToggleButton b100 = (ToggleButton) findViewById(R.id.b_lunch100);
         b100.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
@@ -38,6 +39,7 @@ public class Lunch extends ActionBarActivity
             }
         });
 
+        /********** 78 **********/
         ToggleButton b78 = (ToggleButton) findViewById(R.id.b_lunch78);
         b78.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
@@ -52,6 +54,7 @@ public class Lunch extends ActionBarActivity
             }
         });
 
+        /********** 56 **********/
         ToggleButton b56 = (ToggleButton) findViewById(R.id.b_lunch56);
         b56.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
@@ -66,6 +69,7 @@ public class Lunch extends ActionBarActivity
             }
         });
 
+        /********** 34 **********/
         ToggleButton b34 = (ToggleButton) findViewById(R.id.b_lunch34);
         b34.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
@@ -80,6 +84,7 @@ public class Lunch extends ActionBarActivity
             }
         });
 
+        /********** 12 **********/
         ToggleButton b12 = (ToggleButton) findViewById(R.id.b_lunch12);
         b12.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
@@ -147,6 +152,10 @@ public class Lunch extends ActionBarActivity
         }); */
     }
 
+    /**
+     * intents a bunch of strings that will be used in the main file
+     * @param v move to the main.java for finishing the list
+     */
     public void onClick(View v)
     {
         for(int i = 0; i < 5; i++)
