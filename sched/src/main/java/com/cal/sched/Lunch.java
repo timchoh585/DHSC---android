@@ -36,6 +36,12 @@ public class Lunch extends ActionBarActivity
                     day100[6] = "12:07-12:53";
                     bLunchArray[0] = "true";
                 }
+                else
+                {
+                    day100[5] = "12:07-12:53";
+                    day100[6] = "11:22-12:02";
+                    bLunchArray[0];
+                }
             }
         });
 
@@ -50,6 +56,12 @@ public class Lunch extends ActionBarActivity
                     cycleDay[4] = "11:33-12:08";
                     cycleDay[5] = "12:13-1:10";
                     bLunchArray[1] = "true";
+                }
+                else
+                {
+                    cycleDay[4] = "12:13-1:10";
+                    cycleDay[5] = "11:33-12:08";
+                    bLunchArray[1] = "false";
                 }
             }
         });
@@ -66,6 +78,12 @@ public class Lunch extends ActionBarActivity
                     cycleDay[5] = "12:13-1:10";
                     bLunchArray[2] = "true";
                 }
+                else
+                {
+                    cycleDay[4] = "12:13-1:10";
+                    cycleDay[5] = "11:33-12:08";
+                    bLunchArray[2] = "false";
+                }
             }
         });
 
@@ -81,6 +99,12 @@ public class Lunch extends ActionBarActivity
                     cycleDay[5] = "12:13-1:10";
                     bLunchArray[3] = "true";
                 }
+                else
+                {
+                    cycleDay[4] = "12:13-1:10";
+                    cycleDay[5] = "11:33-12:08";
+                    bLunchArray[3] = "false";
+                }
             }
         });
 
@@ -95,6 +119,12 @@ public class Lunch extends ActionBarActivity
                     cycleDay[4] = "11:33-12:08";
                     cycleDay[5] = "12:13-1:10";
                     bLunchArray[4] = "true";
+                }
+                else
+                {
+                    cycleDay[4] = "12:13-1:10";
+                    cycleDay[5] = "11:33-12:08";
+                    bLunchArray[4] = "false";
                 }
             }
         });
