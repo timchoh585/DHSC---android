@@ -22,6 +22,7 @@ public class Main extends ActionBarActivity
 {
 
     private String sched = "";
+    private String part = "";
     private boolean schedAdd = false;
     private myAdapter adapt;
 
