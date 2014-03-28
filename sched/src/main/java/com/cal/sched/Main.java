@@ -150,13 +150,27 @@ public class Main extends ActionBarActivity
                     setCycleArray(12);
                 adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"), cycleDay);
             }
+
+            Button edit = (Button) findViewById(R.id.edit);
+            try
+            {
+                /********** makes button visible **********/
+                edit.requestFocus();
+                edit.setFocusable(true);
+                if(edit.getVisibility() == View.INVISIBLE || edit.getVisibility() == View.GONE)
+                    edit.setVisibility(View.VISIBLE);
+            }catch (Exception e)
+            {
+                Log.e("SCHEDULE", e.getMessage() + " error!");
+            }
+
             lists.setAdapter(adapt);
         }
         else
         {
             if(sched.equals(""))
             {
-                Button add = (Button) findViewById(R.id.finish);
+                Button add = (Button) findViewById(R.id.add);
                 try
                 {
                     /********** makes button visible **********/
@@ -172,7 +186,9 @@ public class Main extends ActionBarActivity
                 }
             }
             else
+            {
                 splitSched(sched);
+            }
         }
     }
 
@@ -182,8 +198,18 @@ public class Main extends ActionBarActivity
      */
     public void onClick(View v)
     {
-        Intent myIntent = new Intent(Main.this, AddSched.class);
-        Main.this.startActivity(myIntent);
+        switch(v.getId())
+        {
+            case R.id.add:
+                Intent addd = new Intent(Main.this, AddSched.class);
+                Main.this.startActivity(addd);
+                break;
+            case R.id.edit:
+                Intent editt = new Intent(Main.this, AddSched.class);
+                editt.putExtra("editSched", sched);
+                Main.this.startActivity(editt);
+                break;
+        }
     }
 
     /**

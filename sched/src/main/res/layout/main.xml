@@ -45,7 +45,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tV"
-        android:layout_above="@+id/finish">
+        android:layout_above="@+id/add">
 
     </ListView>
 
@@ -53,11 +53,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_schedule"
-        android:id="@+id/finish"
+        android:id="@+id/add"
         android:visibility="invisible"
         android:onClick="onClick"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_schedule"
+        android:id="@+id/edit"
+        android:visibility="invisible"
+        android:onClick="onClick"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -81,7 +81,7 @@
                         android:textSize="30sp"
                         android:text="P 3" />
 
-                    <View android:layout_height="6dp" />
+                    <View android:layout_height="7dp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -91,7 +91,7 @@
                         android:textSize="30sp"
                         android:text="P 4" />
 
-                    <View android:layout_height="7dp" />
+                    <View android:layout_height="9dp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -101,7 +101,7 @@
                         android:textSize="30sp"
                         android:text="P 5" />
 
-                    <View android:layout_height="8dp" />
+                    <View android:layout_height="9dp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -111,7 +111,7 @@
                         android:textSize="30sp"
                         android:text="P 6" />
 
-                    <View android:layout_height="8dp" />
+                    <View android:layout_height="9dp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -121,7 +121,7 @@
                         android:textSize="30sp"
                         android:text="P 7" />
 
-                    <View android:layout_height="6dp" />
+                    <View android:layout_height="9dp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -131,7 +131,7 @@
                         android:textSize="30sp"
                         android:text="P 8" />
 
-                    <View android:layout_height="6dp" />
+                    <View android:layout_height="9dp" />
 
                     <TextView
                         android:layout_width="match_parent"

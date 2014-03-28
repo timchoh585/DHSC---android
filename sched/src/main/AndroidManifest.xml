@@ -28,7 +28,7 @@
             android:label="@string/add" />
         <activity
             android:name="com.cal.sched.Lunch"
-            android:label="@string/title_activity_lunch_and_lab" >
+            android:label="@string/activity_lunch" >
         </activity>
     </application>
 

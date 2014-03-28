@@ -17,7 +17,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:contentDescription="@string/banner_alt"
-            android:layout_weight="8"/>
+            android:layout_weight="9"/>
 
         <LinearLayout
             android:orientation="horizontal"
