@@ -94,6 +94,7 @@ public class Lunch extends ActionBarActivity
             }
         });
 
+        /*
         //D LUNCH
         ToggleButton d100 = (ToggleButton) findViewById(R.id.d_lunch100);
         d100.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
@@ -143,7 +144,7 @@ public class Lunch extends ActionBarActivity
                 if (isToggled)
                     cycleDay[4] = "11:37-12:34";
             }
-        });
+        }); */
     }
 
     public void onClick(View v)
