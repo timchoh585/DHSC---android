@@ -106,7 +106,7 @@ public class Main extends ActionBarActivity
                             if(i == 0 && bLunchBool[0])
                             {
                                 day100[5] = "11:22-12:02";
-                                day100[6] = "12:07-12:53";
+                                //day100[6] = "12:07-12:53";
                             }
                             else if(bLunchBool[i])
                             {
