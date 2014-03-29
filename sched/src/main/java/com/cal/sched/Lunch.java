@@ -22,6 +22,14 @@ public class Lunch extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lunch_info);
+    }
+
+    /**
+     * intents a bunch of strings that will be used in the main file
+     * @param v move to the main.java for finishing the list
+     */
+    public void onClick(View v)
+    {
 
         //B LUNCH
         /********** 100 **********/
@@ -40,7 +48,7 @@ public class Lunch extends ActionBarActivity
                 {
                     day100[5] = "12:07-12:53";
                     day100[6] = "11:22-12:02";
-                    bLunchArray[0];
+                    bLunchArray[0] = "false";
                 }
             }
         });
@@ -129,65 +137,6 @@ public class Lunch extends ActionBarActivity
             }
         });
 
-        /*
-        //D LUNCH
-        ToggleButton d100 = (ToggleButton) findViewById(R.id.d_lunch100);
-        d100.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
-            {
-                if (isToggled)
-                    day100[5] = "11:22-12:08";
-            }
-        });
-
-        ToggleButton d78 = (ToggleButton) findViewById(R.id.d_lunch78);
-        d78.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
-            {
-                if (isToggled)
-                    cycleDay[4] = "11:37-12:34";
-            }
-        });
-
-        ToggleButton d56 = (ToggleButton) findViewById(R.id.d_lunch56);
-        d56.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
-            {
-                if (isToggled)
-                    cycleDay[4] = "11:37-12:34";
-            }
-        });
-
-        ToggleButton d34 = (ToggleButton) findViewById(R.id.d_lunch34);
-        d34.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
-            {
-                if (isToggled)
-                    cycleDay[4] = "11:37-12:34";
-            }
-        });
-
-        ToggleButton d12 = (ToggleButton) findViewById(R.id.d_lunch12);
-        d12.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
-            {
-                if (isToggled)
-                    cycleDay[4] = "11:37-12:34";
-            }
-        }); */
-    }
-
-    /**
-     * intents a bunch of strings that will be used in the main file
-     * @param v move to the main.java for finishing the list
-     */
-    public void onClick(View v)
-    {
         for(int i = 0; i < 5; i++)
             bLunch += bLunchArray[i] + ",";
 
