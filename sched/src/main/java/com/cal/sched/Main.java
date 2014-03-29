@@ -28,10 +28,15 @@ public class Main extends ActionBarActivity
 
     //set arrays too big fix later
 
-    //regular
+    //set schedule
     private String[] classes = new String[10];
     private String[] teachers = new String[10];
     private String[] rooms = new String[10];
+
+    //regular schedule
+    private String[] classes100 = new String[11];
+    private String[] teachers100 = new String[11];
+    private String[] rooms100 = new String[11];
 
     //times
     private String[] day100 = new String[]{"7:22-8:05", "8:10-8:52", "8:57-9:39", "9:44-10:26",
@@ -128,7 +133,6 @@ public class Main extends ActionBarActivity
         } catch(NullPointerException e)
         {
             sched = "";
-
         }
 
         if(schedAdd)
@@ -137,8 +141,9 @@ public class Main extends ActionBarActivity
             splitSched(sched);
 
             ListView lists = (ListView) findViewById(R.id.listView);
-            if(getDate().equals("Monday\n\n"))
-                adapt = new myAdapter(this, classes, teachers, rooms, day100);
+            if(getDate().equals("Monday\n\n") ||
+                    getDate().equals("Saturday\n\n") || getDate().equals("Sunday\n\n"))
+                adapt = new myAdapter(this, classes100, teachers100, rooms100, day100);
             else
             {
                 if(getDate().equals("Tuesday\n\n"))
@@ -155,7 +160,7 @@ public class Main extends ActionBarActivity
             Button edit = (Button) findViewById(R.id.edit);
             try
             {
-                /********** makes button visible **********/
+                /********** makes edit schedule button visible **********/
                 edit.requestFocus();
                 edit.setFocusable(true);
                 if(edit.getVisibility() == View.INVISIBLE || edit.getVisibility() == View.GONE)
@@ -174,7 +179,7 @@ public class Main extends ActionBarActivity
                 Button add = (Button) findViewById(R.id.add);
                 try
                 {
-                    /********** makes button visible **********/
+                    /********** makes add schedule button visible **********/
                     add.requestFocus();
                     add.setFocusable(true);
                     if(add.getVisibility() == View.INVISIBLE || add.getVisibility() == View.GONE)
@@ -304,7 +309,52 @@ public class Main extends ActionBarActivity
 
     public void setCycleArray(int a)
     {
-        if(a == 78)
+        if(a == 100)
+        {
+            classes100[0] = classes[0];
+            teachers100[0] = teachers[0];
+            rooms100[0] = rooms[0];
+            classes100[1] = classes[1];
+            teachers100[1] = teachers[1];
+            rooms100[1] = rooms[1];
+            classes100[2] = classes[2];
+            teachers100[2] = teachers[2];
+            rooms100[2] = rooms[2];
+            classes100[3] = classes[3];
+            teachers100[3] = teachers[3];
+            rooms100[3] = rooms[3];
+            classes100[4] = classes[4];
+            teachers100[4] = teachers[4];
+            rooms100[4] = rooms[4];
+            if(day100[5].toString().equals("11:22-:12:08"))
+            {
+                cycleClass[5] = classes[5];
+                cycleTeacher[5] = teachers[5];
+                cycleRoom[5] = rooms[5];
+                cycleClass[6] = "Lunch";
+                cycleTeacher[6] = "-----";
+                cycleRoom[6] = "-----";
+            }
+            else
+            {
+                cycleClass[5] = "Lunch";
+                cycleTeacher[5] = "-----";
+                cycleRoom[5] = "-----";
+                cycleClass[6] = classes[5];
+                cycleTeacher[6] = teachers[5];
+                cycleRoom[6] = rooms[5];
+            }
+            classes100[7] = classes[6];
+            teachers100[7] = teachers[6];
+            rooms100[7] = rooms[6];
+            classes100[8] = classes[7];
+            teachers100[8] = teachers[7];
+            rooms100[8] = rooms[7];
+            classes100[9] = classes[8];
+            teachers100[9] = teachers[8];
+            rooms100[9] = rooms[8];
+        }
+        else if(a == 78)
         {
             cycleClass[0] = classes[0];
             cycleTeacher[0] = teachers[0];
