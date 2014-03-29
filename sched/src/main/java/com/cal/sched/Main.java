@@ -34,9 +34,9 @@ public class Main extends ActionBarActivity
     private String[] rooms = new String[10];
 
     //regular schedule
-    private String[] classes100 = new String[11];
-    private String[] teachers100 = new String[11];
-    private String[] rooms100 = new String[11];
+    private String[] classes100 = new String[10];
+    private String[] teachers100 = new String[10];
+    private String[] rooms100 = new String[10];
 
     //times
     private String[] day100 = new String[]{"7:22-8:05", "8:10-8:52", "8:57-9:39", "9:44-10:26",
@@ -143,7 +143,8 @@ public class Main extends ActionBarActivity
             ListView lists = (ListView) findViewById(R.id.listView);
             if(getDate().equals("Monday\n\n") ||
                     getDate().equals("Saturday\n\n") || getDate().equals("Sunday\n\n"))
-                adapt = new myAdapter(this, classes100, teachers100, rooms100, day100);
+            { setCycleArray(100); adapt = new myAdapter(this, classes100, teachers100, rooms100,
+                    day100); }
             else
             {
                 if(getDate().equals("Tuesday\n\n"))
@@ -328,21 +329,21 @@ public class Main extends ActionBarActivity
             rooms100[4] = rooms[4];
             if(day100[5].toString().equals("11:22-:12:08"))
             {
-                cycleClass[5] = classes[5];
-                cycleTeacher[5] = teachers[5];
-                cycleRoom[5] = rooms[5];
-                cycleClass[6] = "Lunch";
-                cycleTeacher[6] = "-----";
-                cycleRoom[6] = "-----";
+                classes100[5] = classes[5];
+                teachers100[5] = teachers[5];
+                rooms100[5] = rooms[5];
+                classes100[6] = "Lunch";
+                teachers100[6] = "-----";
+                rooms100[6] = "-----";
             }
             else
             {
-                cycleClass[5] = "Lunch";
-                cycleTeacher[5] = "-----";
-                cycleRoom[5] = "-----";
-                cycleClass[6] = classes[5];
-                cycleTeacher[6] = teachers[5];
-                cycleRoom[6] = rooms[5];
+                classes100[5] = "Lunch";
+                teachers100[5] = "-----";
+                rooms100[5] = "-----";
+                classes100[6] = classes[5];
+                teachers100[6] = teachers[5];
+                rooms100[6] = rooms[5];
             }
             classes100[7] = classes[6];
             teachers100[7] = teachers[6];
