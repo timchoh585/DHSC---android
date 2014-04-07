@@ -30,112 +30,81 @@ public class Lunch extends ActionBarActivity
      */
     public void onClick(View v)
     {
-
         //B LUNCH
         /********** 100 **********/
         ToggleButton b100 = (ToggleButton) findViewById(R.id.b_lunch100);
-        b100.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        if (b100.getText().toString().equals("ON"))
         {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
-            {
-                if (isToggled)
-                {
-                    day100[5] = "11:22-12:02";
-                    day100[6] = "12:07-12:53";
-                    bLunchArray[0] = "true";
-                }
-                else
-                {
-                    day100[5] = "12:07-12:53";
-                    day100[6] = "11:22-12:02";
-                    bLunchArray[0] = "false";
-                }
-            }
-        });
+            day100[5] = "11:22-12:02";
+            day100[6] = "12:07-12:53";
+            bLunchArray[0] = "true";
+        }
+        else
+        {
+            day100[5] = "12:13-12:53";
+            day100[6] = "11:22-12:08";
+            bLunchArray[0] = "false";
+        }
 
         /********** 78 **********/
         ToggleButton b78 = (ToggleButton) findViewById(R.id.b_lunch78);
-        b78.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        if (b78.getText().toString().equals("ON"))
         {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
-            {
-                if (isToggled)
-                {
-                    cycleDay[4] = "11:33-12:08";
-                    cycleDay[5] = "12:13-1:10";
-                    bLunchArray[1] = "true";
-                }
-                else
-                {
-                    cycleDay[4] = "12:13-1:10";
-                    cycleDay[5] = "11:33-12:08";
-                    bLunchArray[1] = "false";
-                }
-            }
-        });
+            cycleDay[4] = "11:33-12:08";
+            cycleDay[5] = "12:13-1:10";
+            bLunchArray[1] = "true";
+        }
+        else
+        {
+            cycleDay[4] = "12:13-1:10";
+            cycleDay[5] = "11:33-12:08";
+            bLunchArray[1] = "false";
+        }
 
         /********** 56 **********/
         ToggleButton b56 = (ToggleButton) findViewById(R.id.b_lunch56);
-        b56.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        if (b56.getText().toString().equals("ON"))
         {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
-            {
-                if (isToggled)
-                {
-                    cycleDay[4] = "11:33-12:08";
-                    cycleDay[5] = "12:13-1:10";
-                    bLunchArray[2] = "true";
-                }
-                else
-                {
-                    cycleDay[4] = "12:13-1:10";
-                    cycleDay[5] = "11:33-12:08";
-                    bLunchArray[2] = "false";
-                }
-            }
-        });
+            cycleDay[4] = "11:33-12:08";
+            cycleDay[5] = "12:13-1:10";
+            bLunchArray[2] = "true";
+        }
+        else
+        {
+            cycleDay[4] = "12:13-1:10";
+            cycleDay[5] = "11:33-12:08";
+            bLunchArray[2] = "false";
+        }
 
         /********** 34 **********/
         ToggleButton b34 = (ToggleButton) findViewById(R.id.b_lunch34);
-        b34.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        if (b34.getText().toString().equals("ON"))
         {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
-            {
-                if (isToggled)
-                {
-                    cycleDay[4] = "11:33-12:08";
-                    cycleDay[5] = "12:13-1:10";
-                    bLunchArray[3] = "true";
-                }
-                else
-                {
-                    cycleDay[4] = "12:13-1:10";
-                    cycleDay[5] = "11:33-12:08";
-                    bLunchArray[3] = "false";
-                }
-            }
-        });
+            cycleDay[4] = "11:33-12:08";
+            cycleDay[5] = "12:13-1:10";
+            bLunchArray[3] = "true";
+        }
+        else
+        {
+            cycleDay[4] = "12:13-1:10";
+            cycleDay[5] = "11:33-12:08";
+            bLunchArray[3] = "false";
+        }
 
         /********** 12 **********/
         ToggleButton b12 = (ToggleButton) findViewById(R.id.b_lunch12);
-        b12.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        if (b12.getText().toString().equals("ON"))
         {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isToggled)
-            {
-                if (isToggled)
-                {
-                    cycleDay[4] = "11:33-12:08";
-                    cycleDay[5] = "12:13-1:10";
-                    bLunchArray[4] = "true";
-                }
-                else
-                {
-                    cycleDay[4] = "12:13-1:10";
-                    cycleDay[5] = "11:33-12:08";
-                    bLunchArray[4] = "false";
-                }
-            }
-        });
+            cycleDay[4] = "11:33-12:08";
+            cycleDay[5] = "12:13-1:10";
+            bLunchArray[4] = "true";
+        }
+        else
+        {
+            cycleDay[4] = "12:13-1:10";
+            cycleDay[5] = "11:33-12:08";
+            bLunchArray[4] = "false";
+        }
 
         for(int i = 0; i < 5; i++)
             bLunch += bLunchArray[i] + ",";

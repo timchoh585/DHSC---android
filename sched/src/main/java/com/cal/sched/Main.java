@@ -22,7 +22,6 @@ public class Main extends ActionBarActivity
 {
 
     private String sched = "";
-    private String part = "";
     private boolean schedAdd = false;
     private myAdapter adapt;
 
@@ -280,7 +279,7 @@ public class Main extends ActionBarActivity
         String dc = getDate();
         /********** sets cycle **********/
         if(dc.equals("Monday\n\n"))
-            cycle.setText(Html.fromHtml("h3> 100 Day </h3>"));
+            cycle.setText(Html.fromHtml("<h3> 100 Day </h3>"));
         else if(dc.equals("Tuesday\n\n"))
             cycle.setText(Html.fromHtml("<h3> 78 Day </h3>"));
         else if(dc.equals("Wednesday\n\n"))
@@ -327,16 +326,8 @@ public class Main extends ActionBarActivity
             classes100[4] = classes[4];
             teachers100[4] = teachers[4];
             rooms100[4] = rooms[4];
-            if(day100[5].toString().equals("11:22-:12:08"))
-            {
-                classes100[5] = classes[5];
-                teachers100[5] = teachers[5];
-                rooms100[5] = rooms[5];
-                classes100[6] = "Lunch";
-                teachers100[6] = "-----";
-                rooms100[6] = "-----";
-            }
-            else
+            if(bLunchBool[0]) //has class first -- D lunch work
+            // with booleans
             {
                 classes100[5] = "Lunch";
                 teachers100[5] = "-----";
@@ -344,6 +335,20 @@ public class Main extends ActionBarActivity
                 classes100[6] = classes[5];
                 teachers100[6] = teachers[5];
                 rooms100[6] = rooms[5];
+
+            }
+            else
+            {
+                classes100[5] = classes[5];
+                teachers100[5] = teachers[5];
+                rooms100[5] = rooms[5];
+                classes100[6] = "Lunch";
+                teachers100[6] = "-----";
+                rooms100[6] = "-----";
+
+                String temp = day100[5];
+                day100[5] = day100[6];
+                day100[6] = temp;
             }
             classes100[7] = classes[6];
             teachers100[7] = teachers[6];
@@ -372,23 +377,28 @@ public class Main extends ActionBarActivity
             cycleClass[4] = classes[3];
             cycleTeacher[4] = teachers[3];
             cycleRoom[4] = rooms[3];
-            if(cycleDay[5].toString().equals("11:37-12:34"))
-            {
-                cycleClass[5] = classes[4];
-                cycleTeacher[5] = teachers[4];
-                cycleRoom[5] = rooms[4];
-                cycleClass[6] = "Lunch";
-                cycleTeacher[6] = "-----";
-                cycleRoom[6] = "-----";
-            }
-            else
+            if(bLunchBool[1])
             {
                 cycleClass[5] = "Lunch";
                 cycleTeacher[5] = "-----";
                 cycleRoom[5] = "-----";
                 cycleClass[6] = classes[4];
                 cycleTeacher[6] = teachers[4];
+
+            }
+            else
+            {
                 cycleRoom[6] = rooms[4];
+                cycleClass[5] = classes[4];
+                cycleTeacher[5] = teachers[4];
+                cycleRoom[5] = rooms[4];
+                cycleClass[6] = "Lunch";
+                cycleTeacher[6] = "-----";
+                cycleRoom[6] = "-----";
+
+                String temp = cycleDay[4];
+                cycleDay[4] = cycleDay[5];
+                cycleDay[5] = temp;
             }
             cycleClass[7] = classes[5];
             cycleTeacher[7] = teachers[5];
@@ -414,16 +424,7 @@ public class Main extends ActionBarActivity
             cycleClass[4] = classes[3];
             cycleTeacher[4] = teachers[3];
             cycleRoom[4] = rooms[3];
-            if(cycleDay[5].toString().equals("11:37-12:34"))
-            {
-                cycleClass[5] = classes[4];
-                cycleTeacher[5] = teachers[4];
-                cycleRoom[5] = rooms[4];
-                cycleClass[6] = "Lunch";
-                cycleTeacher[6] = "-----";
-                cycleRoom[6] = "-----";
-            }
-            else
+            if(bLunchBool[2])
             {
                 cycleClass[5] = "Lunch";
                 cycleTeacher[5] = "-----";
@@ -431,6 +432,20 @@ public class Main extends ActionBarActivity
                 cycleClass[6] = classes[4];
                 cycleTeacher[6] = teachers[4];
                 cycleRoom[6] = rooms[4];
+
+            }
+            else
+            {
+                cycleClass[5] = classes[4];
+                cycleTeacher[5] = teachers[4];
+                cycleRoom[5] = rooms[4];
+                cycleClass[6] = "Lunch";
+                cycleTeacher[6] = "-----";
+                cycleRoom[6] = "-----";
+
+                String temp = cycleDay[4];
+                cycleDay[4] = cycleDay[5];
+                cycleDay[5] = temp;
             }
             cycleClass[7] = classes[7];
             cycleTeacher[7] = teachers[7];
@@ -456,16 +471,7 @@ public class Main extends ActionBarActivity
             cycleClass[4] = classes[5];
             cycleTeacher[4] = teachers[5];
             cycleRoom[4] = rooms[5];
-            if(cycleDay[5].toString().equals("11:37-12:34"))
-            {
-                cycleClass[5] = classes[6];
-                cycleTeacher[5] = teachers[6];
-                cycleRoom[5] = rooms[6];
-                cycleClass[6] = "Lunch";
-                cycleTeacher[6] = "-----";
-                cycleRoom[6] = "-----";
-            }
-            else
+            if(bLunchBool[3])
             {
                 cycleClass[5] = "Lunch";
                 cycleTeacher[5] = "-----";
@@ -473,6 +479,20 @@ public class Main extends ActionBarActivity
                 cycleClass[6] = classes[6];
                 cycleTeacher[6] = teachers[6];
                 cycleRoom[6] = rooms[6];
+
+            }
+            else
+            {
+                cycleClass[5] = classes[6];
+                cycleTeacher[5] = teachers[6];
+                cycleRoom[5] = rooms[6];
+                cycleClass[6] = "Lunch";
+                cycleTeacher[6] = "-----";
+                cycleRoom[6] = "-----";
+
+                String temp = cycleDay[4];
+                cycleDay[4] = cycleDay[5];
+                cycleDay[5] = temp;
             }
             cycleClass[7] = classes[7];
             cycleTeacher[7] = teachers[7];
@@ -498,16 +518,7 @@ public class Main extends ActionBarActivity
             cycleClass[4] = rooms[5];
             cycleTeacher[4] = teachers[5];
             cycleRoom[4] = rooms[5];
-            if(cycleDay[5].toString().equals("11:37-12:34"))
-            {
-                cycleClass[5] = classes[6];
-                cycleTeacher[5] = teachers[6];
-                cycleRoom[5] = rooms[6];
-                cycleClass[6] = "Lunch";
-                cycleTeacher[6] = "-----";
-                cycleRoom[6] = "-----";
-            }
-            else
+            if(bLunchBool[4])
             {
                 cycleClass[5] = "Lunch";
                 cycleTeacher[5] = "-----";
@@ -515,6 +526,19 @@ public class Main extends ActionBarActivity
                 cycleClass[6] = classes[6];
                 cycleTeacher[6] = teachers[6];
                 cycleRoom[6] = rooms[6];
+            }
+            else
+            {
+                cycleClass[5] = classes[6];
+                cycleTeacher[5] = teachers[6];
+                cycleRoom[5] = rooms[6];
+                cycleClass[6] = "Lunch";
+                cycleTeacher[6] = "-----";
+                cycleRoom[6] = "-----";
+
+                String temp = cycleDay[4];
+                cycleDay[4] = cycleDay[5];
+                cycleDay[5] = temp;
             }
             cycleClass[7] = classes[7];
             cycleTeacher[7] = teachers[7];
