@@ -56,8 +56,8 @@ public class Lunch extends ActionBarActivity
         }
         else
         {
-            cycleDay[4] = "12:13-1:10";
-            cycleDay[5] = "11:33-12:08";
+            cycleDay[4] = "12:39-1:10";
+            cycleDay[5] = "11:37-12:34";
             bLunchArray[1] = "false";
         }
 
@@ -71,9 +71,9 @@ public class Lunch extends ActionBarActivity
         }
         else
         {
-            cycleDay[4] = "12:13-1:10";
-            cycleDay[5] = "11:33-12:08";
-            bLunchArray[2] = "false";
+            cycleDay[4] = "12:39-1:10";
+            cycleDay[5] = "11:37-12:34";
+            bLunchArray[1] = "false";
         }
 
         /********** 34 **********/
@@ -86,9 +86,9 @@ public class Lunch extends ActionBarActivity
         }
         else
         {
-            cycleDay[4] = "12:13-1:10";
-            cycleDay[5] = "11:33-12:08";
-            bLunchArray[3] = "false";
+            cycleDay[4] = "12:39-1:10";
+            cycleDay[5] = "11:37-12:34";
+            bLunchArray[1] = "false";
         }
 
         /********** 12 **********/
@@ -101,9 +101,9 @@ public class Lunch extends ActionBarActivity
         }
         else
         {
-            cycleDay[4] = "12:13-1:10";
-            cycleDay[5] = "11:33-12:08";
-            bLunchArray[4] = "false";
+            cycleDay[4] = "12:39-1:10";
+            cycleDay[5] = "11:37-12:34";
+            bLunchArray[1] = "false";
         }
 
         for(int i = 0; i < 5; i++)

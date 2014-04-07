@@ -9,3 +9,8 @@ have something that can optimise the science classes
     ask what times are the lab periods
     (dont think im going to do because that is incredibly difficult to do
         for every single option of labs)
+incorporate a method that reads from a .txt file (or something else) that takes in the calander
+    from 'Month, day, cycle' and the method would check for the date and cycle and then print out
+    what the proper schedule is.
+add another method that will work with split day schedule for 56 and 34 days.  second half first and
+    one for the first half first.  Work with both types of days.
