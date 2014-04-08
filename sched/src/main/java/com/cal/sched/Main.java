@@ -3,9 +3,11 @@ package com.cal.sched;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +39,11 @@ public class Main extends ActionBarActivity
     private String[] teachers100 = new String[10];
     private String[] rooms100 = new String[10];
 
+    //cycle
+    private String[] cycleClass = new String[9];
+    private String[] cycleTeacher = new String[9];
+    private String[] cycleRoom = new String[9];
+
     //times
     private String[] day100 = new String[]{"7:22-8:05", "8:10-8:52", "8:57-9:39", "9:44-10:26",
         "10:31-11:17", "11:22-12:08", "12:13-12:53", " 12:58-1:40", "12:07-12:53", "1:45-2:27",
@@ -48,11 +55,13 @@ public class Main extends ActionBarActivity
     private Boolean[] bLunchBool = new Boolean[5];
     private String bLunches = "";
 
-    //cycle
-    private String[] cycleClass = new String[9];
-    private String[] cycleTeacher = new String[9];
-    private String[] cycleRoom = new String[9];
-
+    //current class
+    private int[] p100 = new int[]{R.drawable.white, R.drawable.black, R.drawable.black,
+            R.drawable.black, R.drawable.black, R.drawable.black, R.drawable.black,
+            R.drawable.black, R.drawable.black, R.drawable.black};
+    private int[] pcycle = new int[]{R.drawable.white, R.drawable.black, R.drawable.black,
+            R.drawable.black, R.drawable.black, R.drawable.black, R.drawable.black,
+            R.drawable.black};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -105,7 +114,6 @@ public class Main extends ActionBarActivity
                             if(i == 0 && bLunchBool[0])
                             {
                                 day100[5] = "11:22-12:02";
-                                //day100[6] = "12:07-12:53";
                             }
                             else if(bLunchBool[i])
                             {
@@ -270,6 +278,13 @@ public class Main extends ActionBarActivity
         return day.getText().toString();
     }
 
+    public String getTime()
+    {
+        Time time = new Time(Time.getCurrentTimezone());
+        time.setToNow();
+        return time.format("HH:mm");
+    }
+
     /**
      * gets the cycle based on the day
      */
@@ -326,8 +341,7 @@ public class Main extends ActionBarActivity
             classes100[4] = classes[4];
             teachers100[4] = teachers[4];
             rooms100[4] = rooms[4];
-            if(bLunchBool[0]) //has class first -- D lunch work
-            // with booleans
+            if(bLunchBool[0])
             {
                 classes100[5] = "Lunch";
                 teachers100[5] = "-----";
@@ -335,7 +349,6 @@ public class Main extends ActionBarActivity
                 classes100[6] = classes[5];
                 teachers100[6] = teachers[5];
                 rooms100[6] = rooms[5];
-
             }
             else
             {
@@ -384,7 +397,6 @@ public class Main extends ActionBarActivity
                 cycleRoom[5] = "-----";
                 cycleClass[6] = classes[4];
                 cycleTeacher[6] = teachers[4];
-
             }
             else
             {
@@ -424,15 +436,13 @@ public class Main extends ActionBarActivity
             cycleClass[4] = classes[3];
             cycleTeacher[4] = teachers[3];
             cycleRoom[4] = rooms[3];
-            if(bLunchBool[2])
-            {
+            if(bLunchBool[2]) {
                 cycleClass[5] = "Lunch";
                 cycleTeacher[5] = "-----";
                 cycleRoom[5] = "-----";
                 cycleClass[6] = classes[4];
                 cycleTeacher[6] = teachers[4];
                 cycleRoom[6] = rooms[4];
-
             }
             else
             {
@@ -479,7 +489,6 @@ public class Main extends ActionBarActivity
                 cycleClass[6] = classes[6];
                 cycleTeacher[6] = teachers[6];
                 cycleRoom[6] = rooms[6];
-
             }
             else
             {
@@ -548,6 +557,70 @@ public class Main extends ActionBarActivity
             cycleRoom[8] = rooms[8];
         }
     }
+
+    /*public void setImageSchedule100()
+    {
+        String s = getTime();
+
+        if(s.compareTo("8:52") < 1)
+            { p100[0] = R.drawable.black; p100[1] = R.drawable.white; }
+        else if(s.compareTo("9:39") < 1)
+            { p100[0] = R.drawable.black; p100[2] = R.drawable.white; }
+        else if(s.compareTo("10:26") < 1)
+        { p100[0] = R.drawable.black; p100[3] = R.drawable.white; }
+        else if(s.compareTo("11:17") < 1)
+        { p100[0] = R.drawable.black; p100[4] = R.drawable.white; }
+        else if(bLunchBool[0])
+        {
+            if (s.compareTo("12:02") < 1)
+            {
+                p100[0] = R.drawable.black;
+                p100[5] = R.drawable.white;
+            }
+            else if (s.compareTo("") < 1)
+            {
+                p100[0] = R.drawable.black;
+                p100[6] = R.drawable.white;
+            }
+        }
+        else if(s.compareTo("1:40") < 1)
+        { p100[0] = R.drawable.black; p100[7] = R.drawable.white; }
+        else if(s.compareTo("2:27") < 1)
+        { p100[0] = R.drawable.black; p100[8] = R.drawable.white; }
+        else if(s.compareTo("3:14") < 1)
+        { p100[0] = R.drawable.black; p100[9] = R.drawable.white; }
+    } */
+
+    /*public void setImageScheduleCycle()
+    {
+        String s = getTime();
+
+        if(s.compareTo("9:07") < 1)
+            { p100[0] = R.drawable.black; p100[1] = R.drawable.white; }
+        else if(s.compareTo("9:24") < 1)
+            { p100[0] = R.drawable.black; p100[2] = R.drawable.white; }
+        else if(s.compareTo("10:26") < 1)
+        { p100[0] = R.drawable.black; p100[3] = R.drawable.white; }
+        else if(s.compareTo("11:28") < 1)
+        { p100[0] = R.drawable.black; p100[4] = R.drawable.white; }
+        else if(bLunchBool[0])
+        {
+            if (s.compareTo("12:02") < 1)
+            {
+                p100[0] = R.drawable.black;
+                p100[5] = R.drawable.white;
+            }
+            else if (s.compareTo("") < 1)
+            {
+                p100[0] = R.drawable.black;
+                p100[6] = R.drawable.white;
+            }
+        }
+        else if(s.compareTo("2:12") < 1)
+        { p100[0] = R.drawable.black; p100[7] = R.drawable.white; }
+        else if(s.compareTo("3:14") < 1)
+        { p100[0] = R.drawable.black; p100[8] = R.drawable.white; }
+    } */
 
     /**
      * saves strings into StudentSched

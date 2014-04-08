@@ -1,10 +1,12 @@
 package com.cal.sched;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -19,16 +21,18 @@ public class myAdapter extends BaseAdapter
     String[] teachers;
     String[] rooms;
     String[] times;
+    int[] images;
     private static LayoutInflater inflater = null;
 
     public myAdapter(Context context, String[] classes, String[] teachers, String[] rooms,
-                     String[] times)
+                     String[] times, int[] images)
     {
         this.context = context;
         this.classes = classes;
         this.teachers = teachers;
         this.rooms = rooms;
         this.times = times;
+        this.images = images;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -56,10 +60,12 @@ public class myAdapter extends BaseAdapter
         TextView tteacher = (TextView) myView.findViewById(R.id.ateacher);
         TextView troom = (TextView) myView.findViewById(R.id.aroom);
         TextView ttime = (TextView) myView.findViewById(R.id.time);
+        ImageView timage = (ImageView) myView.findViewById(R.id.aimage);
         tclass.setText(classes[i]);
         tteacher.setText(teachers[i]);
         troom.setText(rooms[i]);
         ttime.setText(times[i]);
+        timage.setImageResource(images[i]);
         return myView;
     }
 }
