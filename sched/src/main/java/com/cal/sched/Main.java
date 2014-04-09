@@ -14,8 +14,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Tim on 3/23/2014.
@@ -151,7 +157,7 @@ public class Main extends ActionBarActivity
             if(getDate().equals("Monday\n\n") ||
                     getDate().equals("Saturday\n\n") || getDate().equals("Sunday\n\n"))
             { setCycleArray(100); adapt = new myAdapter(this, classes100, teachers100, rooms100,
-                    day100); }
+                    day100, p100); }
             else
             {
                 if(getDate().equals("Tuesday\n\n"))
@@ -162,7 +168,8 @@ public class Main extends ActionBarActivity
                     setCycleArray(34);
                 else if(getDate().equals("Friday\n\n"))
                     setCycleArray(12);
-                adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"), cycleDay);
+                adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
+                        cycleDay, pcycle);
             }
 
             Button edit = (Button) findViewById(R.id.edit);
@@ -275,7 +282,7 @@ public class Main extends ActionBarActivity
             Log.e("DATE", e.getMessage() + " Error!");
         }
 
-        return day.getText().toString();
+        return date.getText().toString();
     }
 
     public String getTime()
@@ -293,18 +300,32 @@ public class Main extends ActionBarActivity
         TextView cycle = (TextView) findViewById(R.id.cycle);
         String dc = getDate();
         /********** sets cycle **********/
-        if(dc.equals("Monday\n\n"))
+
+        if(readCal().equals("100"))
             cycle.setText(Html.fromHtml("<h3> 100 Day </h3>"));
-        else if(dc.equals("Tuesday\n\n"))
+        else if(readCal().equals("78"))
             cycle.setText(Html.fromHtml("<h3> 78 Day </h3>"));
-        else if(dc.equals("Wednesday\n\n"))
+        else if(readCal().equals("56"))
             cycle.setText(Html.fromHtml("<h3> 56 Day </h3>"));
-        else if(dc.equals("Thursday\n\n"))
+        else if(readCal().equals("34"))
             cycle.setText(Html.fromHtml("<h3> 34 Day </h3>"));
-        else if(dc.equals("Friday\n\n"))
+        else if(readCal().equals("12"))
             cycle.setText(Html.fromHtml("<h3> 12 Day </h3>"));
         else
-            cycle.setText(Html.fromHtml("<h3> 100 Day </h3>"));
+            cycle.setText(Html.fromHtml("<h3> No School </h3>"));
+
+//        if(dc.equals("Monday\n\n"))
+//            cycle.setText(Html.fromHtml("<h3> 100 Day </h3>"));
+//        else if(dc.equals("Tuesday\n\n"))
+//            cycle.setText(Html.fromHtml("<h3> 78 Day </h3>"));
+//        else if(dc.equals("Wednesday\n\n"))
+//            cycle.setText(Html.fromHtml("<h3> 56 Day </h3>"));
+//        else if(dc.equals("Thursday\n\n"))
+//            cycle.setText(Html.fromHtml("<h3> 34 Day </h3>"));
+//        else if(dc.equals("Friday\n\n"))
+//            cycle.setText(Html.fromHtml("<h3> 12 Day </h3>"));
+//        else
+//            cycle.setText(Html.fromHtml("<h3> 100 Day </h3>"));
     }
 
     /**
@@ -558,14 +579,17 @@ public class Main extends ActionBarActivity
         }
     }
 
+    /**
+     * set the images for a 100 day assuming a student opens the app up before school starts
+     */
     /*public void setImageSchedule100()
     {
         String s = getTime();
 
         if(s.compareTo("8:52") < 1)
-            { p100[0] = R.drawable.black; p100[1] = R.drawable.white; }
+        { p100[0] = R.drawable.black; p100[1] = R.drawable.white; }
         else if(s.compareTo("9:39") < 1)
-            { p100[0] = R.drawable.black; p100[2] = R.drawable.white; }
+        { p100[0] = R.drawable.black; p100[2] = R.drawable.white; }
         else if(s.compareTo("10:26") < 1)
         { p100[0] = R.drawable.black; p100[3] = R.drawable.white; }
         else if(s.compareTo("11:17") < 1)
@@ -589,16 +613,19 @@ public class Main extends ActionBarActivity
         { p100[0] = R.drawable.black; p100[8] = R.drawable.white; }
         else if(s.compareTo("3:14") < 1)
         { p100[0] = R.drawable.black; p100[9] = R.drawable.white; }
-    } */
+    }*/
 
+    /**
+     * set the images for a cycle day assuming a student opens the app up before school starts
+     */
     /*public void setImageScheduleCycle()
     {
         String s = getTime();
 
         if(s.compareTo("9:07") < 1)
-            { p100[0] = R.drawable.black; p100[1] = R.drawable.white; }
+        { p100[0] = R.drawable.black; p100[1] = R.drawable.white; }
         else if(s.compareTo("9:24") < 1)
-            { p100[0] = R.drawable.black; p100[2] = R.drawable.white; }
+        { p100[0] = R.drawable.black; p100[2] = R.drawable.white; }
         else if(s.compareTo("10:26") < 1)
         { p100[0] = R.drawable.black; p100[3] = R.drawable.white; }
         else if(s.compareTo("11:28") < 1)
@@ -620,7 +647,7 @@ public class Main extends ActionBarActivity
         { p100[0] = R.drawable.black; p100[7] = R.drawable.white; }
         else if(s.compareTo("3:14") < 1)
         { p100[0] = R.drawable.black; p100[8] = R.drawable.white; }
-    } */
+    }*/
 
     /**
      * saves strings into StudentSched
@@ -649,5 +676,48 @@ public class Main extends ActionBarActivity
             return sharedPref.getString("schedule", "");
         else
             return sharedPref.getString("bLunch", "");
+    }
+
+    /**
+     * reads from a .txt file that will have date(Abr), (cycle number).
+     * the file is first split by the '.' then split by the ','
+     * @return cycle day of the given day taken from the getDate()
+     */
+    public String readCal()
+    {
+        String s;
+        InputStream is = getResources().openRawResource(R.raw.calendar);
+        ByteArrayOutputStream ba = new ByteArrayOutputStream();
+
+        int j;
+        try
+        {
+            j = is.read();
+            while(j != -1)
+            {
+                ba.write(j);
+                j = is.read();
+            }
+            is.close();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        s = ba.toString();
+
+        String[] cal = s.split(".");
+        String date = "";
+        String[] days = new String[(cal.length)*2];
+
+
+        for(int i = 0; i < cal.length; i++)
+            days[i] = cal[i].split(",").toString();
+
+        for (int i = 0; i < days.length; i+=2)
+            if(days[i].equals(getDate()))
+                date = cal[i];
+
+        return date;
     }
 }
