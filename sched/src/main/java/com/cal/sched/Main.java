@@ -62,12 +62,12 @@ public class Main extends ActionBarActivity
     private String bLunches = "";
 
     //current class
-    private int[] p100 = new int[]{R.drawable.white, R.drawable.black, R.drawable.black,
-            R.drawable.black, R.drawable.black, R.drawable.black, R.drawable.black,
-            R.drawable.black, R.drawable.black, R.drawable.black};
-    private int[] pcycle = new int[]{R.drawable.white, R.drawable.black, R.drawable.black,
-            R.drawable.black, R.drawable.black, R.drawable.black, R.drawable.black,
-            R.drawable.black};
+//    private int[] p100 = new int[]{R.drawable.white, R.drawable.black, R.drawable.black,
+//            R.drawable.black, R.drawable.black, R.drawable.black, R.drawable.black,
+//            R.drawable.black, R.drawable.black, R.drawable.black};
+//    private int[] pcycle = new int[]{R.drawable.white, R.drawable.black, R.drawable.black,
+//            R.drawable.black, R.drawable.black, R.drawable.black, R.drawable.black,
+//            R.drawable.black};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -157,7 +157,7 @@ public class Main extends ActionBarActivity
             if(getDate().equals("Monday\n\n") ||
                     getDate().equals("Saturday\n\n") || getDate().equals("Sunday\n\n"))
             { setCycleArray(100); adapt = new myAdapter(this, classes100, teachers100, rooms100,
-                    day100, p100); }
+                    day100); }
             else
             {
                 if(getDate().equals("Tuesday\n\n"))
@@ -169,7 +169,7 @@ public class Main extends ActionBarActivity
                 else if(getDate().equals("Friday\n\n"))
                     setCycleArray(12);
                 adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
-                        cycleDay, pcycle);
+                        cycleDay);
             }
 
             Button edit = (Button) findViewById(R.id.edit);
@@ -706,17 +706,12 @@ public class Main extends ActionBarActivity
 
         s = ba.toString();
 
-        String[] cal = s.split(".");
+        String[] cal = s.split(",");
         String date = "";
-        String[] days = new String[(cal.length)*2];
 
-
-        for(int i = 0; i < cal.length; i++)
-            days[i] = cal[i].split(",").toString();
-
-        for (int i = 0; i < days.length; i+=2)
-            if(days[i].equals(getDate()))
-                date = cal[i];
+        for (int i = 0; i < cal.length; i+=2)
+            if(cal[i].equals(getDate()))
+                date = cal[i+1];
 
         return date;
     }
