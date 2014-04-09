@@ -81,7 +81,7 @@ public class Main extends ActionBarActivity
     /**
      * used as main process that handles all of the processes on the main page
      */
-    private void mainAct()
+    public void mainAct()
     {
         /********** sets date and cycle **********/
         getDate();
@@ -154,19 +154,18 @@ public class Main extends ActionBarActivity
             splitSched(sched);
 
             ListView lists = (ListView) findViewById(R.id.listView);
-            if(getDate().equals("Monday\n\n") ||
-                    getDate().equals("Saturday\n\n") || getDate().equals("Sunday\n\n"))
+            if(getCycle().equals("100") || getCycle().equals("No School"))
             { setCycleArray(100); adapt = new myAdapter(this, classes100, teachers100, rooms100,
                     day100); }
             else
             {
-                if(getDate().equals("Tuesday\n\n"))
+                if(getCycle().equals("78"))
                     setCycleArray(78);
-                else if(getDate().equals("Wednesday\n\n"))
+                else if(getCycle().equals("56"))
                     setCycleArray(56);
-                else if(getDate().equals("Thursday\n\n"))
+                else if(getCycle().equals("34"))
                     setCycleArray(34);
-                else if(getDate().equals("Friday\n\n"))
+                else if(getCycle().equals("12"))
                     setCycleArray(12);
                 adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
                         cycleDay);
@@ -217,7 +216,7 @@ public class Main extends ActionBarActivity
      * in the button click, it starts the new activity for the enterance of all of the classes
      * @param v for the view of the View
      */
-    private void onClick(View v)
+    public void onClick(View v)
     {
         switch(v.getId())
         {
@@ -237,7 +236,7 @@ public class Main extends ActionBarActivity
      * splits the string into ArrayLists of classes, teachers, and rooms
      * @param s string to be split
      */
-    private void splitSched(String s)
+    public void splitSched(String s)
     {
         saveSched(s);
 
@@ -266,12 +265,13 @@ public class Main extends ActionBarActivity
      * returns today's date
      * @return string of day
      */
-    private String getDate()
+    public String getDate()
     {
         TextView day = (TextView) findViewById(R.id.day);
         TextView date = (TextView) findViewById(R.id.date);
         SimpleDateFormat dayForm = new SimpleDateFormat("EEEE");
         SimpleDateFormat dateForm = new SimpleDateFormat("MMM dd, yyyy");
+        SimpleDateFormat todayForm = new SimpleDateFormat("MMM dd");
         Date today = new Date();
 
         /********** check to see if day is accessible **********/
@@ -282,10 +282,10 @@ public class Main extends ActionBarActivity
             Log.e("DATE", e.getMessage() + " Error!");
         }
 
-        return date.getText().toString();
+        return todayForm.format(today).toString();
     }
 
-    private String getTime()
+    public String getTime()
     {
         Time time = new Time(Time.getCurrentTimezone());
         time.setToNow();
@@ -295,24 +295,26 @@ public class Main extends ActionBarActivity
     /**
      * gets the cycle based on the day
      */
-    private void getCycle()
+    public String getCycle()
     {
         TextView cycle = (TextView) findViewById(R.id.cycle);
-        String dc = getDate();
+        String cyclee = "";
         /********** sets cycle **********/
 
-        if(readCal().equals("100"))
-            cycle.setText(Html.fromHtml("<h3> 100 Day </h3>"));
-        else if(readCal().equals("78"))
-            cycle.setText(Html.fromHtml("<h3> 78 Day </h3>"));
-        else if(readCal().equals("56"))
-            cycle.setText(Html.fromHtml("<h3> 56 Day </h3>"));
-        else if(readCal().equals("34"))
-            cycle.setText(Html.fromHtml("<h3> 34 Day </h3>"));
-        else if(readCal().equals("12"))
-            cycle.setText(Html.fromHtml("<h3> 12 Day </h3>"));
+        if(readCal().equals(" 100"))
+        { cycle.setText(Html.fromHtml("<h3> 100 Day </h3>")); cyclee = "100"; }
+        else if(readCal().equals(" 78"))
+        { cycle.setText(Html.fromHtml("<h3> 78 Day </h3>")); cyclee = "78"; }
+        else if(readCal().equals(" 56"))
+        { cycle.setText(Html.fromHtml("<h3> 56 Day </h3>")); cyclee = "56"; }
+        else if(readCal().equals(" 34"))
+        { cycle.setText(Html.fromHtml("<h3> 34 Day </h3>")); cyclee = "34"; }
+        else if(readCal().equals(" 12"))
+        { cycle.setText(Html.fromHtml("<h3> 12 Day </h3>")); cyclee = "12"; }
         else
-            cycle.setText(Html.fromHtml("<h3> No School </h3>"));
+        { cycle.setText(Html.fromHtml("<h3> No School </h3>")); cyclee = "No School"; }
+
+        return cyclee;
 
 //        if(dc.equals("Monday\n\n"))
 //            cycle.setText(Html.fromHtml("<h3> 100 Day </h3>"));
@@ -333,7 +335,7 @@ public class Main extends ActionBarActivity
      * @param s takes in String of what wants to be gotten
      * @return array of what ever the programmer wants
      */
-    private String[] Get(String s)
+    public String[] Get(String s)
     {
         if(s.equals("classes"))
             return cycleClass;
@@ -343,7 +345,7 @@ public class Main extends ActionBarActivity
             return cycleRoom;
     }
 
-    private void setCycleArray(int a)
+    public void setCycleArray(int a)
     {
         if(a == 100)
         {
@@ -654,7 +656,7 @@ public class Main extends ActionBarActivity
      * saves two strings right now: schedule and lunches
      * @param s takes in a string to save
      */
-    private void saveSched(String s)
+    public void saveSched(String s)
     {
         SharedPreferences sharedPref = getSharedPreferences("StudentSched", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -669,7 +671,7 @@ public class Main extends ActionBarActivity
      * @param s for passing by reference
      * @return String
      */
-    private String readSched(String s)
+    public String readSched(String s)
     {
         SharedPreferences sharedPref = getSharedPreferences("StudentSched", Context.MODE_PRIVATE);
         if(s.equals("schedule"))
@@ -709,8 +711,10 @@ public class Main extends ActionBarActivity
         String[] cal = s.split(",");
         String date = "";
 
+        String asjaf = getDate();
+
         for (int i = 0; i < cal.length; i+=2)
-            if(cal[i].equals(getDate()))
+            if(cal[i].equals(asjaf))
                 date = cal[i+1];
 
         return date;

@@ -28,7 +28,7 @@ public class Lunch extends ActionBarActivity
      * intents a bunch of strings that will be used in the main file
      * @param v move to the main.java for finishing the list
      */
-    private void onClick(View v)
+    public void onClick(View v)
     {
         //B LUNCH
         /********** 100 **********/

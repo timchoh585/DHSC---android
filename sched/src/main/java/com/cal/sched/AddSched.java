@@ -173,7 +173,7 @@ public class AddSched extends ActionBarActivity
      * on click for the button that is pressed to move on to select lunches
      * @param v for the button view
      */
-    private void onClick(View v)
+    public void onClick(View v)
     {
         /************************* sets empty entries to be "none" *************************/
 
