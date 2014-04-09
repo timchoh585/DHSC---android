@@ -97,7 +97,7 @@ public class AddSched extends ActionBarActivity
      * checks for old schedule and then devides it up into class, teacher, and room
      * @return boolean that checks if there is an old schedule
      */
-    public boolean editSched()
+    private boolean editSched()
     {
         String s = "";
         try
@@ -134,7 +134,7 @@ public class AddSched extends ActionBarActivity
     /**
      * if the schedule is editable, it will fill the text edit fields with the previous info
      */
-    public void edittable()
+    private void edittable()
     {
         peb.setText(classes[0]);
         p1.setText(classes[1]);
@@ -173,7 +173,7 @@ public class AddSched extends ActionBarActivity
      * on click for the button that is pressed to move on to select lunches
      * @param v for the button view
      */
-    public void onClick(View v)
+    private void onClick(View v)
     {
         /************************* sets empty entries to be "none" *************************/
 

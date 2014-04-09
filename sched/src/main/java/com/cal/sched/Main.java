@@ -217,7 +217,7 @@ public class Main extends ActionBarActivity
      * in the button click, it starts the new activity for the enterance of all of the classes
      * @param v for the view of the View
      */
-    public void onClick(View v)
+    private void onClick(View v)
     {
         switch(v.getId())
         {
@@ -237,7 +237,7 @@ public class Main extends ActionBarActivity
      * splits the string into ArrayLists of classes, teachers, and rooms
      * @param s string to be split
      */
-    public void splitSched(String s)
+    private void splitSched(String s)
     {
         saveSched(s);
 
@@ -266,7 +266,7 @@ public class Main extends ActionBarActivity
      * returns today's date
      * @return string of day
      */
-    public String getDate()
+    private String getDate()
     {
         TextView day = (TextView) findViewById(R.id.day);
         TextView date = (TextView) findViewById(R.id.date);
@@ -285,7 +285,7 @@ public class Main extends ActionBarActivity
         return date.getText().toString();
     }
 
-    public String getTime()
+    private String getTime()
     {
         Time time = new Time(Time.getCurrentTimezone());
         time.setToNow();
@@ -295,7 +295,7 @@ public class Main extends ActionBarActivity
     /**
      * gets the cycle based on the day
      */
-    public void getCycle()
+    private void getCycle()
     {
         TextView cycle = (TextView) findViewById(R.id.cycle);
         String dc = getDate();
@@ -333,7 +333,7 @@ public class Main extends ActionBarActivity
      * @param s takes in String of what wants to be gotten
      * @return array of what ever the programmer wants
      */
-    public String[] Get(String s)
+    private String[] Get(String s)
     {
         if(s.equals("classes"))
             return cycleClass;
@@ -343,7 +343,7 @@ public class Main extends ActionBarActivity
             return cycleRoom;
     }
 
-    public void setCycleArray(int a)
+    private void setCycleArray(int a)
     {
         if(a == 100)
         {
@@ -654,7 +654,7 @@ public class Main extends ActionBarActivity
      * saves two strings right now: schedule and lunches
      * @param s takes in a string to save
      */
-    public void saveSched(String s)
+    private void saveSched(String s)
     {
         SharedPreferences sharedPref = getSharedPreferences("StudentSched", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -669,7 +669,7 @@ public class Main extends ActionBarActivity
      * @param s for passing by reference
      * @return String
      */
-    public String readSched(String s)
+    private String readSched(String s)
     {
         SharedPreferences sharedPref = getSharedPreferences("StudentSched", Context.MODE_PRIVATE);
         if(s.equals("schedule"))
