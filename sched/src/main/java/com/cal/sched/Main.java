@@ -62,6 +62,7 @@ public class Main extends ActionBarActivity
             "10:31-11:28", "11:37-12:34", "12:39-1:10", " 1:15-2:12", "2:17-3:14"};
     private String[] lateStart = new String[]{"11:15-12:11", "12:16-1:12", "1:17-2:13",
             "2:18-3:14"};
+    private String[] psae = new String[]{"", "12:30-1:22", "1:27-2:18", "2:23-3:14"};
 
     //lunch
     private Boolean[] bLunchBool = new Boolean[5];
@@ -211,7 +212,7 @@ public class Main extends ActionBarActivity
                 {
                     setCycleArray(678);
                     adapt = new myAdapter(this, Get("lclasses"), Get("lteachers"), Get("lrooms"),
-                            Get("lateStart"));
+                            Get("psae"));
                 }
                 else
                 {
@@ -414,7 +415,7 @@ public class Main extends ActionBarActivity
         else if(s.equals("lateStart"))
             return lateStart;
         else
-            return lateStart;
+            return psae;
     }
 
     public void setCycleArray(int a)
