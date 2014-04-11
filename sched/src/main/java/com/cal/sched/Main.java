@@ -50,12 +50,18 @@ public class Main extends ActionBarActivity
     private String[] cycleTeacher = new String[9];
     private String[] cycleRoom = new String[9];
 
+    private String[] lateClass = new String[4];
+    private String[] lateTeacher = new String[4];
+    private String[] lateRoom = new String[4];
+
     //times
     private String[] day100 = new String[]{"7:22-8:05", "8:10-8:52", "8:57-9:39", "9:44-10:26",
         "10:31-11:17", "11:22-12:08", "12:13-12:53", " 12:58-1:40", "12:07-12:53", "1:45-2:27",
             "2:32-3:14"};
     private String[] cycleDay = new String[]{"7:22-8:05", "8:10-9:07", "9:12-9:24", "9:29-10:26",
             "10:31-11:28", "11:37-12:34", "12:39-1:10", " 1:15-2:12", "2:17-3:14"};
+    private String[] lateStart = new String[]{"11:15-12:11", "12:16-1:12", "1:17-2:13",
+            "2:18-3:14"};
 
     //lunch
     private Boolean[] bLunchBool = new Boolean[5];
@@ -154,21 +160,65 @@ public class Main extends ActionBarActivity
             splitSched(sched);
 
             ListView lists = (ListView) findViewById(R.id.listView);
-            if(getCycle().equals("100") || getCycle().equals("No School"))
+            if(getCycle().equals("100"))
             { setCycleArray(100); adapt = new myAdapter(this, classes100, teachers100, rooms100,
                     day100); }
             else
             {
                 if(getCycle().equals("78"))
+                {
                     setCycleArray(78);
+                    adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
+                            Get("cycleDay"));
+                }
                 else if(getCycle().equals("56"))
+                {
                     setCycleArray(56);
+                    adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
+                            Get("cycleDay"));
+                }
                 else if(getCycle().equals("34"))
+                {
                     setCycleArray(34);
+                    adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
+                            Get("cycleDay"));
+                }
                 else if(getCycle().equals("12"))
+                {
                     setCycleArray(12);
-                adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
-                        cycleDay);
+                    adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
+                            Get("cycleDay"));
+                }
+                else if(getCycle().equals("eb123"))
+                {
+                    setCycleArray(0123);
+                    adapt = new myAdapter(this, Get("lclasses"), Get("lteachers"), Get("lrooms"),
+                            Get("lateStart"));
+                }
+                else if(getCycle().equals("478"))
+                {
+                    setCycleArray(478);
+                    adapt = new myAdapter(this, Get("lclasses"), Get("lteachers"), Get("lrooms"),
+                            Get("lateStart"));
+                }
+                else if(getCycle().equals("eb125"))
+                {
+                    setCycleArray(0125);
+                    adapt = new myAdapter(this, Get("lclasses"), Get("lteachers"), Get("lrooms"),
+                            Get("lateStart"));
+                }
+                else if(getCycle().equals("678"))
+                {
+                    setCycleArray(678);
+                    adapt = new myAdapter(this, Get("lclasses"), Get("lteachers"), Get("lrooms"),
+                            Get("lateStart"));
+                }
+                else
+                {
+                    setCycleArray(000);
+                    adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
+                            Get("cycleDay"));
+                }
             }
 
             Button edit = (Button) findViewById(R.id.edit);
@@ -311,8 +361,16 @@ public class Main extends ActionBarActivity
         { cycle.setText(Html.fromHtml("<h3> 34 Day </h3>")); cyclee = "34"; }
         else if(readCal().equals(" 12"))
         { cycle.setText(Html.fromHtml("<h3> 12 Day </h3>")); cyclee = "12"; }
+        else if(readCal().equals(" 0123"))
+        { cycle.setText(Html.fromHtml("<h3> EB123 Day </h3>")); cyclee = "eb123"; }
+        else if(readCal().equals(" 478"))
+        { cycle.setText(Html.fromHtml("<h3> 478 Day </h3>")); cyclee = "478"; }
+        else if(readCal().equals(" 0125"))
+        { cycle.setText(Html.fromHtml("<h3> EB125 Day </h3>")); cyclee = "eb125"; }
+        else if(readCal().equals(" 678"))
+        { cycle.setText(Html.fromHtml("<h3> 678 Day </h3>")); cyclee = "678"; }
         else
-        { cycle.setText(Html.fromHtml("<h3> No School </h3>")); cyclee = "No School"; }
+        { cycle.setText(Html.fromHtml("<h3> No\nSchool </h3>")); cyclee = "No School"; }
 
         return cyclee;
 
@@ -341,8 +399,22 @@ public class Main extends ActionBarActivity
             return cycleClass;
         else if(s.equals("teachers"))
             return cycleTeacher;
-        else
+        else if(s.equals("rooms"))
             return cycleRoom;
+        else if(s.equals("lclasses"))
+            return lateClass;
+        else if(s.equals("lteachers"))
+            return lateTeacher;
+        else if(s.equals("lrooms"))
+            return lateRoom;
+        else if(s.equals("100day"))
+            return day100;
+        else if(s.equals("cycleDay"))
+            return cycleDay;
+        else if(s.equals("lateStart"))
+            return lateStart;
+        else
+            return lateStart;
     }
 
     public void setCycleArray(int a)
@@ -401,12 +473,12 @@ public class Main extends ActionBarActivity
             cycleClass[0] = classes[0];
             cycleTeacher[0] = teachers[0];
             cycleRoom[0] = rooms[0];
-            cycleClass[1] = classes[9];
-            cycleTeacher[1] = teachers[9];
-            cycleRoom[1] = rooms[9];
-            cycleClass[2] = classes[1];
-            cycleTeacher[2] = teachers[1];
-            cycleRoom[2] = rooms[1];
+            cycleClass[1] = classes[1];
+            cycleTeacher[1] = teachers[1];
+            cycleRoom[1] = rooms[1];
+            cycleClass[2] = classes[9];
+            cycleTeacher[2] = teachers[9];
+            cycleRoom[2] = rooms[9];
             cycleClass[3] = classes[2];
             cycleTeacher[3] = teachers[2];
             cycleRoom[3] = rooms[2];
@@ -447,12 +519,12 @@ public class Main extends ActionBarActivity
             cycleClass[0] = classes[0];
             cycleTeacher[0] = teachers[0];
             cycleRoom[0] = rooms[0];
-            cycleClass[1] = classes[9];
-            cycleTeacher[1] = teachers[9];
-            cycleRoom[1] = rooms[9];
-            cycleClass[2] = classes[1];
-            cycleTeacher[2] = teachers[1];
-            cycleRoom[2] = rooms[1];
+            cycleClass[1] = classes[1];
+            cycleTeacher[1] = teachers[1];
+            cycleRoom[1] = rooms[1];
+            cycleClass[2] = classes[9];
+            cycleTeacher[2] = teachers[9];
+            cycleRoom[2] = rooms[9];
             cycleClass[3] = classes[2];
             cycleTeacher[3] = teachers[2];
             cycleRoom[3] = rooms[2];
@@ -492,12 +564,12 @@ public class Main extends ActionBarActivity
             cycleClass[0] = classes[0];
             cycleTeacher[0] = teachers[0];
             cycleRoom[0] = rooms[0];
-            cycleClass[1] = classes[9];
-            cycleTeacher[1] = teachers[9];
-            cycleRoom[1] = rooms[9];
-            cycleClass[2] = classes[1];
-            cycleTeacher[2] = teachers[1];
-            cycleRoom[2] = rooms[1];
+            cycleClass[1] = classes[1];
+            cycleTeacher[1] = teachers[1];
+            cycleRoom[1] = rooms[1];
+            cycleClass[2] = classes[9];
+            cycleTeacher[2] = teachers[9];
+            cycleRoom[2] = rooms[9];
             cycleClass[3] = classes[2];
             cycleTeacher[3] = teachers[2];
             cycleRoom[3] = rooms[2];
@@ -578,6 +650,75 @@ public class Main extends ActionBarActivity
             cycleClass[8] = classes[8];
             cycleTeacher[8] = teachers[8];
             cycleRoom[8] = rooms[8];
+        }
+        else if(a == 0123)
+        {
+            lateClass[0] = classes[0];
+            lateTeacher[0] = teachers[0];
+            lateRoom[0] = rooms[0];
+            lateClass[1] = classes[1];
+            lateTeacher[1] = teachers[1];
+            lateRoom[1] = rooms[1];
+            lateClass[2] = classes[2];
+            lateTeacher[2] = teachers[2];
+            lateRoom[2] = rooms[2];
+            lateClass[3] = classes[3];
+            lateTeacher[3] = teachers[3];
+            lateRoom[3] = rooms[3];
+        }
+        else if(a == 478)
+        {
+            lateClass[0] = "3-Sci";
+            lateTeacher[0] = "";
+            lateRoom[0] = "";
+            lateClass[1] = classes[4];
+            lateTeacher[1] = teachers[4];
+            lateRoom[1] = rooms[4];
+            lateClass[2] = classes[7];
+            lateTeacher[2] = teachers[7];
+            lateRoom[2] = rooms[7];
+            lateClass[3] = classes[8];
+            lateTeacher[3] = teachers[8];
+            lateRoom[3] = rooms[8];
+        }
+        else if(a == 0125)
+        {
+            lateClass[0] = classes[0];
+            lateTeacher[0] = teachers[0];
+            lateRoom[0] = rooms[0];
+            lateClass[1] = classes[1];
+            lateTeacher[1] = teachers[1];
+            lateRoom[1] = rooms[1];
+            lateClass[2] = classes[2];
+            lateTeacher[2] = teachers[2];
+            lateRoom[2] = rooms[2];
+            lateClass[3] = classes[5];
+            lateTeacher[3] = teachers[5];
+            lateRoom[3] = rooms[5];
+        }
+        else if(a == 678)
+        {
+            lateClass[0] = "5-Sci";
+            lateTeacher[0] = "";
+            lateRoom[0] = "";
+            lateClass[1] = classes[6];
+            lateTeacher[1] = teachers[6];
+            lateRoom[1] = rooms[6];
+            lateClass[2] = classes[7];
+            lateTeacher[2] = teachers[7];
+            lateRoom[2] = rooms[7];
+            lateClass[3] = classes[8];
+            lateTeacher[3] = teachers[8];
+            lateRoom[3] = rooms[8];
+        }
+        else if(a == 000)
+        {
+            for(int i = 0; i < 8; i++)
+            {
+                cycleClass[i] = "none";
+                cycleTeacher[i] = "none";
+                cycleRoom[i] = "none";
+            }
         }
     }
 
