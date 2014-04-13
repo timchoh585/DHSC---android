@@ -714,7 +714,7 @@ public class Main extends ActionBarActivity
         }
         else if(a == 000)
         {
-            for(int i = 0; i < 8; i++)
+            for(int i = 0; i < 9; i++)
             {
                 cycleClass[i] = "none";
                 cycleTeacher[i] = "none";
@@ -849,6 +849,7 @@ public class Main extends ActionBarActivity
         }
 
         s = ba.toString();
+        s = s.replaceAll("\\r|\\n","");
 
         String[] cal = s.split(",");
         String date = "";
