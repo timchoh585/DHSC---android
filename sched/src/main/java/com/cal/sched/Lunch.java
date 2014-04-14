@@ -50,13 +50,13 @@ public class Lunch extends ActionBarActivity
         ToggleButton b78 = (ToggleButton) findViewById(R.id.b_lunch78);
         if (b78.getText().toString().equals("ON"))
         {
-            cycleDay[4] = "11:33-12:08";
-            cycleDay[5] = "12:13-1:10";
+            cycleDay[5] = "11:33-12:08";
+            cycleDay[6] = "12:13-1:10";
             bLunchArray[1] = "true";
         }
         else
         {
-            cycleDay[4] = "12:39-1:10";
+            cycleDay[6] = "12:39-1:10";
             cycleDay[5] = "11:37-12:34";
             bLunchArray[1] = "false";
         }
@@ -65,13 +65,13 @@ public class Lunch extends ActionBarActivity
         ToggleButton b56 = (ToggleButton) findViewById(R.id.b_lunch56);
         if (b56.getText().toString().equals("ON"))
         {
-            cycleDay[4] = "11:33-12:08";
-            cycleDay[5] = "12:13-1:10";
+            cycleDay[5] = "11:33-12:08";
+            cycleDay[6] = "12:13-1:10";
             bLunchArray[2] = "true";
         }
         else
         {
-            cycleDay[4] = "12:39-1:10";
+            cycleDay[6] = "12:39-1:10";
             cycleDay[5] = "11:37-12:34";
             bLunchArray[2] = "false";
         }
@@ -80,13 +80,13 @@ public class Lunch extends ActionBarActivity
         ToggleButton b34 = (ToggleButton) findViewById(R.id.b_lunch34);
         if (b34.getText().toString().equals("ON"))
         {
-            cycleDay[4] = "11:33-12:08";
-            cycleDay[5] = "12:13-1:10";
+            cycleDay[5] = "11:33-12:08";
+            cycleDay[6] = "12:13-1:10";
             bLunchArray[3] = "true";
         }
         else
         {
-            cycleDay[4] = "12:39-1:10";
+            cycleDay[6] = "12:39-1:10";
             cycleDay[5] = "11:37-12:34";
             bLunchArray[3] = "false";
         }
@@ -95,13 +95,13 @@ public class Lunch extends ActionBarActivity
         ToggleButton b12 = (ToggleButton) findViewById(R.id.b_lunch12);
         if (b12.getText().toString().equals("ON"))
         {
-            cycleDay[4] = "11:33-12:08";
-            cycleDay[5] = "12:13-1:10";
+            cycleDay[5] = "11:33-12:08";
+            cycleDay[6] = "12:13-1:10";
             bLunchArray[4] = "true";
         }
         else
         {
-            cycleDay[4] = "12:39-1:10";
+            cycleDay[6] = "12:39-1:10";
             cycleDay[5] = "11:37-12:34";
             bLunchArray[4] = "false";
         }
@@ -113,8 +113,8 @@ public class Lunch extends ActionBarActivity
         Intent moveOnIntent = new Intent(Lunch.this, Main.class);
         moveOnIntent.putExtra("day1005", day100[5].toString());
         moveOnIntent.putExtra("day1006", day100[6].toString());
-        moveOnIntent.putExtra("cycleDay4", cycleDay[4].toString());
-        moveOnIntent.putExtra("cycleDay5", cycleDay[5].toString());
+        moveOnIntent.putExtra("cycleDay4", cycleDay[5].toString());
+        moveOnIntent.putExtra("cycleDay5", cycleDay[6].toString());
         moveOnIntent.putExtra("bLunch", bLunch);
         moveOnIntent.putExtra("userSched", sched);
         Lunch.this.startActivity(moveOnIntent);

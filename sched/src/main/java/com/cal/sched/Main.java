@@ -98,8 +98,8 @@ public class Main extends ActionBarActivity
         {
             day100[5] = getIntent().getStringExtra("day1005");
             day100[6] = getIntent().getStringExtra("day1006");
-            cycleDay[4] = getIntent().getStringExtra("cycleDay4");
-            cycleDay[5] = getIntent().getStringExtra("cycleDay5");
+            cycleDay[5] = getIntent().getStringExtra("cycleDay4");
+            cycleDay[6] = getIntent().getStringExtra("cycleDay5");
             bLunches = getIntent().getStringExtra("bLunch");
             sched = getIntent().getStringExtra("userSched");
             if(sched != null)
@@ -142,8 +142,8 @@ public class Main extends ActionBarActivity
                             }
                             else if(bLunchBool[i])
                             {
-                                cycleDay[4] = "11:33-12:08";
-                                cycleDay[5] = "12:13-1:10";
+                                cycleDay[5] = "11:33-12:08";
+                                cycleDay[6] = "12:13-1:10";
                             }
 
                             /********** preset values of D lunch **********/
@@ -151,7 +151,7 @@ public class Main extends ActionBarActivity
                             {
                                 day100[5] = "12:07-12:53";
                                 day100[6] = "11:22-12:02";
-                                cycleDay[4] = "12:13-1:10";
+                                cycleDay[6] = "12:13-1:10";
                                 cycleDay[5] = "11:33-12:08";
                             }
                         }
@@ -517,9 +517,9 @@ public class Main extends ActionBarActivity
                 cycleTeacher[6] = "-----";
                 cycleRoom[6] = "-----";
 
-                String temp = cycleDay[4];
-                cycleDay[4] = cycleDay[5];
-                cycleDay[5] = temp;
+//                String temp = cycleDay[4];
+//                cycleDay[4] = cycleDay[5];
+//                cycleDay[5] = temp;
             }
             cycleClass[7] = classes[5];
             cycleTeacher[7] = teachers[5];
@@ -608,9 +608,9 @@ public class Main extends ActionBarActivity
                 cycleTeacher[6] = "-----";
                 cycleRoom[6] = "-----";
 
-                String temp = cycleDay[4];
-                cycleDay[4] = cycleDay[5];
-                cycleDay[5] = temp;
+//                String temp = cycleDay[4];
+//                cycleDay[4] = cycleDay[5];
+//                cycleDay[5] = temp;
             }
             cycleClass[7] = classes[7];
             cycleTeacher[7] = teachers[7];
@@ -654,9 +654,9 @@ public class Main extends ActionBarActivity
                 cycleTeacher[6] = "-----";
                 cycleRoom[6] = "-----";
 
-                String temp = cycleDay[4];
-                cycleDay[4] = cycleDay[5];
-                cycleDay[5] = temp;
+//                String temp = cycleDay[4];
+//                cycleDay[4] = cycleDay[5];
+//                cycleDay[5] = temp;
             }
             cycleClass[7] = classes[7];
             cycleTeacher[7] = teachers[7];
