@@ -4,5 +4,5 @@ Apr 14, 78,
 Apr 15, 56,
 Apr 16, 34,
 Apr 17, 12,
-Apr 18, No School
+Apr 18, No School,
 Apr 21, 78,

@@ -1,5 +1,2 @@
-vibrate when 5 minutes to class
-  if they are not in class, then vibrate
-  if they have a free period, dont vibrate (especially if they dont have EB classes!)
-add another method that will work with split day schedule for 56 and 34 days.  second half first and
-    one for the first half first.  Work with both types of days.
+nothing to do right now
+no known bugs

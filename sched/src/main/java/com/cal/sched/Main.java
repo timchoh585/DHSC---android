@@ -103,7 +103,18 @@ public class Main extends ActionBarActivity
             bLunches = getIntent().getStringExtra("bLunch");
             sched = getIntent().getStringExtra("userSched");
             if(sched != null)
+            {
                 schedAdd = true;
+
+                String[] full = bLunches.split(",");
+                for(int i = 0; i < 5; i++)
+                {
+                    if (full[i].equals("true"))
+                        bLunchBool[i] = true;
+                    else
+                        bLunchBool[i] = false;
+                }
+            }
             else
             {
                 try
@@ -119,6 +130,7 @@ public class Main extends ActionBarActivity
                         else
                             bLunchBool[i] = false;
                     }
+
                     if(sched != null)
                     {
                         schedAdd = true;
@@ -493,6 +505,7 @@ public class Main extends ActionBarActivity
                 cycleRoom[5] = "-----";
                 cycleClass[6] = classes[4];
                 cycleTeacher[6] = teachers[4];
+                cycleRoom[6] = rooms[4];
             }
             else
             {

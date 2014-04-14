@@ -73,7 +73,7 @@ public class Lunch extends ActionBarActivity
         {
             cycleDay[4] = "12:39-1:10";
             cycleDay[5] = "11:37-12:34";
-            bLunchArray[1] = "false";
+            bLunchArray[2] = "false";
         }
 
         /********** 34 **********/
@@ -88,7 +88,7 @@ public class Lunch extends ActionBarActivity
         {
             cycleDay[4] = "12:39-1:10";
             cycleDay[5] = "11:37-12:34";
-            bLunchArray[1] = "false";
+            bLunchArray[3] = "false";
         }
 
         /********** 12 **********/
@@ -103,7 +103,7 @@ public class Lunch extends ActionBarActivity
         {
             cycleDay[4] = "12:39-1:10";
             cycleDay[5] = "11:37-12:34";
-            bLunchArray[1] = "false";
+            bLunchArray[4] = "false";
         }
 
         for(int i = 0; i < 5; i++)
