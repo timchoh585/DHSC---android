@@ -3,7 +3,6 @@ package com.cal.sched;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
@@ -19,9 +18,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Tim on 3/23/2014.
@@ -32,8 +30,6 @@ public class Main extends ActionBarActivity
     private String sched = "";
     private boolean schedAdd = false;
     private myAdapter adapt;
-
-    //set arrays too big fix later
 
     //set schedule
     private String[] classes = new String[10];
@@ -63,18 +59,23 @@ public class Main extends ActionBarActivity
     private String[] lateStart = new String[]{"11:15-12:11", "12:16-1:12", "1:17-2:13",
             "2:18-3:14"};
     private String[] psae = new String[]{"", "12:30-1:22", "1:27-2:18", "2:23-3:14"};
+    private String currentTime = "00:00";
+
+    //current class
+    private int[] c100ClassesImages = new int[]{R.drawable.black, R.drawable.black,
+            R.drawable.black,
+            R.drawable.black, R.drawable.black, R.drawable.black, R.drawable.black,
+            R.drawable.black, R.drawable.black,R.drawable.black, R.drawable.black};
+    private int[] cycleClassesImages = new int[]{R.drawable.black, R.drawable.black,
+            R.drawable.black,
+            R.drawable.black, R.drawable.black, R.drawable.black, R.drawable.black,
+            R.drawable.black, R.drawable.black};
+    private int[] lateStartsImages = new int[]{R.drawable.black, R.drawable.black, R.drawable.black,
+            R.drawable.black};
 
     //lunch
     private Boolean[] bLunchBool = new Boolean[5];
     private String bLunches = "";
-
-    //current class
-//    private int[] p100 = new int[]{R.drawable.white, R.drawable.black, R.drawable.black,
-//            R.drawable.black, R.drawable.black, R.drawable.black, R.drawable.black,
-//            R.drawable.black, R.drawable.black, R.drawable.black};
-//    private int[] pcycle = new int[]{R.drawable.white, R.drawable.black, R.drawable.black,
-//            R.drawable.black, R.drawable.black, R.drawable.black, R.drawable.black,
-//            R.drawable.black};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -82,7 +83,16 @@ public class Main extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        currentTime = getCurrentTime();
+
         mainAct();
+    }
+
+    public void onResume()
+    {
+        super.onPause();
+        currentTime = getCurrentTime();
+        setClassImages(currentTime);
     }
 
     /**
@@ -175,63 +185,65 @@ public class Main extends ActionBarActivity
             ListView lists = (ListView) findViewById(R.id.listView);
             if(getCycle().equals("100"))
             { setCycleArray(100); adapt = new myAdapter(this, classes100, teachers100, rooms100,
-                    day100); }
+                    day100, c100ClassesImages); }
             else
             {
                 if(getCycle().equals("78"))
                 {
                     setCycleArray(78);
                     adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
-                            Get("cycleDay"));
+                            Get("cycleDay"), cycleClassesImages);
                 }
                 else if(getCycle().equals("56"))
                 {
                     setCycleArray(56);
                     adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
-                            Get("cycleDay"));
+                            Get("cycleDay"), cycleClassesImages);
                 }
                 else if(getCycle().equals("34"))
                 {
                     setCycleArray(34);
                     adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
-                            Get("cycleDay"));
+                            Get("cycleDay"), cycleClassesImages);
                 }
                 else if(getCycle().equals("12"))
                 {
                     setCycleArray(12);
                     adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
-                            Get("cycleDay"));
+                            Get("cycleDay"), cycleClassesImages);
                 }
                 else if(getCycle().equals("eb123"))
                 {
                     setCycleArray(0123);
                     adapt = new myAdapter(this, Get("lclasses"), Get("lteachers"), Get("lrooms"),
-                            Get("lateStart"));
+                            Get("lateStart"), lateStartsImages);
                 }
                 else if(getCycle().equals("478"))
                 {
                     setCycleArray(478);
                     adapt = new myAdapter(this, Get("lclasses"), Get("lteachers"), Get("lrooms"),
-                            Get("lateStart"));
+                            Get("lateStart"), lateStartsImages);
                 }
                 else if(getCycle().equals("eb125"))
                 {
                     setCycleArray(0125);
                     adapt = new myAdapter(this, Get("lclasses"), Get("lteachers"), Get("lrooms"),
-                            Get("lateStart"));
+                            Get("lateStart"), lateStartsImages);
                 }
                 else if(getCycle().equals("678"))
                 {
                     setCycleArray(678);
                     adapt = new myAdapter(this, Get("lclasses"), Get("lteachers"), Get("lrooms"),
-                            Get("psae"));
+                            Get("psae"), lateStartsImages);
                 }
                 else
                 {
                     setCycleArray(000);
                     adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
-                            Get("cycleDay"));
+                            Get("cycleDay"), lateStartsImages);
                 }
+                currentTime = getCurrentTime();
+                setClassImages(currentTime);
             }
 
             Button edit = (Button) findViewById(R.id.edit);
@@ -325,6 +337,61 @@ public class Main extends ActionBarActivity
     }
 
     /**
+     * set the image array for the current class based on time
+     * @param s
+     */
+    public void setClassImages(String s)
+    {
+        if(readCal().equals(" 100"))
+        {
+            for(int i = 0; i < 11; i++)
+            {
+                String[] times = day100[i].split("-");
+                if(s.length() == 4)
+                    s = "0" + s;
+                if(times[0].length() == 4)
+                    times[0] = "0" + times[0];
+                if(times[1].length() == 4)
+                    times[1] = "0" + times[1];
+                if(s.compareTo(times[0]) > 0 && s.compareTo(times[1]) < 0)
+                    if(i <= 6)
+                    {
+                        for(int j = 0; j < 11; j++)
+                            c100ClassesImages[j] = R.drawable.black;
+                        c100ClassesImages[i] = R.drawable.arrow;
+                        break;
+                    }
+                    else
+                        i = 6;
+            }
+        }
+        else if(readCal().equals(" 78") || readCal().equals(" 56") || readCal().equals(" 34") ||
+                readCal().equals(" 12"))
+        {
+            for(int i = 0; i < 9; i++)
+            {
+                String[] times = cycleDay[i].split("-");
+                if(s.length() == 4)
+                    s = "0" + s;
+                if(times[0].length() == 4)
+                    times[0] = "0" + times[0];
+                if(times[1].length() == 4)
+                    times[1] = "0" + times[1];
+                if(s.compareTo(times[0]) > 0 && s.compareTo(times[1]) < 0)
+                    if(i <= 6)
+                    {
+                        for(int j = 0; j < 9; j++)
+                            cycleClassesImages[j] = R.drawable.black;
+                        cycleClassesImages[i] = R.drawable.arrow;
+                        break;
+                    }
+                    else
+                        i = 6;
+            }
+        }
+    }
+
+    /**
      * returns today's date
      * @return string of day
      */
@@ -348,11 +415,12 @@ public class Main extends ActionBarActivity
         return todayForm.format(today).toString();
     }
 
-    public String getTime()
+    public String getCurrentTime()
     {
         Time time = new Time(Time.getCurrentTimezone());
         time.setToNow();
-        return time.format("HH:mm");
+        SimpleDateFormat sdfTime = new SimpleDateFormat("h:mm");
+        return sdfTime.format(Calendar.getInstance().getTime());
     }
 
     /**
@@ -386,19 +454,6 @@ public class Main extends ActionBarActivity
         { cycle.setText(Html.fromHtml("<h3> No\nSchool </h3>")); cyclee = "No School"; }
 
         return cyclee;
-
-//        if(dc.equals("Monday\n\n"))
-//            cycle.setText(Html.fromHtml("<h3> 100 Day </h3>"));
-//        else if(dc.equals("Tuesday\n\n"))
-//            cycle.setText(Html.fromHtml("<h3> 78 Day </h3>"));
-//        else if(dc.equals("Wednesday\n\n"))
-//            cycle.setText(Html.fromHtml("<h3> 56 Day </h3>"));
-//        else if(dc.equals("Thursday\n\n"))
-//            cycle.setText(Html.fromHtml("<h3> 34 Day </h3>"));
-//        else if(dc.equals("Friday\n\n"))
-//            cycle.setText(Html.fromHtml("<h3> 12 Day </h3>"));
-//        else
-//            cycle.setText(Html.fromHtml("<h3> 100 Day </h3>"));
     }
 
     /**
@@ -467,9 +522,9 @@ public class Main extends ActionBarActivity
                 teachers100[6] = "-----";
                 rooms100[6] = "-----";
 
-                String temp = day100[5];
-                day100[5] = day100[6];
-                day100[6] = temp;
+//                String temp = day100[5];
+//                day100[5] = day100[6];
+//                day100[6] = temp;
             }
             classes100[7] = classes[6];
             teachers100[7] = teachers[6];
@@ -562,9 +617,9 @@ public class Main extends ActionBarActivity
                 cycleTeacher[6] = "-----";
                 cycleRoom[6] = "-----";
 
-                String temp = cycleDay[4];
-                cycleDay[4] = cycleDay[5];
-                cycleDay[5] = temp;
+//                String temp = cycleDay[4];
+//                cycleDay[4] = cycleDay[5];
+//                cycleDay[5] = temp;
             }
             cycleClass[7] = classes[7];
             cycleTeacher[7] = teachers[7];
@@ -735,76 +790,6 @@ public class Main extends ActionBarActivity
             }
         }
     }
-
-    /**
-     * set the images for a 100 day assuming a student opens the app up before school starts
-     */
-    /*public void setImageSchedule100()
-    {
-        String s = getTime();
-
-        if(s.compareTo("8:52") < 1)
-        { p100[0] = R.drawable.black; p100[1] = R.drawable.white; }
-        else if(s.compareTo("9:39") < 1)
-        { p100[0] = R.drawable.black; p100[2] = R.drawable.white; }
-        else if(s.compareTo("10:26") < 1)
-        { p100[0] = R.drawable.black; p100[3] = R.drawable.white; }
-        else if(s.compareTo("11:17") < 1)
-        { p100[0] = R.drawable.black; p100[4] = R.drawable.white; }
-        else if(bLunchBool[0])
-        {
-            if (s.compareTo("12:02") < 1)
-            {
-                p100[0] = R.drawable.black;
-                p100[5] = R.drawable.white;
-            }
-            else if (s.compareTo("") < 1)
-            {
-                p100[0] = R.drawable.black;
-                p100[6] = R.drawable.white;
-            }
-        }
-        else if(s.compareTo("1:40") < 1)
-        { p100[0] = R.drawable.black; p100[7] = R.drawable.white; }
-        else if(s.compareTo("2:27") < 1)
-        { p100[0] = R.drawable.black; p100[8] = R.drawable.white; }
-        else if(s.compareTo("3:14") < 1)
-        { p100[0] = R.drawable.black; p100[9] = R.drawable.white; }
-    }*/
-
-    /**
-     * set the images for a cycle day assuming a student opens the app up before school starts
-     */
-    /*public void setImageScheduleCycle()
-    {
-        String s = getTime();
-
-        if(s.compareTo("9:07") < 1)
-        { p100[0] = R.drawable.black; p100[1] = R.drawable.white; }
-        else if(s.compareTo("9:24") < 1)
-        { p100[0] = R.drawable.black; p100[2] = R.drawable.white; }
-        else if(s.compareTo("10:26") < 1)
-        { p100[0] = R.drawable.black; p100[3] = R.drawable.white; }
-        else if(s.compareTo("11:28") < 1)
-        { p100[0] = R.drawable.black; p100[4] = R.drawable.white; }
-        else if(bLunchBool[0])
-        {
-            if (s.compareTo("12:02") < 1)
-            {
-                p100[0] = R.drawable.black;
-                p100[5] = R.drawable.white;
-            }
-            else if (s.compareTo("") < 1)
-            {
-                p100[0] = R.drawable.black;
-                p100[6] = R.drawable.white;
-            }
-        }
-        else if(s.compareTo("2:12") < 1)
-        { p100[0] = R.drawable.black; p100[7] = R.drawable.white; }
-        else if(s.compareTo("3:14") < 1)
-        { p100[0] = R.drawable.black; p100[8] = R.drawable.white; }
-    }*/
 
     /**
      * saves strings into StudentSched
