@@ -93,6 +93,8 @@ public class Main extends ActionBarActivity
         super.onPause();
         currentTime = getCurrentTime();
         setClassImages(currentTime);
+
+        mainAct();
     }
 
     /**
@@ -354,15 +356,23 @@ public class Main extends ActionBarActivity
                 if(times[1].length() == 4)
                     times[1] = "0" + times[1];
                 if(s.compareTo(times[0]) > 0 && s.compareTo(times[1]) < 0)
-                    if(i <= 6)
+                {
+                    for(int j = 0; j < 11; j++)
+                        c100ClassesImages[j] = R.drawable.black;
+                    c100ClassesImages[i] = R.drawable.arrow;
+                    break;
+                }
+                else if(i == 6)
+                {
+                    if(s.compareTo(times[0]) > 0 && s.compareTo(times[1]) > 0)
                     {
                         for(int j = 0; j < 11; j++)
-                            c100ClassesImages[j] = R.drawable.black;
-                        c100ClassesImages[i] = R.drawable.arrow;
+                            cycleClassesImages[j] = R.drawable.black;
+                        cycleClassesImages[i] = R.drawable.arrow;
                         break;
                     }
-                    else
-                        i = 6;
+                    break;
+                }
             }
         }
         else if(readCal().equals(" 78") || readCal().equals(" 56") || readCal().equals(" 34") ||
@@ -378,15 +388,23 @@ public class Main extends ActionBarActivity
                 if(times[1].length() == 4)
                     times[1] = "0" + times[1];
                 if(s.compareTo(times[0]) > 0 && s.compareTo(times[1]) < 0)
-                    if(i <= 6)
+                {
+                    for(int j = 0; j < 9; j++)
+                        cycleClassesImages[j] = R.drawable.black;
+                    cycleClassesImages[i] = R.drawable.arrow;
+                    break;
+                }
+                else if(i == 6)
+                {
+                    if(s.compareTo(times[0]) > 0 && s.compareTo(times[1]) > 0)
                     {
                         for(int j = 0; j < 9; j++)
                             cycleClassesImages[j] = R.drawable.black;
                         cycleClassesImages[i] = R.drawable.arrow;
                         break;
                     }
-                    else
-                        i = 6;
+                    break;
+                }
             }
         }
     }
