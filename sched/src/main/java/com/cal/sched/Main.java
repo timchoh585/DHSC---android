@@ -355,7 +355,7 @@ public class Main extends ActionBarActivity
                     times[0] = "0" + times[0];
                 if(times[1].length() == 4)
                     times[1] = "0" + times[1];
-                if(s.compareTo(times[0]) > 0 && s.compareTo(times[1]) < 0)
+                if(s.compareTo(times[0]) >= 0 && s.compareTo(times[1]) <= 0)
                 {
                     for(int j = 0; j < 11; j++)
                         c100ClassesImages[j] = R.drawable.black;
@@ -364,12 +364,12 @@ public class Main extends ActionBarActivity
                 }
                 else if(i == 6)
                 {
-                    if(s.compareTo(times[0]) > 0 && s.compareTo(times[1]) > 0)
+                    if((s.compareTo(times[0]) >= 0 && s.compareTo("12:59") <= 0) || (s.compareTo
+                            ("01:00") >= 0 && s.compareTo(times[1]) <= 0))
                     {
-                        for(int j = 0; j < 11; j++)
-                            cycleClassesImages[j] = R.drawable.black;
-                        cycleClassesImages[i] = R.drawable.arrow;
-                        break;
+                        for(int j = 0; j < 9; j++)
+                            c100ClassesImages[j] = R.drawable.black;
+                        c100ClassesImages[i] = R.drawable.arrow;
                     }
                     break;
                 }
@@ -396,13 +396,13 @@ public class Main extends ActionBarActivity
                 }
                 else if(i == 6)
                 {
-                    if(s.compareTo(times[0]) > 0 && s.compareTo(times[1]) > 0)
-                    {
-                        for(int j = 0; j < 9; j++)
-                            cycleClassesImages[j] = R.drawable.black;
-                        cycleClassesImages[i] = R.drawable.arrow;
-                        break;
-                    }
+                    if((s.compareTo(times[0]) >= 0 && s.compareTo("12:59") <= 0) || (s.compareTo
+                        ("01:00") >= 0 && s.compareTo(times[1]) <= 0))
+                {
+                    for(int j = 0; j < 9; j++)
+                        cycleClassesImages[j] = R.drawable.black;
+                    cycleClassesImages[i] = R.drawable.arrow;
+                }
                     break;
                 }
             }
@@ -539,10 +539,6 @@ public class Main extends ActionBarActivity
                 classes100[6] = "Lunch";
                 teachers100[6] = "-----";
                 rooms100[6] = "-----";
-
-//                String temp = day100[5];
-//                day100[5] = day100[6];
-//                day100[6] = temp;
             }
             classes100[7] = classes[6];
             teachers100[7] = teachers[6];
@@ -589,10 +585,6 @@ public class Main extends ActionBarActivity
                 cycleClass[6] = "Lunch";
                 cycleTeacher[6] = "-----";
                 cycleRoom[6] = "-----";
-
-//                String temp = cycleDay[4];
-//                cycleDay[4] = cycleDay[5];
-//                cycleDay[5] = temp;
             }
             cycleClass[7] = classes[5];
             cycleTeacher[7] = teachers[5];
@@ -634,10 +626,6 @@ public class Main extends ActionBarActivity
                 cycleClass[6] = "Lunch";
                 cycleTeacher[6] = "-----";
                 cycleRoom[6] = "-----";
-
-//                String temp = cycleDay[4];
-//                cycleDay[4] = cycleDay[5];
-//                cycleDay[5] = temp;
             }
             cycleClass[7] = classes[7];
             cycleTeacher[7] = teachers[7];
@@ -680,10 +668,6 @@ public class Main extends ActionBarActivity
                 cycleClass[6] = "Lunch";
                 cycleTeacher[6] = "-----";
                 cycleRoom[6] = "-----";
-
-//                String temp = cycleDay[4];
-//                cycleDay[4] = cycleDay[5];
-//                cycleDay[5] = temp;
             }
             cycleClass[7] = classes[7];
             cycleTeacher[7] = teachers[7];
@@ -726,10 +710,6 @@ public class Main extends ActionBarActivity
                 cycleClass[6] = "Lunch";
                 cycleTeacher[6] = "-----";
                 cycleRoom[6] = "-----";
-
-//                String temp = cycleDay[4];
-//                cycleDay[4] = cycleDay[5];
-//                cycleDay[5] = temp;
             }
             cycleClass[7] = classes[7];
             cycleTeacher[7] = teachers[7];
