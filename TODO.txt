@@ -1,3 +1,6 @@
 change times for different schedule
 update time button/feature
 keep memory for the whole week
+current classes for late starts
+read calendar form a .txt file off of Matt's server
+    eventually run off my own server

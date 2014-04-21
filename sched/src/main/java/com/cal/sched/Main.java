@@ -1,9 +1,12 @@
 package com.cal.sched;
 
+import android.accounts.NetworkErrorException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
+import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.text.format.Time;
@@ -14,9 +17,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -62,16 +75,16 @@ public class Main extends ActionBarActivity
     private String currentTime = "00:00";
 
     //current class
-    private int[] c100ClassesImages = new int[]{R.drawable.black, R.drawable.black,
-            R.drawable.black,
-            R.drawable.black, R.drawable.black, R.drawable.black, R.drawable.black,
-            R.drawable.black, R.drawable.black,R.drawable.black, R.drawable.black};
-    private int[] cycleClassesImages = new int[]{R.drawable.black, R.drawable.black,
-            R.drawable.black,
-            R.drawable.black, R.drawable.black, R.drawable.black, R.drawable.black,
-            R.drawable.black, R.drawable.black};
-    private int[] lateStartsImages = new int[]{R.drawable.black, R.drawable.black, R.drawable.black,
-            R.drawable.black};
+    private int[] c100ClassesImages = new int[]{R.drawable.gray, R.drawable.gray,
+            R.drawable.gray,
+            R.drawable.gray, R.drawable.gray, R.drawable.gray, R.drawable.gray,
+            R.drawable.gray, R.drawable.gray,R.drawable.gray, R.drawable.gray};
+    private int[] cycleClassesImages = new int[]{R.drawable.gray, R.drawable.gray,
+            R.drawable.gray,
+            R.drawable.gray, R.drawable.gray, R.drawable.gray, R.drawable.gray,
+            R.drawable.gray, R.drawable.gray};
+    private int[] lateStartsImages = new int[]{R.drawable.gray, R.drawable.gray, R.drawable.gray,
+            R.drawable.gray};
 
     //lunch
     private Boolean[] bLunchBool = new Boolean[5];
@@ -358,7 +371,7 @@ public class Main extends ActionBarActivity
                 if(s.compareTo(times[0]) >= 0 && s.compareTo(times[1]) <= 0)
                 {
                     for(int j = 0; j < 11; j++)
-                        c100ClassesImages[j] = R.drawable.black;
+                        c100ClassesImages[j] = R.drawable.gray;
                     c100ClassesImages[i] = R.drawable.arrow;
                     break;
                 }
@@ -368,7 +381,7 @@ public class Main extends ActionBarActivity
                             ("01:00") >= 0 && s.compareTo(times[1]) <= 0))
                     {
                         for(int j = 0; j < 9; j++)
-                            c100ClassesImages[j] = R.drawable.black;
+                            c100ClassesImages[j] = R.drawable.gray;
                         c100ClassesImages[i] = R.drawable.arrow;
                     }
                     break;
@@ -390,7 +403,7 @@ public class Main extends ActionBarActivity
                 if(s.compareTo(times[0]) > 0 && s.compareTo(times[1]) < 0)
                 {
                     for(int j = 0; j < 9; j++)
-                        cycleClassesImages[j] = R.drawable.black;
+                        cycleClassesImages[j] = R.drawable.gray;
                     cycleClassesImages[i] = R.drawable.arrow;
                     break;
                 }
@@ -400,7 +413,7 @@ public class Main extends ActionBarActivity
                         ("01:00") >= 0 && s.compareTo(times[1]) <= 0))
                 {
                     for(int j = 0; j < 9; j++)
-                        cycleClassesImages[j] = R.drawable.black;
+                        cycleClassesImages[j] = R.drawable.gray;
                     cycleClassesImages[i] = R.drawable.arrow;
                 }
                     break;
@@ -825,26 +838,36 @@ public class Main extends ActionBarActivity
      */
     public String readCal()
     {
-        String s;
-        InputStream is = getResources().openRawResource(R.raw.calendar);
-        ByteArrayOutputStream ba = new ByteArrayOutputStream();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
-        int j;
-        try
-        {
-            j = is.read();
-            while(j != -1)
+        StrictMode.setThreadPolicy(policy);
+
+        String s = "";
+        DefaultHttpClient httpclient = new DefaultHttpClient();
+
+        try {
+            HttpGet httppost = new HttpGet("http://www.gamershut.net/TimChoh/calendar.txt");
+            HttpResponse response = httpclient.execute(httppost);
+            HttpEntity ht = response.getEntity();
+
+            BufferedHttpEntity buf = new BufferedHttpEntity(ht);
+
+            InputStream is = buf.getContent();
+
+            BufferedReader r = new BufferedReader(new InputStreamReader(is));
+
+            StringBuilder total = new StringBuilder();
+            String line;
+            while ((line = r.readLine()) != null)
             {
-                ba.write(j);
-                j = is.read();
+                total.append(line + "\n");
             }
-            is.close();
-        } catch (IOException e)
+            s = total.toString();
+        } catch(IOException e)
         {
-            e.printStackTrace();
+            s = "";
         }
 
-        s = ba.toString();
         s = s.replaceAll("\\r|\\n","");
 
         String[] cal = s.split(",");
