@@ -1,17 +1,16 @@
 package com.cal.sched;
 
-import android.accounts.NetworkErrorException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.NetworkOnMainThreadException;
-import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,17 +18,14 @@ import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -90,24 +86,24 @@ public class Main extends ActionBarActivity
     private Boolean[] bLunchBool = new Boolean[5];
     private String bLunches = "";
 
+    //url
+    public static String file_url = "http://www.gamershut.net/TimChoh/calendar.txt";
+
+    //readCal String
+    public String readCal = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.main);
-
-        currentTime = getCurrentTime();
-
-        mainAct();
     }
 
     public void onResume()
     {
-        super.onPause();
-        currentTime = getCurrentTime();
-        setClassImages(currentTime);
-
-        mainAct();
+        super.onResume();
+        getCal();
     }
 
     /**
@@ -255,7 +251,7 @@ public class Main extends ActionBarActivity
                 {
                     setCycleArray(000);
                     adapt = new myAdapter(this, Get("classes"), Get("teachers"), Get("rooms"),
-                            Get("cycleDay"), lateStartsImages);
+                            Get("cycleDay"), c100ClassesImages);
                 }
                 currentTime = getCurrentTime();
                 setClassImages(currentTime);
@@ -357,7 +353,7 @@ public class Main extends ActionBarActivity
      */
     public void setClassImages(String s)
     {
-        if(readCal().equals(" 100"))
+        if(readCal.equals(" 100"))
         {
             for(int i = 0; i < 11; i++)
             {
@@ -388,8 +384,8 @@ public class Main extends ActionBarActivity
                 }
             }
         }
-        else if(readCal().equals(" 78") || readCal().equals(" 56") || readCal().equals(" 34") ||
-                readCal().equals(" 12"))
+        else if(readCal.equals(" 78") || readCal.equals(" 56") || readCal.equals(" 34") ||
+                readCal.equals(" 12"))
         {
             for(int i = 0; i < 9; i++)
             {
@@ -400,7 +396,7 @@ public class Main extends ActionBarActivity
                     times[0] = "0" + times[0];
                 if(times[1].length() == 4)
                     times[1] = "0" + times[1];
-                if(s.compareTo(times[0]) > 0 && s.compareTo(times[1]) < 0)
+                if(s.compareTo(times[0]) >= 0 && s.compareTo(times[1]) <= 0)
                 {
                     for(int j = 0; j < 9; j++)
                         cycleClassesImages[j] = R.drawable.gray;
@@ -446,6 +442,13 @@ public class Main extends ActionBarActivity
         return todayForm.format(today).toString();
     }
 
+//    public static String gDate()
+//    {
+//        SimpleDateFormat todayForm = new SimpleDateFormat("MMM dd");
+//        Date today = new Date();
+//        return todayForm.format(today).toString();
+//    }
+
     public String getCurrentTime()
     {
         Time time = new Time(Time.getCurrentTimezone());
@@ -463,23 +466,23 @@ public class Main extends ActionBarActivity
         String cyclee = "";
         /********** sets cycle **********/
 
-        if(readCal().equals(" 100"))
+        if(readCal.equals(" 100"))
         { cycle.setText(Html.fromHtml("<h3> 100 Day </h3>")); cyclee = "100"; }
-        else if(readCal().equals(" 78"))
+        else if(readCal.equals(" 78"))
         { cycle.setText(Html.fromHtml("<h3> 78 Day </h3>")); cyclee = "78"; }
-        else if(readCal().equals(" 56"))
+        else if(readCal.equals(" 56"))
         { cycle.setText(Html.fromHtml("<h3> 56 Day </h3>")); cyclee = "56"; }
-        else if(readCal().equals(" 34"))
+        else if(readCal.equals(" 34"))
         { cycle.setText(Html.fromHtml("<h3> 34 Day </h3>")); cyclee = "34"; }
-        else if(readCal().equals(" 12"))
+        else if(readCal.equals(" 12"))
         { cycle.setText(Html.fromHtml("<h3> 12 Day </h3>")); cyclee = "12"; }
-        else if(readCal().equals(" 0123"))
+        else if(readCal.equals(" 0123"))
         { cycle.setText(Html.fromHtml("<h3> EB123 Day </h3>")); cyclee = "eb123"; }
-        else if(readCal().equals(" 478"))
+        else if(readCal.equals(" 478"))
         { cycle.setText(Html.fromHtml("<h3> 478 Day </h3>")); cyclee = "478"; }
-        else if(readCal().equals(" 0125"))
+        else if(readCal.equals(" 0125"))
         { cycle.setText(Html.fromHtml("<h3> EB125 Day </h3>")); cyclee = "eb125"; }
-        else if(readCal().equals(" 678"))
+        else if(readCal.equals(" 678"))
         { cycle.setText(Html.fromHtml("<h3> 678 Day </h3>")); cyclee = "678"; }
         else
         { cycle.setText(Html.fromHtml("<h3> No\nSchool </h3>")); cyclee = "No School"; }
@@ -836,49 +839,85 @@ public class Main extends ActionBarActivity
      * the file is first split by the '.' then split by the ','
      * @return cycle day of the given day taken from the getDate()
      */
-    public String readCal()
+    public void readCal(String s)
     {
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-        StrictMode.setThreadPolicy(policy);
-
-        String s = "";
-        DefaultHttpClient httpclient = new DefaultHttpClient();
-
-        try {
-            HttpGet httppost = new HttpGet("http://www.gamershut.net/TimChoh/calendar.txt");
-            HttpResponse response = httpclient.execute(httppost);
-            HttpEntity ht = response.getEntity();
-
-            BufferedHttpEntity buf = new BufferedHttpEntity(ht);
-
-            InputStream is = buf.getContent();
-
-            BufferedReader r = new BufferedReader(new InputStreamReader(is));
-
-            StringBuilder total = new StringBuilder();
-            String line;
-            while ((line = r.readLine()) != null)
-            {
-                total.append(line + "\n");
-            }
-            s = total.toString();
-        } catch(IOException e)
-        {
-            s = "";
-        }
-
-        s = s.replaceAll("\\r|\\n","");
+        String date = getDate();
+        String cycle = "";
 
         String[] cal = s.split(",");
-        String date = "";
 
-        String asjaf = getDate();
+        for (int i = 0; i < cal.length; i += 2)
+            if (cal[i].equals(date))
+            { cycle = cal[i + 1]; break; }
+        readCal = cycle;
+        //Toast.makeText(this, "Calendar Updated", Toast.LENGTH_LONG).show();
+        currentTime = getCurrentTime();
+        setClassImages(currentTime);
+        mainAct();
+    }
 
-        for (int i = 0; i < cal.length; i+=2)
-            if(cal[i].equals(asjaf))
-                date = cal[i+1];
+    public void getCal()
+    {
+        /********** gets schedule from website **********/
+        DownloadFileFromURL download = new DownloadFileFromURL();
+        download.execute(file_url);
+    }
 
-        return date;
+    /**
+     * class for async that reads the text file from the internet
+     */
+    private class DownloadFileFromURL extends AsyncTask<String, String, String>
+    {
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+            Main.this.setProgressBarIndeterminateVisibility(true);
+        }
+
+        @Override
+        protected String doInBackground(String... url)
+        {
+            Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+
+            String website = url[0];
+            StringBuilder total = new StringBuilder();
+            try
+            {
+                DefaultHttpClient client = new DefaultHttpClient();
+                HttpGet post = new HttpGet(website);
+                HttpResponse response = client.execute(post);
+                HttpEntity entity = response.getEntity();
+                BufferedHttpEntity buf = new BufferedHttpEntity(entity);
+                InputStream is = buf.getContent();
+
+                BufferedReader r = new BufferedReader(new InputStreamReader(is));
+
+                String line;
+                while ((line = r.readLine()) != null)
+                    total.append(line + "\n");
+                publishProgress(total.toString());
+            } catch (ClientProtocolException e)
+            {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return total.toString();
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values)
+        {
+            super.onProgressUpdate(values);
+            readCal(values[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String response)
+        {
+            super.onPostExecute(response);
+            Main.this.setProgressBarIndeterminateVisibility(false);
+        }
     }
 }
