@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -35,7 +34,6 @@ import java.util.Date;
  */
 public class Main extends ActionBarActivity
 {
-
     private String sched = "";
     private boolean schedAdd = false;
     private myAdapter adapt;
