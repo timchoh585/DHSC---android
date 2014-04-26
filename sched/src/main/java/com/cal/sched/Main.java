@@ -30,7 +30,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Tim on 3/23/2014.
+ * Created by Tim Choh
+ * DHSC
  */
 public class Main extends ActionBarActivity
 {
@@ -440,13 +441,6 @@ public class Main extends ActionBarActivity
         return todayForm.format(today).toString();
     }
 
-//    public static String gDate()
-//    {
-//        SimpleDateFormat todayForm = new SimpleDateFormat("MMM dd");
-//        Date today = new Date();
-//        return todayForm.format(today).toString();
-//    }
-
     public String getCurrentTime()
     {
         Time time = new Time(Time.getCurrentTimezone());
@@ -841,6 +835,8 @@ public class Main extends ActionBarActivity
     {
         String date = getDate();
         String cycle = "";
+        
+        s = s.replaceAll("\\r|\\n","");
 
         String[] cal = s.split(",");
 
