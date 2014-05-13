@@ -54,6 +54,7 @@ public class Main extends ActionBarActivity
     private String[] cycleTeacher = new String[9];
     private String[] cycleRoom = new String[9];
 
+    //late starts
     private String[] lateClass = new String[4];
     private String[] lateTeacher = new String[4];
     private String[] lateRoom = new String[4];
@@ -159,6 +160,7 @@ public class Main extends ActionBarActivity
                             if(i == 0 && bLunchBool[0])
                             {
                                 day100[5] = "11:22-12:02";
+                                day100[6] = "12:18-12:53";
                             }
                             else if(bLunchBool[i])
                             {
@@ -169,8 +171,8 @@ public class Main extends ActionBarActivity
                             /********** preset values of D lunch **********/
                             else
                             {
-                                day100[5] = "12:07-12:53";
-                                day100[6] = "11:22-12:02";
+                                day100[6] = "12:07-12:53";
+                                day100[5] = "11:22-12:02";
                                 cycleDay[6] = "12:13-1:10";
                                 cycleDay[5] = "11:33-12:08";
                             }
